@@ -1,0 +1,168 @@
+{
+  "model_name": "XGBoost (Tuned)",
+  "accuracy": 0.9559782608695652,
+  "macro_f1": 0.9265277390211367,
+  "weighted_f1": 0.9588943772292412,
+  "classes": {
+    "Low": {
+      "precision": 0.9958188153310105,
+      "recall": 0.9513981358189081,
+      "f1-score": 0.9731018045624787,
+      "support": 1502.0
+    },
+    "Medium": {
+      "precision": 0.704,
+      "recall": 0.9617486338797814,
+      "f1-score": 0.812933025404157,
+      "support": 183.0
+    },
+    "High": {
+      "precision": 0.9935483870967742,
+      "recall": 0.9935483870967742,
+      "f1-score": 0.9935483870967742,
+      "support": 155.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      1429,
+      73,
+      0
+    ],
+    [
+      6,
+      176,
+      1
+    ],
+    [
+      0,
+      1,
+      154
+    ]
+  ],
+  "feature_importance": [
+    {
+      "feature": "attendance_decay",
+      "importance": 1.988718867301941
+    },
+    {
+      "feature": "overall_gpa",
+      "importance": 0.5129305124282837
+    },
+    {
+      "feature": "assignment_avg",
+      "importance": 0.3350163400173187
+    },
+    {
+      "feature": "attendance_pct",
+      "importance": 0.31728237867355347
+    },
+    {
+      "feature": "internal_exam_avg",
+      "importance": 0.12615133821964264
+    },
+    {
+      "feature": "core_theory_average",
+      "importance": 0.11426322162151337
+    },
+    {
+      "feature": "mentor_meetings_attended",
+      "importance": 0.10646166652441025
+    },
+    {
+      "feature": "backlogs_count",
+      "importance": 0.05820328742265701
+    },
+    {
+      "feature": "failed_subjects_count",
+      "importance": 0.04077773913741112
+    },
+    {
+      "feature": "cutoff_mark_200",
+      "importance": 0.02322351187467575
+    },
+    {
+      "feature": "family_income_annual",
+      "importance": 0.01623779535293579
+    },
+    {
+      "feature": "grade_trend",
+      "importance": 0.011590239591896534
+    },
+    {
+      "feature": "department_AIDS",
+      "importance": 0.003511885181069374
+    },
+    {
+      "feature": "distance_from_home_km",
+      "importance": 0.0017141965217888355
+    },
+    {
+      "feature": "department_IT",
+      "importance": 0.000811906298622489
+    }
+  ],
+  "all_feature_names": [
+    "attendance_pct",
+    "attendance_decay",
+    "overall_gpa",
+    "backlogs_count",
+    "cutoff_mark_200",
+    "family_income_annual",
+    "mentor_meetings_attended",
+    "first_gen_learner",
+    "distance_from_home_km",
+    "failed_subjects_count",
+    "core_theory_average",
+    "internal_exam_avg",
+    "assignment_avg",
+    "grade_trend",
+    "year_of_study",
+    "department_AIDS",
+    "department_AIML",
+    "department_Automobile",
+    "department_CSBS",
+    "department_CSD",
+    "department_CSE",
+    "department_Civil",
+    "department_Cyber Security",
+    "department_ECE",
+    "department_EEE",
+    "department_IT",
+    "department_Mechanical",
+    "department_Robotics"
+  ],
+  "brier_score": 0.06485056379384671,
+  "benchmark_comparison": {
+    "Logistic Regression (Balanced)": {
+      "macro_f1": 0.9194102263677255,
+      "high_recall": 0.989247311827957,
+      "med_recall": 0.9507256046705589
+    },
+    "Random Forest (Baseline)": {
+      "macro_f1": 0.9322255202168701,
+      "high_recall": 0.9806451612903226,
+      "med_recall": 0.8302752293577982
+    },
+    "Random Forest (Balanced)": {
+      "macro_f1": 0.9286394077314177,
+      "high_recall": 0.9849462365591398,
+      "med_recall": 0.9215179316096748
+    },
+    "Random Forest (SMOTE)": {
+      "macro_f1": 0.9286497131852768,
+      "high_recall": 0.9870967741935484,
+      "med_recall": 0.9434028356964138
+    },
+    "XGBoost (Class-Weighted)": {
+      "macro_f1": 0.9335919769486256,
+      "high_recall": 0.9849462365591398,
+      "med_recall": 0.9233694745621351
+    },
+    "XGBoost (SMOTE)": {
+      "macro_f1": 0.9341245670601449,
+      "high_recall": 0.989247311827957,
+      "med_recall": 0.890508757297748
+    }
+  }
+}

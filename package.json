@@ -1,0 +1,21 @@
+{
+  "name": "ai-dropout-prediction-workspace",
+  "version": "1.0.0",
+  "description": "AI-Powered Student Dropout Prediction and Intervention System",
+  "scripts": {
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm run dev",
+    "start:ml": "cd ml-service && python -m uvicorn app.main:app --port 8001 --reload",
+    "build:frontend": "cd frontend && npm run build"
+  },
+  "keywords": [
+    "dropout-prediction",
+    "xgboost",
+    "fastapi",
+    "mern",
+    "shap",
+    "intervention-agent"
+  ],
+  "author": "Academic Project",
+  "license": "ISC"
+}

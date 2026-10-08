@@ -1,0 +1,153 @@
+{
+  "version": "1.0.0",
+  "target": "dropout_risk_label",
+  "classes": ["Low", "Medium", "High"],
+  "features": [
+    {
+      "name": "attendance_pct",
+      "type": "float",
+      "category": "numeric",
+      "min": 0.0,
+      "max": 100.0,
+      "description": "Cumulative attendance percentage across all enrolled courses",
+      "formula": "student.attendance_pct"
+    },
+    {
+      "name": "attendance_decay",
+      "type": "float",
+      "category": "numeric",
+      "min": -100.0,
+      "max": 100.0,
+      "description": "Drop in attendance from month 1 to latest recorded month",
+      "formula": "monthly_attendance_trend[0] - monthly_attendance_trend[-1] if len >= 2 else 0.0"
+    },
+    {
+      "name": "overall_gpa",
+      "type": "float",
+      "category": "numeric",
+      "min": 0.0,
+      "max": 10.0,
+      "description": "Cumulative Grade Point Average on 10-point Anna University scale",
+      "formula": "student.overall_gpa"
+    },
+    {
+      "name": "backlogs_count",
+      "type": "int",
+      "category": "numeric",
+      "min": 0,
+      "max": 50,
+      "description": "Number of currently active uncleared course backlogs/arrears",
+      "formula": "student.backlogs_count"
+    },
+    {
+      "name": "cutoff_mark_200",
+      "type": "float",
+      "category": "numeric",
+      "min": 0.0,
+      "max": 200.0,
+      "description": "Engineering admission engineering counseling cutoff mark out of 200",
+      "formula": "student.cutoff_mark_200"
+    },
+    {
+      "name": "family_income_annual",
+      "type": "float",
+      "category": "numeric",
+      "min": 0.0,
+      "max": 10000000.0,
+      "description": "Annual household income in INR",
+      "formula": "student.family_income_annual"
+    },
+    {
+      "name": "mentor_meetings_attended",
+      "type": "int",
+      "category": "numeric",
+      "min": 0,
+      "max": 100,
+      "description": "Number of formal faculty advisory sessions attended during semester",
+      "formula": "student.mentor_meetings_attended"
+    },
+    {
+      "name": "first_gen_learner",
+      "type": "int",
+      "category": "numeric",
+      "min": 0,
+      "max": 1,
+      "description": "First-generation university learner indicator (1=yes, 0=no)",
+      "formula": "1 if student.first_gen_learner else 0"
+    },
+    {
+      "name": "distance_from_home_km",
+      "type": "float",
+      "category": "numeric",
+      "min": 0.0,
+      "max": 2000.0,
+      "description": "Distance from permanent residence to campus in kilometers",
+      "formula": "student.distance_from_home_km"
+    },
+    {
+      "name": "failed_subjects_count",
+      "type": "int",
+      "category": "numeric",
+      "min": 0,
+      "max": 50,
+      "description": "Number of course subjects with Arrear result in semester marks records",
+      "formula": "count(marks[result == 'Arrear'])"
+    },
+    {
+      "name": "core_theory_average",
+      "type": "float",
+      "category": "numeric",
+      "min": 0.0,
+      "max": 100.0,
+      "description": "Average total score (out of 100) across theory subjects",
+      "formula": "mean(marks[subject_type == 'Theory'].total_marks)"
+    },
+    {
+      "name": "internal_exam_avg",
+      "type": "float",
+      "category": "numeric",
+      "min": 0.0,
+      "max": 100.0,
+      "description": "Average continuous internal assessment score across exam 1 and exam 2",
+      "formula": "mean((marks.internal_exam_1_marks + marks.internal_exam_2_marks) / 2.0)"
+    },
+    {
+      "name": "assignment_avg",
+      "type": "float",
+      "category": "numeric",
+      "min": 0.0,
+      "max": 100.0,
+      "description": "Average continuous assignment score across assignment 1 and assignment 2",
+      "formula": "mean((marks.assignment_1_marks + marks.assignment_2_marks) / 2.0)"
+    },
+    {
+      "name": "grade_trend",
+      "type": "float",
+      "category": "numeric",
+      "min": -10.0,
+      "max": 10.0,
+      "description": "Semester GPA progression: latest semester grade point average minus first semester average",
+      "formula": "latest_semester_avg_grade_point - first_semester_avg_grade_point"
+    },
+    {
+      "name": "year_of_study",
+      "type": "int",
+      "category": "numeric",
+      "min": 1,
+      "max": 4,
+      "description": "Current undergraduate curriculum year (1 to 4)",
+      "formula": "student.year_of_study"
+    },
+    {
+      "name": "department",
+      "type": "str",
+      "category": "categorical",
+      "allowed_values": [
+        "CSE", "IT", "ECE", "EEE", "MECH", "CIVIL",
+        "AIDS", "AIML", "CSBS", "BME", "CHEM", "AUTO", "AERO"
+      ],
+      "description": "Academic department engineering branch",
+      "formula": "student.department"
+    }
+  ]
+}

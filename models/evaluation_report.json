@@ -1,0 +1,329 @@
+{
+  "model_name": "XGBoost (Tuned)",
+  "data_splits": {
+    "total": 9200,
+    "train": 5520,
+    "validation": 1840,
+    "test": 1840,
+    "split_ratios": "60/20/20 stratified"
+  },
+  "cv_results": {
+    "Logistic Regression (Balanced)": {
+      "macro_f1_mean": 0.9194102263677255,
+      "macro_f1_std": 0.004299067149695125,
+      "high_recall_mean": 0.989247311827957,
+      "high_recall_std": 0.011778979731293885,
+      "med_recall_mean": 0.9507256046705589,
+      "accuracy_mean": 0.9525362318840578
+    },
+    "Random Forest (Baseline)": {
+      "macro_f1_mean": 0.9322255202168701,
+      "macro_f1_std": 0.00886738549988384,
+      "high_recall_mean": 0.9806451612903226,
+      "high_recall_std": 0.010535439753906133,
+      "med_recall_mean": 0.8302752293577982,
+      "accuracy_mean": 0.9663043478260871
+    },
+    "Random Forest (Balanced)": {
+      "macro_f1_mean": 0.9286394077314177,
+      "macro_f1_std": 0.0029339200339469716,
+      "high_recall_mean": 0.9849462365591398,
+      "high_recall_std": 0.01096563336256512,
+      "med_recall_mean": 0.9215179316096748,
+      "accuracy_mean": 0.9605072463768115
+    },
+    "Random Forest (SMOTE)": {
+      "macro_f1_mean": 0.9286497131852768,
+      "macro_f1_std": 0.005428700363718334,
+      "high_recall_mean": 0.9870967741935484,
+      "high_recall_std": 0.012539681494290958,
+      "med_recall_mean": 0.9434028356964138,
+      "accuracy_mean": 0.9594202898550724
+    },
+    "XGBoost (Class-Weighted)": {
+      "macro_f1_mean": 0.9335919769486256,
+      "macro_f1_std": 0.005262862307098689,
+      "high_recall_mean": 0.9849462365591398,
+      "high_recall_std": 0.01096563336256512,
+      "med_recall_mean": 0.9233694745621351,
+      "accuracy_mean": 0.9635869565217391
+    },
+    "XGBoost (SMOTE)": {
+      "macro_f1_mean": 0.9341245670601449,
+      "macro_f1_std": 0.0052847801348563945,
+      "high_recall_mean": 0.989247311827957,
+      "high_recall_std": 0.011778979731293885,
+      "med_recall_mean": 0.890508757297748,
+      "accuracy_mean": 0.9646739130434782
+    }
+  },
+  "best_hyperparameters": {
+    "subsample": 0.85,
+    "n_estimators": 240,
+    "min_child_weight": 1,
+    "max_depth": 3,
+    "learning_rate": 0.03,
+    "gamma": 0.0,
+    "colsample_bytree": 0.85
+  },
+  "best_cv_macro_f1": 0.9693700142331737,
+  "test_metrics": {
+    "accuracy": 0.9559782608695652,
+    "macro_f1": 0.9265277390211367,
+    "weighted_f1": 0.9588943772292412,
+    "classification_report": {
+      "Low": {
+        "precision": 0.9958188153310105,
+        "recall": 0.9513981358189081,
+        "f1-score": 0.9731018045624787,
+        "support": 1502.0
+      },
+      "Medium": {
+        "precision": 0.704,
+        "recall": 0.9617486338797814,
+        "f1-score": 0.812933025404157,
+        "support": 183.0
+      },
+      "High": {
+        "precision": 0.9935483870967742,
+        "recall": 0.9935483870967742,
+        "f1-score": 0.9935483870967742,
+        "support": 155.0
+      },
+      "accuracy": 0.9559782608695652,
+      "macro avg": {
+        "precision": 0.8977890674759282,
+        "recall": 0.968898385598488,
+        "f1-score": 0.9265277390211367,
+        "support": 1840.0
+      },
+      "weighted avg": {
+        "precision": 0.9666042720799878,
+        "recall": 0.9559782608695652,
+        "f1-score": 0.9588943772292412,
+        "support": 1840.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        1429,
+        73,
+        0
+      ],
+      [
+        6,
+        176,
+        1
+      ],
+      [
+        0,
+        1,
+        154
+      ]
+    ],
+    "brier_score": 0.06485056379384671,
+    "brier_per_class": {
+      "Low": 0.03168686479330063,
+      "Medium": 0.032215021550655365,
+      "High": 0.0009486767230555415
+    }
+  },
+  "ablation_study": {
+    "without_attendance": {
+      "macro_f1": 0.8316851566840763,
+      "high_recall": 0.8709677419354839
+    },
+    "without_marks": {
+      "macro_f1": 0.9263926700673966,
+      "high_recall": 0.9870967741935484
+    }
+  },
+  "fairness_analysis": {
+    "by_department": {
+      "AIDS": {
+        "samples": 186,
+        "macro_f1": 0.949764982373678,
+        "accuracy": 0.967741935483871,
+        "high_recall": 1.0
+      },
+      "AIML": {
+        "samples": 185,
+        "macro_f1": 0.955703211517165,
+        "accuracy": 0.972972972972973,
+        "high_recall": 1.0
+      },
+      "Automobile": {
+        "samples": 20,
+        "macro_f1": 1.0,
+        "accuracy": 1.0,
+        "high_recall": 1.0
+      },
+      "CSBS": {
+        "samples": 126,
+        "macro_f1": 0.8982905982905983,
+        "accuracy": 0.9365079365079365,
+        "high_recall": 1.0
+      },
+      "CSD": {
+        "samples": 117,
+        "macro_f1": 0.9514455969984551,
+        "accuracy": 0.9743589743589743,
+        "high_recall": 1.0
+      },
+      "CSE": {
+        "samples": 272,
+        "macro_f1": 0.9441760601180892,
+        "accuracy": 0.9705882352941176,
+        "high_recall": 1.0
+      },
+      "Civil": {
+        "samples": 95,
+        "macro_f1": 0.931060606060606,
+        "accuracy": 0.9578947368421052,
+        "high_recall": 1.0
+      },
+      "Cyber Security": {
+        "samples": 148,
+        "macro_f1": 0.9001821493624772,
+        "accuracy": 0.9459459459459459,
+        "high_recall": 1.0
+      },
+      "ECE": {
+        "samples": 177,
+        "macro_f1": 0.9395380620472871,
+        "accuracy": 0.96045197740113,
+        "high_recall": 1.0
+      },
+      "EEE": {
+        "samples": 147,
+        "macro_f1": 0.8972305855014909,
+        "accuracy": 0.9455782312925171,
+        "high_recall": 0.9166666666666666
+      },
+      "IT": {
+        "samples": 214,
+        "macro_f1": 0.8917583718761025,
+        "accuracy": 0.9299065420560748,
+        "high_recall": 1.0
+      },
+      "Mechanical": {
+        "samples": 121,
+        "macro_f1": 0.9456469456469456,
+        "accuracy": 0.9669421487603306,
+        "high_recall": 1.0
+      },
+      "Robotics": {
+        "samples": 32,
+        "macro_f1": 0.8632010943912448,
+        "accuracy": 0.84375,
+        "high_recall": 1.0
+      }
+    },
+    "by_first_gen": {
+      "Continuing Education": {
+        "samples": 1276,
+        "macro_f1": 0.9257275330752651,
+        "accuracy": 0.9553291536050157,
+        "high_recall": 1.0
+      },
+      "First-Gen Learner": {
+        "samples": 564,
+        "macro_f1": 0.9284128844098998,
+        "accuracy": 0.9574468085106383,
+        "high_recall": 0.9803921568627451
+      }
+    }
+  },
+  "feature_importance": [
+    {
+      "feature": "attendance_decay",
+      "importance": 1.988718867301941
+    },
+    {
+      "feature": "overall_gpa",
+      "importance": 0.5129305124282837
+    },
+    {
+      "feature": "assignment_avg",
+      "importance": 0.3350163400173187
+    },
+    {
+      "feature": "attendance_pct",
+      "importance": 0.31728237867355347
+    },
+    {
+      "feature": "internal_exam_avg",
+      "importance": 0.12615133821964264
+    },
+    {
+      "feature": "core_theory_average",
+      "importance": 0.11426322162151337
+    },
+    {
+      "feature": "mentor_meetings_attended",
+      "importance": 0.10646166652441025
+    },
+    {
+      "feature": "backlogs_count",
+      "importance": 0.05820328742265701
+    },
+    {
+      "feature": "failed_subjects_count",
+      "importance": 0.04077773913741112
+    },
+    {
+      "feature": "cutoff_mark_200",
+      "importance": 0.02322351187467575
+    },
+    {
+      "feature": "family_income_annual",
+      "importance": 0.01623779535293579
+    },
+    {
+      "feature": "grade_trend",
+      "importance": 0.011590239591896534
+    },
+    {
+      "feature": "department_AIDS",
+      "importance": 0.003511885181069374
+    },
+    {
+      "feature": "distance_from_home_km",
+      "importance": 0.0017141965217888355
+    },
+    {
+      "feature": "department_IT",
+      "importance": 0.000811906298622489
+    }
+  ],
+  "all_feature_names": [
+    "attendance_pct",
+    "attendance_decay",
+    "overall_gpa",
+    "backlogs_count",
+    "cutoff_mark_200",
+    "family_income_annual",
+    "mentor_meetings_attended",
+    "first_gen_learner",
+    "distance_from_home_km",
+    "failed_subjects_count",
+    "core_theory_average",
+    "internal_exam_avg",
+    "assignment_avg",
+    "grade_trend",
+    "year_of_study",
+    "department_AIDS",
+    "department_AIML",
+    "department_Automobile",
+    "department_CSBS",
+    "department_CSD",
+    "department_CSE",
+    "department_Civil",
+    "department_Cyber Security",
+    "department_ECE",
+    "department_EEE",
+    "department_IT",
+    "department_Mechanical",
+    "department_Robotics"
+  ]
+}

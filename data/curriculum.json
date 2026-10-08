@@ -1,0 +1,5273 @@
+[
+  {
+    "Subject": "Communicative English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Matrices and Calculus",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Problem Solving and Python Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Engineering Practices Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Statistics and Numerical Methods",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Technical English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Engineering Physics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Basic Electrical and Electronics Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Data Structures",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Data Structures Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Probability and Statistics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Computer Networks",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Database Management Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Operating Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Java Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Competitive Coding Skills",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "DBMS Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Operating Systems Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Discrete Mathematics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 4,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Object Oriented Analysis and Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Microprocessors and Microcontrollers",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Data Mining and Warehousing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Formal Languages and Automata Theory",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Graph Theory and Applications",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Java Programming Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Computer Architecture",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Software Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Web Technology",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Theory of Computation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Artificial Intelligence",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Mini Project",
+    "Subject_Type": "Project",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Computer Networks Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Cryptography and System Security",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Compiler Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Machine Learning",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Cloud Computing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Mobile Application Development",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Web Technology Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Machine Learning & Cloud Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Big Data Analytics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Distributed Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Internet of Things",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Professional Ethics & Entrepreneurship",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Professional Elective III",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Professional Elective IV",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Open Elective",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Project Work Phase I",
+    "Subject_Type": "Project",
+    "Credits": 6,
+    "Semester": 7,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Internship",
+    "Subject_Type": "Internship",
+    "Credits": 2,
+    "Semester": 7,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Project Work Phase II",
+    "Subject_Type": "Project",
+    "Credits": 6,
+    "Semester": 8,
+    "Branch": "CSE"
+  },
+  {
+    "Subject": "Engineering Mathematics I",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Problem Solving with Python",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Basic Electrical Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Basic Electronics Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Professional English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Engineering Physics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Engineering Mathematics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Circuit Theory",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Electrical Measurements and Instrumentation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Electromagnetic Fields",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Digital Logic Circuits",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Electrical Machines I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Electronic Devices",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Environmental Science",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Circuit Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Transforms and Partial Differential Equations",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Electrical Machines II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Power Electronics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Signals and Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Control Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Power System Analysis I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Microprocessors and Microcontrollers",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Electrical Machines II Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Numerical Methods",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 4,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Power System Analysis II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Power System Protection",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Analog and Digital Electronics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Electrical Machine Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Industrial Instrumentation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Embedded Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Power System Analysis II Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Power System Operation and Control",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Renewable Energy Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "High Voltage Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Electric Drives",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Digital Signal Processing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Power Electronics Applications",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Renewable Energy Systems Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Smart Grid Technologies",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Electrical Vehicle Technology",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Advanced Control Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Power Quality",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Energy Management and Auditing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "IoT for Electrical Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Electrical Vehicle Technology Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Electricity Market and Deregulation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "FACTS and HVDC Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Industrial Automation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Advanced Power Electronics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Power System Planning",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Sustainable Energy Management",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Professional Elective III",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Professional Elective IV",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Major Project",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "EEE"
+  },
+  {
+    "Subject": "Engineering Mathematics I",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Problem Solving with Python",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Basic Electrical Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Electronic Devices",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Professional English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Engineering Physics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Engineering Mathematics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Circuit Analysis",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Digital Logic Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Signals and Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Electronic Circuits I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Network Theory",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Communication Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Environmental Science",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Circuit Analysis Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Transforms and Numerical Methods",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Electronic Circuits II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Analog Communication",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Digital Electronics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Electromagnetic Fields",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Microprocessors and Microcontrollers",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Probability and Random Processes",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Electronic Circuits II Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Linear Integrated Circuits",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Digital Signal Processing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Digital Communication",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Control Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Antenna and Wave Propagation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "VLSI Design Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Embedded Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Digital Signal Processing Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Computer Communication Networks",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Wireless Communication",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Microwave Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Embedded System Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Analog and Mixed Signal Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Digital Image Processing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Wireless Communication Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Optical Communication",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Satellite Communication",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Internet of Things",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "RF and Microwave Circuits",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Advanced VLSI Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Real-Time Operating Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Satellite Communication Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "5G and Advanced Wireless Networks",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Software Defined Radio",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Embedded Linux",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Hardware Security",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Next Generation Communication Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "IoT System Integration",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Professional Elective III",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Professional Elective IV",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Major Project",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "ECE"
+  },
+  {
+    "Subject": "Engineering Mathematics I",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Engineering Mechanics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Basic Civil Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Problem Solving with Python",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Professional English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Engineering Physics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Engineering Mathematics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Strength of Materials I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Engineering Geology",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Surveying I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Construction Materials",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Fluid Mechanics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Environmental Science",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Strength of Materials I Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Transforms and Numerical Methods",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Strength of Materials II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Surveying II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Structural Analysis I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Hydraulic Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Concrete Technology",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Building Technology",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Strength of Materials II Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Structural Analysis II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Geotechnical Engineering I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Transportation Engineering I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Environmental Engineering I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Hydrology",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Engineering Hydraulics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Building Services",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Geotechnical Engineering I Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Design of Reinforced Concrete Structures",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Geotechnical Engineering II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Transportation Engineering II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Environmental Engineering II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Water Resources Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Estimation and Costing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Geotechnical Engineering II Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Steel Structural Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Foundation Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Advanced Concrete Structures",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Highway Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Wastewater Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Construction Management",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Foundation Engineering Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Earthquake Resistant Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Bridge Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Advanced Foundation Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Remote Sensing and GIS",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Sustainable Infrastructure",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Structural Health Monitoring",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Smart Cities and Infrastructure",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Disaster Management",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Major Project",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "Civil"
+  },
+  {
+    "Subject": "Engineering Mathematics I",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Engineering Mechanics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Basic Mechanical Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Problem Solving with Python",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Professional English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Engineering Physics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Engineering Mathematics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Thermodynamics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Strength of Materials",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Manufacturing Processes I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Fluid Mechanics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Material Science",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Environmental Science",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Thermodynamics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Transforms and Numerical Methods",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Engineering Materials",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Manufacturing Processes II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Theory of Machines I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Thermal Engineering I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Fluid Machinery",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Metrology and Measurements",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Engineering Materials Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Heat Transfer",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Theory of Machines II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Thermal Engineering II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Machine Design I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Manufacturing Technology",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Industrial Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Computer Aided Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Theory of Machines II Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Machine Design II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Automobile Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Refrigeration and Air Conditioning",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Finite Element Analysis",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Production Planning and Control",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Computer Integrated Manufacturing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Automobile Engineering Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Advanced Manufacturing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Robotics in Manufacturing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Additive Manufacturing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Renewable Energy Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Mechatronics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Operations Research",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Robotics in Manufacturing Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Industrial Automation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Computational Fluid Dynamics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Advanced Materials",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Product Design and Development",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Smart Manufacturing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Digital Twin Technology",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Professional Elective III",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Professional Elective IV",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Major Project",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "Mechanical"
+  },
+  {
+    "Subject": "Engineering Mathematics I",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Problem Solving with Python",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Fundamentals of Information Technology",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Professional English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Digital Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Engineering Physics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Engineering Mathematics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Data Structures",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Object Oriented Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Computer Organization",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Discrete Mathematics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Database Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Web Programming Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Data Structures Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Probability and Statistics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Operating Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Computer Networks",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Database Management Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Java Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Software Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Theory of Computation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Advanced Data Structures",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Web Technology",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Computer Architecture",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Distributed Computing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Mobile Application Development",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Information Security",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Advanced Data Structures Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Cloud Computing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Data Warehousing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Big Data Analytics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Artificial Intelligence",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "DevOps Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Advanced Web Development",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Data Warehousing Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Machine Learning",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Internet of Things",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Blockchain Technology",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Natural Language Processing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Cyber Security",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Microservices Architecture",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Internet of Things Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Edge Computing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Cloud Native Application Development",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Full Stack Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Data Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Enterprise Application Architecture",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "AI Application Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Professional Elective III",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Professional Elective IV",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Major Project",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "IT"
+  },
+  {
+    "Subject": "Engineering Mathematics I",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Problem Solving with Python",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Foundations of Artificial Intelligence",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Professional English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Digital Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Engineering Physics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Engineering Mathematics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Programming with C",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Data Structures",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Discrete Mathematics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Database Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Statistics for Data Science",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Object Oriented Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Programming with C Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Probability and Statistical Inference",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Database Management Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Operating Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Computer Networks",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Exploratory Data Analysis",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Linear Algebra for AI",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Machine Learning Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Data Visualization",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Artificial Intelligence",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Data Mining",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Big Data Technologies",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Feature Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Natural Language Processing Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Data Visualization Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Deep Learning",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Computer Vision",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Natural Language Processing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Time Series Analysis",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Cloud Computing for Data Science",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Recommender Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Computer Vision Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Generative Artificial Intelligence",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Reinforcement Learning",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "MLOps",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Advanced Data Mining",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Knowledge Representation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Speech and Language Processing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Reinforcement Learning Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Large Language Models",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Responsible AI",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Advanced Computer Vision",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "AI Product Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "AI System Deployment",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Data Engineering Architecture",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Professional Elective III",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Professional Elective IV",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Major Project",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "AIDS"
+  },
+  {
+    "Subject": "Engineering Mathematics I",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Problem Solving with Python",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Programming Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Business Communication",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Digital Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Engineering Physics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Engineering Mathematics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Data Structures",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Object Oriented Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Discrete Mathematics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Computer Organization",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Database Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Business Economics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Data Structures Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Probability and Statistics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Operating Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Computer Networks",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Database Management Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Software Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Financial Accounting",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Web Technologies",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Enterprise Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Data Analytics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Business Intelligence",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Information Systems Management",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Computer Architecture",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Operations Research",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Enterprise Programming Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Cloud Computing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Big Data Analytics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Enterprise Resource Planning",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Business Process Management",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Artificial Intelligence for Business",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Software Project Management",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Big Data Analytics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Machine Learning for Business",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Digital Marketing Analytics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Supply Chain Analytics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "FinTech Technologies",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Business Data Visualization",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Enterprise Application Development",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Digital Marketing Analytics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Strategic Information Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Business Process Automation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Digital Transformation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "IT Governance",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Enterprise Architecture",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Business Analytics Capstone",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Professional Elective III",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Professional Elective IV",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Major Project",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "CSBS"
+  },
+  {
+    "Subject": "Engineering Mathematics I",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Problem Solving with Python",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Programming Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Cyber Security Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Professional English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Engineering Physics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Engineering Mathematics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Data Structures",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Object Oriented Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Computer Organization",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Discrete Mathematics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Digital Logic",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Network Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Data Structures Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Probability and Statistics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Operating Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Database Management Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Computer Networks",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Cryptography Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Linux Administration",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Web Application Security",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Network Security",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Ethical Hacking",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Digital Forensics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Secure Software Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "System Security",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Cyber Security Law and Ethics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Network Security Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Malware Analysis",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Security Operations and SIEM",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Penetration Testing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Cloud Security",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Wireless Security",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Applied Cryptography",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Security Operations and SIEM Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Incident Response",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Threat Intelligence",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Vulnerability Assessment",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Mobile Security",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "IoT Security",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Security Information Analytics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Threat Intelligence Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Digital Forensic Investigation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Advanced Penetration Testing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Cyber Threat Hunting",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Security Architecture",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Cyber Security Operations",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Cyber Risk Management",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Professional Elective III",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Professional Elective IV",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Major Project",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "Cyber Security"
+  },
+  {
+    "Subject": "Engineering Mathematics I",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Problem Solving with Python",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Programming Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Artificial Intelligence Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Professional English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Engineering Physics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Engineering Mathematics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Data Structures",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Object Oriented Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Discrete Mathematics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Computer Organization",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Database Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Statistics for AI",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Data Structures Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Probability and Statistics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Operating Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Computer Networks",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Database Management Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Linear Algebra for Machine Learning",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "AI Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Machine Learning",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Artificial Intelligence",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Data Mining",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Computer Vision Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Natural Language Processing Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Feature Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Deep Learning Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Artificial Intelligence Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Advanced Machine Learning",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Deep Neural Networks",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Reinforcement Learning",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Generative AI",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Speech Processing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "AI Optimization Techniques",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Deep Neural Networks Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Large Language Models",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Advanced Computer Vision",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Advanced NLP",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "MLOps",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Explainable AI",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "AI System Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Advanced Computer Vision Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Multimodal AI",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "AI Agents",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Responsible AI",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Edge AI",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "AI Product Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "AI Deployment and Operations",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Professional Elective III",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Professional Elective IV",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Major Project",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "AIML"
+  },
+  {
+    "Subject": "Engineering Mathematics I",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Engineering Mechanics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Basic Automobile Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Problem Solving with Python",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Professional English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Engineering Physics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Engineering Mathematics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Thermodynamics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Strength of Materials",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Engineering Materials",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Fluid Mechanics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Electrical Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Manufacturing Processes",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Thermodynamics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Transforms and Numerical Methods",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Engines",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Theory of Machines",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Chassis",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Transmission Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Vehicle Body Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Measurements",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Engines Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Suspension Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Steering Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Braking Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Electrical and Electronics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Vehicle Dynamics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Heat Transfer in Automobiles",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Fuels and Combustion",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Steering Systems Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Electric and Hybrid Vehicles",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Emission Control",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Vehicle Aerodynamics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Engine Management",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Control Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Manufacturing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Emission Control Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Advanced Vehicle Dynamics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Battery Management Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Autonomous Vehicle Technology",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Connected Vehicles",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Embedded Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Vehicle Testing and Certification",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Battery Management Systems Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Safety Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Advanced Driver Assistance Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Vehicle Diagnostics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Alternative Fuel Vehicles",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Future Mobility Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Automotive Product Development",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Professional Elective III",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Professional Elective IV",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Major Project",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "Automobile"
+  },
+  {
+    "Subject": "Engineering Mathematics I",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Engineering Mechanics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Programming Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Basic Electrical Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Professional English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Engineering Physics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Engineering Mathematics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Engineering Mechanics II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Electronic Devices",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Digital Logic",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Sensors and Transducers",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Manufacturing Processes",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Introduction to Robotics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Engineering Mechanics II Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Transforms and Numerical Methods",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Control Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Microprocessors and Microcontrollers",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Electrical Machines",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Kinematics of Robots",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Robot Sensors",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Pneumatic and Hydraulic Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Control Systems Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Robot Dynamics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Industrial Robotics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Embedded Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Computer Aided Manufacturing",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Machine Vision",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Actuators and Drives",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Robot Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Industrial Robotics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Robotic Manipulators",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Autonomous Mobile Robots",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Industrial Automation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "PLC and SCADA",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Computer Vision for Robotics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Mechatronic System Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Autonomous Mobile Robots Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Artificial Intelligence for Robotics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Robot Operating System",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Human Robot Interaction",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Swarm Robotics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Autonomous Navigation",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Advanced Motion Control",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Robot Operating System Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Collaborative Robotics",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 7,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Industrial Robot Integration",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Robot Perception",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Digital Twin for Robotics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Intelligent Autonomous Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Robotics System Deployment",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Professional Elective III",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Professional Elective IV",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Major Project",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "Robotics"
+  },
+  {
+    "Subject": "Engineering Mathematics I",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Engineering Physics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Engineering Chemistry",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 1,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Problem Solving with Python",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Engineering Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Programming Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Design Thinking",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Professional English",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 1,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Engineering Physics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 1,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Engineering Mathematics II",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Data Structures",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Object Oriented Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Discrete Mathematics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 2,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Computer Organization",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Digital Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Visual Communication",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 2,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Data Structures Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 2,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Probability and Statistics",
+    "Subject_Type": "Theory",
+    "Credits": 4,
+    "Semester": 3,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Operating Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Database Management Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Computer Networks",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Human Computer Interaction",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "UI Design Fundamentals",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 3,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Design and Analysis of Algorithms Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 3,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Web Design and Development",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Computer Graphics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Interaction Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Software Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Mobile Application Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Information Architecture",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "User Experience Research",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 4,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Computer Graphics Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 4,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Game Programming",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "3D Modelling and Visualization",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Animation Techniques",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Advanced UI Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Design Systems",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Creative Coding",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 5,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "3D Modelling and Visualization Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 5,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Augmented Reality",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Virtual Reality",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Extended Reality Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Interactive Media Development",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Generative Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Design Analytics",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 6,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Virtual Reality Laboratory",
+    "Subject_Type": "Laboratory",
+    "Credits": 2,
+    "Semester": 6,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Immersive Experience Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Design for Emerging Technologies",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Accessibility Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Digital Product Design",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Professional Elective I",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Professional Elective II",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 7,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Interactive System Engineering",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Design Innovation Project",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Professional Elective III",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Professional Elective IV",
+    "Subject_Type": "Theory",
+    "Credits": 3,
+    "Semester": 8,
+    "Branch": "CSD"
+  },
+  {
+    "Subject": "Major Project",
+    "Subject_Type": "Project",
+    "Credits": 10,
+    "Semester": 8,
+    "Branch": "CSD"
+  }
+]
