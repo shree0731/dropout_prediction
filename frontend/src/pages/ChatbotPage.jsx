@@ -77,43 +77,43 @@ export default function ChatbotPage() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '900px', margin: '0 auto' }}>
       {/* Title */}
       <div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#ED4D8B', marginBottom: '0.25rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--ink)', marginBottom: '0.25rem' }}>
           <MessageSquare size={20} />
-          <span style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <span style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--ink)' }}>
             Intervention &amp; Retention Dialogue Agent
           </span>
         </div>
-        <h1 style={{ fontSize: '1.8rem', fontWeight: '800', color: '#FFFFFF' }}>
+        <h1 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', fontWeight: '700', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
           Astra Context-Aware Academic Advisor
         </h1>
-        <p style={{ color: '#94A3B8', fontSize: '0.875rem', marginTop: '0.25rem' }}>
+        <p style={{ color: 'var(--ink)', opacity: 0.85, fontSize: '0.9rem', marginTop: '0.25rem' }}>
           Equipped with factual academic grounding, proactive check-ins, safety guardrails, and automated mentor meeting logging.
         </p>
       </div>
 
       {/* Active Student Context Banner */}
-      <div className="glass-card" style={{ background: '#0E1526', padding: '1rem 1.25rem' }}>
+      <div className="glass-card" style={{ background: 'var(--bg-accent)', border: '1px solid var(--ink)', borderRadius: 'var(--radius)', padding: '1rem 1.25rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(237, 77, 139, 0.2)', color: '#ED4D8B', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'var(--surface)', color: 'var(--ink-on-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <User size={18} />
             </div>
             <div>
-              <div style={{ fontWeight: '700', fontSize: '0.9rem', color: '#FFFFFF' }}>
+              <div style={{ fontWeight: '700', fontSize: '0.95rem', color: 'var(--ink)' }}>
                 Active Student: {studentContext.student_name} ({studentContext.student_id})
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#64748B' }}>
+              <div style={{ fontSize: '0.75rem', color: 'var(--ink)', opacity: 0.75 }}>
                 Dept of {studentContext.department} &bull; Year {studentContext.year_of_study} &bull; Advisor: {studentContext.mentor_name || 'Dr. Kavitha Swaminathan'}
               </div>
             </div>
           </div>
 
           <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.75rem', color: '#94A3B8' }}>
-              Att: <strong style={{ color: studentContext.attendance_pct < 75 ? '#F87171' : '#34D399' }}>{studentContext.attendance_pct}%</strong>
+            <span style={{ fontSize: '0.75rem', color: 'var(--ink)' }}>
+              Att: <strong style={{ color: studentContext.attendance_pct < 75 ? 'var(--risk-high)' : 'var(--risk-low)' }}>{studentContext.attendance_pct}%</strong>
             </span>
-            <span style={{ fontSize: '0.75rem', color: '#94A3B8' }}>
-              Backlogs: <strong style={{ color: studentContext.backlogs_count > 0 ? '#F87171' : '#34D399' }}>{studentContext.backlogs_count}</strong>
+            <span style={{ fontSize: '0.75rem', color: 'var(--ink)' }}>
+              Backlogs: <strong style={{ color: studentContext.backlogs_count > 0 ? 'var(--risk-high)' : 'var(--risk-low)' }}>{studentContext.backlogs_count}</strong>
             </span>
             <span className={`badge ${studentContext.prediction === 'High' ? 'badge-high' : studentContext.prediction === 'Medium' ? 'badge-medium' : 'badge-low'}`} style={{ fontSize: '0.7rem' }}>
               {studentContext.prediction || 'High'} Risk
@@ -124,10 +124,10 @@ export default function ChatbotPage() {
 
       {/* Logged Meeting Request Banner */}
       {loggedMeeting && (
-        <div style={{ padding: '0.85rem 1.25rem', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.4)', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ padding: '0.85rem 1.25rem', background: 'var(--bg-accent)', border: '1px solid var(--ink)', borderRadius: 'var(--radius-input)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <Calendar size={18} color="#10B981" />
-            <div style={{ fontSize: '0.85rem', color: '#E2E8F0' }}>
+            <div style={{ fontSize: '0.85rem', color: 'var(--ink)' }}>
               <strong>Meeting Request Logged in MongoDB!</strong> Target: {loggedMeeting.details.requested_with.toUpperCase()} &bull; Reason: {loggedMeeting.details.reason}
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function ChatbotPage() {
       )}
 
       {/* Chat Messages Container */}
-      <div className="glass-card" style={{ height: '420px', display: 'flex', flexDirection: 'column', padding: '1rem', background: '#0B0F19' }}>
+      <div className="glass-card" style={{ height: '440px', display: 'flex', flexDirection: 'column', padding: '1.25rem', background: 'var(--bg)', border: '1px solid var(--ink)', borderRadius: 'var(--radius)' }}>
         <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.85rem', paddingRight: '0.5rem' }}>
           {messages.map((m, idx) => {
             const isBot = m.sender === 'bot';
@@ -150,17 +150,17 @@ export default function ChatbotPage() {
                 }}
               >
                 {isBot && (
-                  <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: '#ED4D8B', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                  <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'var(--surface)', color: 'var(--ink-on-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
                     <Sparkles size={14} />
                   </div>
                 )}
                 <div style={{
                   maxWidth: '75%',
                   padding: '0.75rem 1rem',
-                  borderRadius: isBot ? '4px 14px 14px 14px' : '14px 4px 14px 14px',
-                  background: isBot ? '#131B2E' : '#ED4D8B',
-                  border: isBot ? '1px solid #1E293B' : 'none',
-                  color: '#FFFFFF',
+                  borderRadius: isBot ? '4px 16px 16px 16px' : '16px 4px 16px 16px',
+                  background: isBot ? 'var(--surface)' : 'transparent',
+                  border: isBot ? '1px solid var(--surface)' : '1px solid var(--ink)',
+                  color: isBot ? 'var(--ink-on-dark)' : 'var(--ink)',
                   fontSize: '0.875rem',
                   lineHeight: '1.5',
                   whiteSpace: 'pre-line'
@@ -171,7 +171,7 @@ export default function ChatbotPage() {
             );
           })}
           {loading && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#94A3B8', fontSize: '0.8rem', marginLeft: '34px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--ink)', opacity: 0.8, fontSize: '0.8rem', marginLeft: '34px' }}>
               <RefreshCw size={14} className="animate-spin" color="#ED4D8B" />
               <span>Astra is analyzing verified academic records...</span>
             </div>
@@ -180,19 +180,20 @@ export default function ChatbotPage() {
         </div>
 
         {/* Quick Question Chips */}
-        <div style={{ display: 'flex', gap: '0.5rem', overflowX: 'auto', padding: '0.5rem 0', borderTop: '1px solid #1E293B', marginTop: '0.5rem' }}>
+        <div style={{ display: 'flex', gap: '0.5rem', overflowX: 'auto', padding: '0.6rem 0', borderTop: '1px solid rgba(23, 83, 31, 0.2)', marginTop: '0.5rem' }}>
           {samplePrompts.map((p, i) => (
             <button
               key={i}
               type="button"
               onClick={() => handleSend(p)}
               style={{
-                background: '#131B2E',
-                border: '1px solid #24304F',
+                background: 'transparent',
+                border: '1px solid var(--ink)',
                 borderRadius: '9999px',
-                padding: '0.35rem 0.75rem',
+                padding: '0.35rem 0.85rem',
                 fontSize: '0.75rem',
-                color: '#94A3B8',
+                fontWeight: '700',
+                color: 'var(--ink)',
                 whiteSpace: 'nowrap',
                 transition: 'all 0.15s ease'
               }}
@@ -221,7 +222,7 @@ export default function ChatbotPage() {
             type="submit"
             className="btn-primary"
             disabled={loading || !inputText.trim()}
-            style={{ padding: '0 1.25rem' }}
+            style={{ padding: '0 1.25rem', background: 'var(--surface)', color: 'var(--ink-on-dark)', borderRadius: 'var(--radius-input)' }}
           >
             <Send size={16} />
           </button>
@@ -230,10 +231,12 @@ export default function ChatbotPage() {
         {/* Safety Disclaimer Banner */}
         <div style={{
           textAlign: 'center',
-          fontSize: '0.72rem',
-          color: '#64748B',
-          paddingTop: '0.45rem',
-          letterSpacing: '0.01em'
+          fontSize: '0.875rem',
+          fontWeight: '600',
+          color: 'var(--ink)',
+          paddingTop: '0.55rem',
+          letterSpacing: '0.01em',
+          lineHeight: '1.4'
         }}>
           🛡️ AI academic assistant. Not a substitute for professional counseling or official academic advice. Immediate crisis support: Tele-MANAS (14416) | KIRAN (1800-599-0019).
         </div>
