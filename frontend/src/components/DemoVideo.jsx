@@ -2,25 +2,44 @@ import React, { useState, useRef, useEffect } from 'react';
 
 /**
  * DemoVideo Component
- * Editorial demo video section:
- * - Plays inline with IntersectionObserver (autoplays when 50% visible, pauses when out).
- * - Fallback: hides entire section gracefully if video files are missing or encounter error.
- * - Adheres strictly to editorial design tokens.
+ * "See it working" editorial demo video section:
+ * - Browser-frame container with window control dots and title bar.
+ * - <video muted loop playsinline preload="metadata" poster="/demo/poster.jpg">
+ * - Plays only while visible (IntersectionObserver at 50% threshold) and pauses off screen.
+ * - Under prefers-reduced-motion: does not autoplay, shows native controls.
+ * - Graceful fallback: onError handler cleanly hides the whole section if files are missing.
+ * - Accessible caption: "Recorded demo · simulated data" with descriptive aria-label.
  */
 export default function DemoVideo() {
   const [hasError, setHasError] = useState(false);
   const videoRef = useRef(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handler = (e) => setPrefersReducedMotion(e.matches);
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handler);
+    }
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handler);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || hasError) return;
+    if (!video || hasError || prefersReducedMotion) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
             video.play().catch(() => {
-              // Browser autoplay policy might require manual interaction
+              // Browser autoplay policy might require manual user interaction
             });
           } else {
             video.pause();
@@ -35,7 +54,7 @@ export default function DemoVideo() {
     return () => {
       observer.disconnect();
     };
-  }, [hasError]);
+  }, [hasError, prefersReducedMotion]);
 
   if (hasError) {
     return null;
@@ -53,7 +72,6 @@ export default function DemoVideo() {
     >
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
         <div 
-          data-speed="0.15"
           style={{ 
             color: 'var(--ink)', 
             fontWeight: '700', 
@@ -66,7 +84,6 @@ export default function DemoVideo() {
           SEE IT WORKING
         </div>
         <h2 
-          data-speed="0.08"
           style={{ 
             fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', 
             fontWeight: '700', 
@@ -78,6 +95,7 @@ export default function DemoVideo() {
         </h2>
       </div>
 
+      {/* Browser Frame Container */}
       <div style={{ 
         position: 'relative', 
         borderRadius: 'var(--radius)', 
@@ -87,20 +105,66 @@ export default function DemoVideo() {
         margin: '0 auto',
         background: 'var(--bg-accent)'
       }}>
+        {/* Browser Top Window Bar */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '10px 16px',
+          background: 'var(--bg)',
+          borderBottom: '1px solid var(--ink)'
+        }}>
+          {/* Window control buttons */}
+          <div style={{ display: 'flex', gap: '6px' }}>
+            <span style={{ width: '10px', height: '10px', borderRadius: '50%', border: '1px solid var(--ink)', background: 'transparent', display: 'inline-block' }} />
+            <span style={{ width: '10px', height: '10px', borderRadius: '50%', border: '1px solid var(--ink)', background: 'transparent', display: 'inline-block' }} />
+            <span style={{ width: '10px', height: '10px', borderRadius: '50%', border: '1px solid var(--ink)', background: 'transparent', display: 'inline-block' }} />
+          </div>
+          {/* Subtle mock URL address pill */}
+          <div style={{
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            padding: '3px 18px',
+            borderRadius: '9999px',
+            border: '1px solid var(--ink)',
+            fontSize: '0.72rem',
+            fontWeight: '600',
+            color: 'var(--ink)',
+            letterSpacing: '0.02em',
+            opacity: 0.8
+          }}>
+            ai-dropout-intervention.edu / workflow-demo
+          </div>
+        </div>
+
         <video
           ref={videoRef}
           poster="/demo/poster.jpg"
-          controls
+          controls={prefersReducedMotion}
           playsInline
-          preload="none"
+          loop={!prefersReducedMotion}
+          preload="metadata"
           muted
           onError={() => setHasError(true)}
-          style={{ width: '100%', display: 'block', borderRadius: 'inherit' }}
+          aria-label="Recorded demonstration of AI student dropout prediction simulator and academic counseling intervention workflow"
+          style={{ width: '100%', display: 'block' }}
         >
           <source src="/demo/demo.webm" type="video/webm" onError={() => setHasError(true)} />
           <source src="/demo/demo.mp4" type="video/mp4" onError={() => setHasError(true)} />
           Your browser does not support the video tag.
         </video>
+      </div>
+
+      {/* Caption */}
+      <div style={{ 
+        textAlign: 'center', 
+        marginTop: '1rem', 
+        fontSize: '0.8rem', 
+        color: 'var(--ink)', 
+        opacity: 0.75,
+        fontWeight: '600'
+      }}>
+        Recorded demo · simulated data
       </div>
     </section>
   );

@@ -33,17 +33,11 @@ export default function HeroParallax() {
     let isVisible = true;
     let rafId = null;
 
-    // Stagger scroll speed factors across the 4 photos for multi-plane depth
-    // Alternating signs (+ / -) make adjacent photos slide past each other dynamically on scroll
-    const scrollMultipliers = [-0.28, 0.22, -0.30, 0.24];
-
-    const photoStates = Array.from(photos).map((el, index) => ({
+    const photoStates = Array.from(photos).map((el) => ({
       el,
       depth: parseFloat(el.getAttribute('data-depth')) || 0.7,
-      scrollMultiplier: scrollMultipliers[index % scrollMultipliers.length],
       currentX: 0,
-      currentY: 0,
-      currentScrollY: 0
+      currentY: 0
     }));
 
     // Find the text column boundary for clamping
@@ -72,16 +66,11 @@ export default function HeroParallax() {
         return;
       }
 
-      const scrollY = window.scrollY || window.pageYOffset || 0;
       const textRect = getTextRect();
 
       for (const item of photoStates) {
         let targetX = isTouchDevice ? 0 : targetNormX * 60 * item.depth;
         let targetY = isTouchDevice ? 0 : targetNormY * 40 * item.depth;
-        
-        // Multi-layer scroll offset: staggered drift clamped to [-75px, 75px]
-        const rawScrollY = scrollY * item.scrollMultiplier;
-        const targetScrollY = Math.max(-75, Math.min(75, rawScrollY));
 
         // Dynamic clamp: ensure photo inner edge never comes within 16px of text column
         if (textRect) {
@@ -105,18 +94,15 @@ export default function HeroParallax() {
         // Smooth lerp (factor 0.08)
         item.currentX += (targetX - item.currentX) * 0.08;
         item.currentY += (targetY - item.currentY) * 0.08;
-        item.currentScrollY += (targetScrollY - item.currentScrollY) * 0.08;
 
         // Apply CSS custom properties and translation
         const px = item.currentX.toFixed(2);
         const py = item.currentY.toFixed(2);
-        const sy = item.currentScrollY.toFixed(2);
-        const totalY = (item.currentY + item.currentScrollY).toFixed(2);
 
         item.el.style.setProperty('--px', px);
         item.el.style.setProperty('--py', py);
-        item.el.style.setProperty('--sy', sy);
-        item.el.style.translate = `${px}px ${totalY}px`;
+        item.el.style.setProperty('--sy', '0');
+        item.el.style.translate = `${px}px ${py}px`;
       }
 
       rafId = requestAnimationFrame(animate);

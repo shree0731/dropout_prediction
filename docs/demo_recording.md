@@ -1,63 +1,62 @@
-# Demo Recording Guide & Video Assets
+# Demo Recording Guide & Video Asset Specifications
 
-This guide specifies the target walkthrough video for the AI Student Dropout Prediction system. The video showcases the complete proactive intervention workflow across all core modules.
+This guide provides instructions and recording guidelines for the project owner to produce the official "See it working" demonstration video for the landing page.
 
 ---
 
-## 1. 35-Second Shot List
+## 1. Recording Overview
 
-| Timestamp | Screen / Route | Action & Visual Focus |
+- **Target Duration:** Approximately 35 seconds
+- **Resolution:** 1280×720 (720p, 16:9)
+- **Audio:** None (strictly no audio track, browser video tag is muted)
+- **Target File Size:** At most 8 MB per output file
+- **Reference Recording on Local System:**
+  `"C:\Users\shree\Videos\Screen Recordings\Screen Recording 2026-10-11 222107.mp4"`
+
+---
+
+## 2. 35-Second Shot List
+
+| Section | Target Screen | Actions & Visual Focus |
 |---|---|---|
-| **00:00 – 00:06** | **Hero & Overview** (`/`) | Slow cursor sweep over the editorial hero demonstrating dynamic photo parallax and alignment. Brief pause on the headline and dual-layer architecture highlights. |
-| **00:06 – 00:14** | **Model Benchmarks** (`/metrics`) | Navigate to Model Dashboard. Highlight the 96.58% accuracy, 99.35% High-Risk Recall, 5-fold cross-validation metrics, ROC curves, and confusion matrix. |
-| **00:14 – 00:25** | **Interactive Prediction** (`/predict`) | Navigate to Prediction Engine. Load an at-risk student preset (e.g., Year 2 mechanical engineering student with arrears and declining attendance). Click **Run Model Prediction**. Highlight the instant risk badge, risk probability gauges, and SHAP explainability waterfall breakdown showing primary drivers. |
-| **00:25 – 00:35** | **Intervention Chatbot** (`/chat`) | Switch to Academic Support Counselor. Type an attendance policy inquiry ("What happens if attendance drops below 75%?"). Observe the grounded response with Anna University regulation citations and automated faculty mentor scheduling offer. |
+| **Shot 1** (~12s) | **Predict Page** (`/predict`) | 1. Select a pre-configured demo student profile from the selector.<br>2. Submit the form.<br>3. Show the instant risk classification (e.g. High Risk badge), calibrated probability distribution, and top feature drivers (e.g. attendance decay, backlog count). |
+| **Shot 2** (~15s) | **Chatbot Counselor** (`/chat`) | 1. Show the bot's proactive friendly check-in.<br>2. Ask a normal academic question (e.g. attendance criteria / credit requirements).<br>3. Request a mentor meeting appointment.<br><br>*Pacing requirement:* Messages must appear one at a time as in the live application: student's message → typing indicator → bot's reply. Do not speed up or cut between messages; wait ~1 second after each reply. |
+| **Shot 3** (~8s) | **ERP Mentor Inbox** (`/mentor-inbox`) | Switch to the ERP mentor portal view showing the newly logged `MeetingRequest` arriving in real time. |
 
 ---
 
-## 2. Recording Specifications
+## 3. Privacy, Safety & Recording Guidelines
 
-- **Resolution:** 1920×1080 (1080p, 16:9) or 1280×720 (720p, 16:9)
-- **Frame Rate:** 30 fps (or 60 fps for ultra-smooth parallax rendering)
-- **Cursor:** Visible, smooth pointer movement (avoid jerky clicks)
-- **Audio:** Optional ambient background or muted (browser video tag autoplays muted)
-- **Output Target:** `frontend/public/demo/demo.webm` and `frontend/public/demo/demo.mp4`
-- **Poster Image:** `frontend/public/demo/poster.jpg`
+- **No Crisis Messages:** Do not trigger crisis or helpline flows during the recorded demo.
+- **No Real Names or PII:** Use only synthetic or anonymised student profiles.
+- **No Secrets:** Never reveal `.env`, API keys, MongoDB connection strings, or system paths.
+- **Clean Browser Frame:** Hide browser bookmarks bar, debug consoles, and unnecessary desktop notifications.
 
 ---
 
-## 3. Encoding Commands (FFmpeg)
+## 4. Video Encoding Commands
 
-Place your raw recording (e.g., `recording_raw.mp4`) in the project root or scratch folder, then run:
+After capturing your screen recording (e.g., `in.mp4`), use the following commands to encode the production video assets:
 
-### A. WebM (VP9 codec - optimized for modern web browsers)
+### A. MP4 (Universal H.264 Fallback)
 ```bash
-ffmpeg -i recording_raw.mp4 \
-  -c:v libvpx-vp9 -b:v 1200k -crf 30 -quality good -speed 2 \
-  -an \
-  frontend/public/demo/demo.webm
+ffmpeg -i in.mp4 -vf scale=1280:-2 -an -c:v libx264 -crf 28 -preset slow -movflags +faststart frontend/public/demo/demo.mp4
 ```
 
-### B. MP4 (H.264 codec - universal mobile and legacy fallback)
+### B. WebM (Modern VP9)
 ```bash
-ffmpeg -i recording_raw.mp4 \
-  -c:v libx264 -preset slow -crf 22 -profile:v high -level 4.0 \
-  -pix_fmt yuv420p -movflags +faststart \
-  -an \
-  frontend/public/demo/demo.mp4
+ffmpeg -i in.mp4 -vf scale=1280:-2 -an -c:v libvpx-vp9 -b:v 1000k -crf 32 -quality good -speed 2 frontend/public/demo/demo.webm
 ```
 
-### C. Poster Thumbnail (High-resolution frame capture at 2s mark)
+### C. Poster Image (Static Frame)
 ```bash
-ffmpeg -ss 00:00:02 -i recording_raw.mp4 \
-  -frames:v 1 -q:v 2 \
-  frontend/public/demo/poster.jpg
+ffmpeg -ss 00:00:02 -i in.mp4 -vframes 1 -q:v 2 frontend/public/demo/poster.jpg
 ```
 
 ---
 
-## 4. Graceful Fallback Behavior
+## 5. Deployment & Git Policy
 
-The `DemoVideo.jsx` component includes automatic error recovery:
-- If `demo.webm`, `demo.mp4`, or `poster.jpg` are missing or unreadable, the video section cleanly unmounts itself.
-- No broken video controls, empty frames, or layout disruptions will ever be displayed to end users.
+- Do not commit large binary videos to the git repository.
+- A placeholder `.gitkeep` is placed in `frontend/public/demo/.gitkeep`.
+- The `DemoVideo.jsx` component includes automatic error recovery: if the video files are missing on a deployment environment, the entire demo section gracefully unmounts so no broken players or empty frames are shown.
