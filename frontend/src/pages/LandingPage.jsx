@@ -25,15 +25,6 @@ export default function LandingPage() {
 
       {/* 1. Hero Section */}
       <GlassCard data-parallax-hero="true" style={{ padding: '4rem 2.5rem', position: 'relative', background: 'linear-gradient(180deg, var(--bg-accent) 0%, var(--bg) 50%, var(--bg-accent) 100%)', border: '1px solid var(--ink)', borderRadius: 'var(--radius)', overflow: 'hidden' }}>
-        {/* Parallax Photo Ring (decorative addition) */}
-        <div className="hero-photo-ring" data-allowlist="hero-photo-ring">
-          <img src="/images/campus_students_group.png" alt="" width="220" height="160" data-depth="0.8" className="hero-photo" style={{ top: '8%', left: '3%', width: '220px', height: '160px' }} />
-          <img src="/images/campus_walk_students.png" alt="" width="180" height="130" data-depth="0.5" className="hero-photo" style={{ bottom: '10%', left: '8%', width: '180px', height: '130px' }} />
-          <img src="/images/college_students_corridor.png" alt="" width="200" height="150" data-depth="0.9" className="hero-photo" style={{ top: '6%', right: '4%', width: '200px', height: '150px' }} />
-          <img src="/images/engineering_students_tn.png" alt="" width="240" height="160" data-depth="0.6" className="hero-photo hero-photo-desktop" style={{ bottom: '12%', right: '10%', width: '240px', height: '160px' }} />
-          <img src="/images/graduates_celebration.png" alt="" width="190" height="140" data-depth="1.0" className="hero-photo hero-photo-desktop" style={{ top: '42%', right: '2%', width: '190px', height: '140px' }} />
-        </div>
-
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem', alignItems: 'center', position: 'relative', zIndex: 2 }}>
           <div>
             <div style={{ 
@@ -111,6 +102,24 @@ export default function LandingPage() {
                 <span className="badge badge-low" style={{ fontSize: '0.7rem' }}>
                   4 Colleges Seeded
                 </span>
+              </div>
+            </div>
+
+            {/* Campus Photo Gallery Strip (decorative addition) */}
+            <div className="hero-photo-gallery" data-allowlist="hero-photo-ring" style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '0.75rem',
+              marginTop: '1rem'
+            }}>
+              <div style={{ borderRadius: '14px', overflow: 'hidden', border: '1px solid var(--ink)', height: '90px', background: 'var(--bg-accent)' }}>
+                <img src="/images/campus_walk_students.png" alt="Students walking on campus" width="160" height="90" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ borderRadius: '14px', overflow: 'hidden', border: '1px solid var(--ink)', height: '90px', background: 'var(--bg-accent)' }}>
+                <img src="/images/college_students_corridor.png" alt="Students in academic corridor" width="160" height="90" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ borderRadius: '14px', overflow: 'hidden', border: '1px solid var(--ink)', height: '90px', background: 'var(--bg-accent)' }}>
+                <img src="/images/engineering_students_tn.png" alt="Engineering undergraduates" width="160" height="90" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
             </div>
           </div>
