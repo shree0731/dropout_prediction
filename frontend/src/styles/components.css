@@ -341,15 +341,8 @@ header nav a.active {
 }
 
 .hero-photo-r2 {
-  top: 190px;
-  right: 35px;
-  width: 180px;
-  height: 130px;
-}
-
-.hero-photo-r3 {
-  bottom: 45px;
-  right: 10px;
+  bottom: 50px;
+  right: 15px;
   width: 230px;
   height: 155px;
 }

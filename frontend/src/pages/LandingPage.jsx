@@ -120,14 +120,12 @@ export default function LandingPage() {
         {/* Right Photo Column */}
         <div className="hero-col-right" data-allowlist="hero-photo-ring">
           <img src="/images/college_students_corridor.png" alt="" width="200" height="145" data-hero-photo="true" data-depth="0.75" className="hero-photo hero-photo-r1" />
-          <img src="/images/graduates_celebration.png" alt="" width="180" height="130" data-hero-photo="true" data-depth="0.95" className="hero-photo hero-photo-r2" />
-          <img src="/images/engineering_students_tn.png" alt="" width="230" height="155" data-hero-photo="true" data-depth="0.55" className="hero-photo hero-photo-r3" />
+          <img src="/images/engineering_students_tn.png" alt="" width="230" height="155" data-hero-photo="true" data-depth="0.55" className="hero-photo hero-photo-r2" />
         </div>
 
-        {/* Mobile Photo Row (<700px): row of 3 smallest photos below buttons */}
+        {/* Mobile Photo Row (<700px): row of photos below buttons */}
         <div className="hero-mobile-photos" data-allowlist="hero-photo-ring">
           <img src="/images/campus_walk_students.png" alt="" width="110" height="80" className="hero-mobile-photo" />
-          <img src="/images/graduates_celebration.png" alt="" width="110" height="80" className="hero-mobile-photo" />
           <img src="/images/college_students_corridor.png" alt="" width="110" height="80" className="hero-mobile-photo" />
         </div>
       </GlassCard>

@@ -33,9 +33,9 @@ export default function HeroParallax() {
     let isVisible = true;
     let rafId = null;
 
-    // Stagger scroll speed factors across the 5 photos for multi-plane depth
+    // Stagger scroll speed factors across the 4 photos for multi-plane depth
     // Alternating signs (+ / -) make adjacent photos slide past each other dynamically on scroll
-    const scrollMultipliers = [-0.28, 0.22, -0.32, 0.25, -0.20];
+    const scrollMultipliers = [-0.28, 0.22, -0.30, 0.24];
 
     const photoStates = Array.from(photos).map((el, index) => ({
       el,
