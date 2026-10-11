@@ -4,11 +4,12 @@ import { useEffect } from 'react';
  * HeroParallax Component
  * Unified cursor-follow and scroll parallax for the hero photo ring:
  * - Computes normalized pointer offset [-1, 1] relative to hero center.
- * - Targets (normX * 60 * depth)px and (normY * 40 * depth)px.
+ * - Targets (normX * 60 * depth)px and (normY * 40 * depth)px for mouse follow.
  * - Smooths movement with requestAnimationFrame lerp (factor 0.08).
  * - Dynamically clamps targetX so photo inner edge stays >= 16px away from text column.
- * - Computes scroll parallax offset --sy = clamp(-60px, -scrollY * depth * 0.22, 60px).
- * - Writes CSS variables --px, --py, --sy and updates translate/transform.
+ * - Staggers vertical scroll speeds across photos for rich, multi-plane 3D depth:
+ *   Photos drift in alternating positive and negative directions (range up to ±75px).
+ * - Writes CSS variables --px, --py, --sy and updates element translate.
  * - Respects prefers-reduced-motion: reduce and (hover: none) touch environments.
  * - Pauses RAF animation when hero scrolls out of view via IntersectionObserver.
  */
@@ -32,10 +33,14 @@ export default function HeroParallax() {
     let isVisible = true;
     let rafId = null;
 
-    // Initialize item states
-    const photoStates = Array.from(photos).map((el) => ({
+    // Stagger scroll speed factors across the 5 photos for multi-plane depth
+    // Alternating signs (+ / -) make adjacent photos slide past each other dynamically on scroll
+    const scrollMultipliers = [-0.28, 0.22, -0.32, 0.25, -0.20];
+
+    const photoStates = Array.from(photos).map((el, index) => ({
       el,
       depth: parseFloat(el.getAttribute('data-depth')) || 0.7,
+      scrollMultiplier: scrollMultipliers[index % scrollMultipliers.length],
       currentX: 0,
       currentY: 0,
       currentScrollY: 0
@@ -73,7 +78,10 @@ export default function HeroParallax() {
       for (const item of photoStates) {
         let targetX = isTouchDevice ? 0 : targetNormX * 60 * item.depth;
         let targetY = isTouchDevice ? 0 : targetNormY * 40 * item.depth;
-        const targetScrollY = Math.max(-60, Math.min(60, -scrollY * item.depth * 0.22));
+        
+        // Multi-layer scroll offset: staggered drift clamped to [-75px, 75px]
+        const rawScrollY = scrollY * item.scrollMultiplier;
+        const targetScrollY = Math.max(-75, Math.min(75, rawScrollY));
 
         // Dynamic clamp: ensure photo inner edge never comes within 16px of text column
         if (textRect) {
@@ -109,7 +117,6 @@ export default function HeroParallax() {
         item.el.style.setProperty('--py', py);
         item.el.style.setProperty('--sy', sy);
         item.el.style.translate = `${px}px ${totalY}px`;
-        item.el.style.transform = `translate3d(${px}px, ${totalY}px, 0)`;
       }
 
       rafId = requestAnimationFrame(animate);
@@ -155,7 +162,6 @@ export default function HeroParallax() {
         item.el.style.setProperty('--py', '0');
         item.el.style.setProperty('--sy', '0');
         item.el.style.translate = '0px 0px';
-        item.el.style.transform = '';
       }
     };
   }, []);

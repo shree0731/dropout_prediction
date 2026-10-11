@@ -320,35 +320,35 @@ header nav a.active {
 
 /* Individual photo desktop placement */
 .hero-photo-l1 {
-  top: 25px;
+  top: 40px;
   left: 10px;
   width: 220px;
   height: 150px;
 }
 
 .hero-photo-l2 {
-  bottom: 35px;
+  bottom: 50px;
   left: 30px;
   width: 190px;
   height: 135px;
 }
 
 .hero-photo-r1 {
-  top: 20px;
+  top: 35px;
   right: 15px;
   width: 200px;
   height: 145px;
 }
 
 .hero-photo-r2 {
-  top: 185px;
+  top: 190px;
   right: 35px;
   width: 180px;
   height: 130px;
 }
 
 .hero-photo-r3 {
-  bottom: 25px;
+  bottom: 45px;
   right: 10px;
   width: 230px;
   height: 155px;

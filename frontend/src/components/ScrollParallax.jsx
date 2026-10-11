@@ -2,13 +2,16 @@ import { useEffect } from 'react';
 
 /**
  * ScrollParallax Component
- * Applies smooth, jitter-free scroll-driven vertical translation (translate3d)
- * to elements marked with [data-speed] outside the hero section.
- * - Eyebrows: data-speed="0.15"
- * - Section headings: data-speed="0.08"
- * - Large cards: data-speed="0.04" - 0.06
- * Offsets are computed relative to viewport center and clamped to [-28px, 28px].
- * Uses requestAnimationFrame debounce and respects prefers-reduced-motion.
+ * High-performance, multi-layer parallax scrolling engine:
+ * - Calculates viewport intersection for every [data-speed] element across the document.
+ * - Applies smooth, proportional vertical parallax translations using translate3d.
+ * - Supports positive and negative speeds for multi-plane depth illusions:
+ *   - Eyebrows: data-speed="0.22"
+ *   - Headings: data-speed="0.14"
+ *   - Staggered cards: data-speed="0.12" / "-0.08" / "0.10"
+ * - Clamps translations smoothly to [-60px, 60px] to preserve layout harmony.
+ * - Uses passive scroll listeners and requestAnimationFrame for 60/120fps performance.
+ * - Automatically disabled when prefers-reduced-motion is active.
  */
 export default function ScrollParallax() {
   useEffect(() => {
@@ -19,26 +22,27 @@ export default function ScrollParallax() {
 
     let ticking = false;
 
-    // Cache initial vertical centers relative to document
-    let items = [];
-    const measure = () => {
-      items = Array.from(elements).map((el) => {
-        const speed = parseFloat(el.getAttribute('data-speed')) || 0.05;
-        // Temporarily reset transform to measure true document position
+    // Measure document-relative natural positions
+    const getItems = () => {
+      const currentScroll = window.scrollY || window.pageYOffset || 0;
+      return Array.from(elements).map((el) => {
+        const speed = parseFloat(el.getAttribute('data-speed')) || 0.08;
+        // Strip transform momentarily to measure true document position
         const prevTransform = el.style.transform;
         el.style.transform = '';
         const rect = el.getBoundingClientRect();
-        const docTop = rect.top + (window.scrollY || window.pageYOffset || 0);
         el.style.transform = prevTransform;
+
+        const docTop = rect.top + currentScroll;
         return {
           el,
           speed,
-          initialCenter: docTop + rect.height / 2
+          centerDoc: docTop + rect.height / 2
         };
       });
     };
 
-    measure();
+    let items = getItems();
 
     const update = () => {
       const scrollY = window.scrollY || window.pageYOffset || 0;
@@ -46,10 +50,12 @@ export default function ScrollParallax() {
       const viewportCenter = scrollY + vh / 2;
 
       for (const item of items) {
-        // Distance from current viewport center to element's natural center
-        const offset = item.initialCenter - viewportCenter;
+        // Distance from element's natural center to current viewport center
+        const offset = item.centerDoc - viewportCenter;
+        // Proportional parallax displacement
         const rawY = -offset * item.speed;
-        const clampedY = Math.max(-28, Math.min(28, rawY));
+        // Clamp to [-60px, 60px] to provide bold, clear depth while respecting layout bounds
+        const clampedY = Math.max(-60, Math.min(60, rawY));
         item.el.style.transform = `translate3d(0, ${clampedY.toFixed(1)}px, 0)`;
       }
 
@@ -64,7 +70,7 @@ export default function ScrollParallax() {
     };
 
     const handleResize = () => {
-      measure();
+      items = getItems();
       update();
     };
 
