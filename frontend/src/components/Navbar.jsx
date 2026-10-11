@@ -19,17 +19,18 @@ export default function Navbar() {
 
   return (
     <header style={{
-      borderBottom: '1px solid #1E293B',
-      background: 'rgba(11, 15, 25, 0.85)',
-      backdropFilter: 'blur(12px)',
+      borderBottom: '1px solid rgba(23, 83, 31, 0.2)',
+      background: 'linear-gradient(180deg, var(--bg-accent) 0%, rgba(243, 235, 221, 0.85) 85%, transparent 100%)',
+      backdropFilter: 'blur(10px)',
+      WebkitBackdropFilter: 'blur(10px)',
       position: 'sticky',
       top: 0,
       zIndex: 50
     }}>
       <div style={{
-        maxWidth: '1240px',
+        maxWidth: '1280px',
         margin: '0 auto',
-        padding: '0.9rem 1.5rem',
+        padding: '0.85rem 1.5rem',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -39,23 +40,23 @@ export default function Navbar() {
         {/* Brand */}
         <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div style={{
-            background: 'linear-gradient(135deg, #ED4D8B, #F8BF80)',
+            background: 'var(--surface)',
             width: '38px',
             height: '38px',
             borderRadius: '10px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#FFFFFF'
+            color: 'var(--ink-on-dark)'
           }}>
             <BrainCircuit size={22} />
           </div>
           <div>
-            <div style={{ fontWeight: '800', fontSize: '1rem', letterSpacing: '-0.02em', color: '#F3F4F6' }}>
-              Astra Retain <span style={{ color: '#ED4D8B', fontSize: '0.75rem', fontWeight: '700', border: '1px solid #ED4D8B', padding: '1px 6px', borderRadius: '4px', marginLeft: '4px' }}>AI</span>
+            <div style={{ fontWeight: '800', fontSize: '1.05rem', letterSpacing: '-0.02em', color: 'var(--ink)' }}>
+              Astra Retain <span style={{ color: 'var(--ink)', fontSize: '0.72rem', fontWeight: '700', border: '1px solid var(--ink)', padding: '1px 6px', borderRadius: '9999px', marginLeft: '4px' }}>AI</span>
             </div>
-            <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
-              Student Dropout Prediction & Intervention Platform
+            <div style={{ fontSize: '0.72rem', color: 'var(--ink)', opacity: 0.75, fontWeight: '600' }}>
+              Student Dropout Prediction &amp; Intervention Platform
             </div>
           </div>
         </NavLink>
@@ -86,14 +87,14 @@ export default function Navbar() {
           alignItems: 'center',
           gap: '0.5rem',
           fontSize: '0.75rem',
-          color: '#34D399',
-          background: 'rgba(16, 185, 129, 0.1)',
-          border: '1px solid rgba(16, 185, 129, 0.25)',
-          padding: '0.35rem 0.75rem',
+          color: 'var(--ink)',
+          background: 'transparent',
+          border: '1px solid var(--ink)',
+          padding: '0.35rem 0.85rem',
           borderRadius: '9999px',
-          fontWeight: '600'
+          fontWeight: '700'
         }}>
-          <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
+          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--ink)', display: 'inline-block' }} />
           <span>FastAPI + XGBoost Live</span>
         </div>
       </div>

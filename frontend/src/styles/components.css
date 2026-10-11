@@ -25,6 +25,27 @@
   color: var(--ink-on-dark);
 }
 
+/* Nav Pills */
+header nav a {
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--ink) !important;
+  background: transparent !important;
+  transition: all 200ms ease !important;
+}
+
+header nav a:hover {
+  background: var(--surface) !important;
+  color: var(--ink-on-dark) !important;
+}
+
+header nav a.active {
+  background: var(--surface) !important;
+  color: var(--ink-on-dark) !important;
+  border: 1px solid var(--surface) !important;
+}
+
 .btn-solid {
   display: inline-flex;
   align-items: center;
