@@ -1,0 +1,14 @@
+{
+  "allowedNewFiles": [
+    "src/components/HeroParallax.jsx"
+  ],
+  "allowedModifiedFiles": [
+    "src/components/GlassCard.jsx",
+    "src/components/CursorGlow.jsx"
+  ],
+  "allowedElements": [
+    "HeroParallax",
+    "hero-photo-ring",
+    "ticker"
+  ]
+}
