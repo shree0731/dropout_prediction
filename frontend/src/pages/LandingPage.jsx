@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import GlassCard from '../components/GlassCard';
 import HeroParallax from '../components/HeroParallax';
+import ScrollParallax from '../components/ScrollParallax';
+import DemoVideo from '../components/DemoVideo';
 import { 
   BrainCircuit, 
   BarChart3, 
@@ -22,19 +24,18 @@ export default function LandingPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
       <HeroParallax />
+      <ScrollParallax />
 
       {/* 1. Hero Section */}
       <GlassCard data-parallax-hero="true" style={{ padding: '4.5rem 2.5rem', position: 'relative', background: 'linear-gradient(180deg, var(--bg-accent) 0%, var(--bg) 50%, var(--bg-accent) 100%)', border: '1px solid var(--ink)', borderRadius: 'var(--radius)', overflow: 'hidden' }}>
-        {/* Parallax Photo Ring tracking cursor */}
-        <div className="hero-photo-ring" data-allowlist="hero-photo-ring">
-          <img src="/images/campus_students_group.png" alt="" width="220" height="150" data-depth="0.75" className="hero-photo" style={{ top: '6%', left: '3%', width: '220px', height: '150px' }} />
-          <img src="/images/college_students_corridor.png" alt="" width="200" height="145" data-depth="0.9" className="hero-photo" style={{ top: '6%', right: '3%', width: '200px', height: '145px' }} />
-          <img src="/images/campus_walk_students.png" alt="" width="190" height="135" data-depth="0.5" className="hero-photo" style={{ bottom: '8%', left: '4%', width: '190px', height: '135px' }} />
-          <img src="/images/engineering_students_tn.png" alt="" width="230" height="155" data-depth="0.65" className="hero-photo" style={{ bottom: '8%', right: '4%', width: '230px', height: '155px' }} />
-          <img src="/images/graduates_celebration.png" alt="" width="180" height="130" data-depth="1.0" className="hero-photo hero-photo-desktop" style={{ top: '44%', right: '1.5%', width: '180px', height: '130px' }} />
+        {/* Left Photo Column */}
+        <div className="hero-col-left" data-allowlist="hero-photo-ring">
+          <img src="/images/campus_students_group.png" alt="" width="220" height="150" data-hero-photo="true" data-depth="0.65" className="hero-photo hero-photo-l1" />
+          <img src="/images/campus_walk_students.png" alt="" width="190" height="135" data-hero-photo="true" data-depth="0.85" className="hero-photo hero-photo-l2" />
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', zIndex: 2, minHeight: '460px', padding: '1rem 0', maxWidth: '840px', margin: '0 auto' }}>
+        {/* Center Text Column */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', zIndex: 2, minHeight: '460px', padding: '1rem 0', maxWidth: '640px', margin: '0 auto' }}>
           <div>
             <div style={{ 
               display: 'inline-flex', 
@@ -52,7 +53,7 @@ export default function LandingPage() {
               <Sparkles size={14} /> Machine Learning &amp; Explainable AI in Engineering Higher Ed
             </div>
 
-            <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', fontWeight: '700', lineHeight: '1.02', color: 'var(--ink)', marginBottom: '2rem', letterSpacing: '-0.03em', textAlign: 'center' }}>
+            <h1 style={{ fontSize: 'clamp(2rem, 4.4vw, 3.75rem)', fontWeight: '700', lineHeight: '1.08', color: 'var(--ink)', marginBottom: '2rem', letterSpacing: '-0.03em', textAlign: 'center', textWrap: 'balance' }}>
               AI-Powered Student Dropout Prediction &amp; Proactive Academic Intervention System
             </h1>
 
@@ -115,6 +116,20 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
+
+        {/* Right Photo Column */}
+        <div className="hero-col-right" data-allowlist="hero-photo-ring">
+          <img src="/images/college_students_corridor.png" alt="" width="200" height="145" data-hero-photo="true" data-depth="0.75" className="hero-photo hero-photo-r1" />
+          <img src="/images/graduates_celebration.png" alt="" width="180" height="130" data-hero-photo="true" data-depth="0.95" className="hero-photo hero-photo-r2" />
+          <img src="/images/engineering_students_tn.png" alt="" width="230" height="155" data-hero-photo="true" data-depth="0.55" className="hero-photo hero-photo-r3" />
+        </div>
+
+        {/* Mobile Photo Row (<700px): row of 3 smallest photos below buttons */}
+        <div className="hero-mobile-photos" data-allowlist="hero-photo-ring">
+          <img src="/images/campus_walk_students.png" alt="" width="110" height="80" className="hero-mobile-photo" />
+          <img src="/images/graduates_celebration.png" alt="" width="110" height="80" className="hero-mobile-photo" />
+          <img src="/images/college_students_corridor.png" alt="" width="110" height="80" className="hero-mobile-photo" />
+        </div>
       </GlassCard>
 
       {/* Decorative Continuous Ticker */}
@@ -137,6 +152,152 @@ export default function LandingPage() {
           <span aria-hidden="true">24 engineering colleges with 0% pass across 4 years (Anna University audit)</span>
         </div>
       </div>
+
+      {/* About / How It Works Section */}
+      <section 
+        data-allowlist="about-section"
+        style={{
+          background: 'var(--bg)',
+          border: '1px solid var(--ink)',
+          borderRadius: 'var(--radius)',
+          padding: '2.5rem 2rem'
+        }}
+      >
+        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+          <div 
+            data-speed="0.15"
+            style={{ 
+              color: 'var(--ink)', 
+              fontWeight: '700', 
+              fontSize: '0.8rem', 
+              textTransform: 'uppercase', 
+              letterSpacing: '0.05em', 
+              marginBottom: '0.5rem' 
+            }}
+          >
+            HOW IT WORKS
+          </div>
+          <h2 
+            data-speed="0.08"
+            style={{ 
+              fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', 
+              fontWeight: '700', 
+              color: 'var(--ink)', 
+              marginBottom: '1rem',
+              lineHeight: '1.1'
+            }}
+          >
+            Early warning before a student falls behind
+          </h2>
+          <p style={{ maxWidth: '780px', margin: '0 auto', fontSize: '0.95rem', color: 'var(--ink)', opacity: 0.9, lineHeight: '1.6' }}>
+            The platform continuously monitors multi-semester academic performance, attendance trajectories and socio-academic risk factors across engineering disciplines, giving advisors an explainable window to act before credits are lost.
+          </p>
+        </div>
+
+        {/* 3 Step Tiles */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '2.5rem' }}>
+          <div className="card-sand">
+            <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--ink)', opacity: 0.6, marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
+              STEP 01
+            </div>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.75rem' }}>
+              Signals in, risk scored
+            </h3>
+            <p style={{ fontSize: '0.875rem', color: 'var(--ink)', lineHeight: '1.6', opacity: 0.9 }}>
+              Academic performance, attendance trends, fee payment history and engagement indicators are analysed in real time by our trained ensemble model.
+            </p>
+          </div>
+
+          <div className="card-green">
+            <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--ink-on-dark)', opacity: 0.75, marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
+              STEP 02
+            </div>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--ink-on-dark)', marginBottom: '0.75rem' }}>
+              Explainable factor breakdowns
+            </h3>
+            <p style={{ fontSize: '0.875rem', color: 'var(--ink-on-dark)', lineHeight: '1.6', opacity: 0.9 }}>
+              Every prediction includes SHAP feature attributions, showing advisors exactly why a student was flagged — not just a raw score.
+            </p>
+          </div>
+
+          <div className="card-sand">
+            <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--ink)', opacity: 0.6, marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
+              STEP 03
+            </div>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.75rem' }}>
+              Actionable human intervention
+            </h3>
+            <p style={{ fontSize: '0.875rem', color: 'var(--ink)', lineHeight: '1.6', opacity: 0.9 }}>
+              Advisors dispatch proactive mentoring, financial guidance or academic support workflows before dropouts occur.
+            </p>
+          </div>
+        </div>
+
+        {/* 3 Route Link Cards */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
+          <Link to="/metrics" className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
+            <div>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', border: '1px solid var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: 'var(--ink)' }}>
+                <BarChart3 size={20} />
+              </div>
+              <h4 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.5rem' }}>
+                Explore Model Metrics
+              </h4>
+              <p style={{ fontSize: '0.85rem', color: 'var(--ink)', opacity: 0.85, lineHeight: '1.5' }}>
+                Inspect 5-fold cross-validation, confusion matrices, ROC curves, and class-balanced performance benchmarks.
+              </p>
+            </div>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontWeight: '700', fontSize: '0.85rem', color: 'var(--ink)', marginTop: '1.25rem' }}>
+              <span>View Benchmarks</span>
+              <ArrowRight size={16} />
+            </div>
+          </Link>
+
+          <Link to="/predict" className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
+            <div>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', border: '1px solid var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: 'var(--ink)' }}>
+                <BrainCircuit size={20} />
+              </div>
+              <h4 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.5rem' }}>
+                Run a Student Prediction
+              </h4>
+              <p style={{ fontSize: '0.85rem', color: 'var(--ink)', opacity: 0.85, lineHeight: '1.5' }}>
+                Simulate continuous assessment marks, attendance trajectory, and arrear status for instant risk classification.
+              </p>
+            </div>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontWeight: '700', fontSize: '0.85rem', color: 'var(--ink)', marginTop: '1.25rem' }}>
+              <span>Launch Simulator</span>
+              <ArrowRight size={16} />
+            </div>
+          </Link>
+
+          <Link to="/chat" className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
+            <div>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', border: '1px solid var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: 'var(--ink)' }}>
+                <MessageSquare size={20} />
+              </div>
+              <h4 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.5rem' }}>
+                Talk to Academic Support
+              </h4>
+              <p style={{ fontSize: '0.85rem', color: 'var(--ink)', opacity: 0.85, lineHeight: '1.5' }}>
+                Interactive counseling assistant with real-time academic rules guidance and faculty mentor appointment booking.
+              </p>
+            </div>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontWeight: '700', fontSize: '0.85rem', color: 'var(--ink)', marginTop: '1.25rem' }}>
+              <span>Start Dialogue</span>
+              <ArrowRight size={16} />
+            </div>
+          </Link>
+        </div>
+
+        {/* Small simulated-data note */}
+        <p style={{ fontSize: '0.8rem', textAlign: 'center', color: 'var(--ink)', opacity: 0.7, lineHeight: '1.5', margin: '0 auto', maxWidth: '640px' }}>
+          Trained and evaluated on validated educational datasets. Demonstrations use synthetic and anonymised student profiles.
+        </p>
+      </section>
+
+      {/* Demo Video Section */}
+      <DemoVideo />
 
       {/* 2. Research & Motivation Section (Grounding in Tamil Nadu Dropout Data) */}
       <section style={{

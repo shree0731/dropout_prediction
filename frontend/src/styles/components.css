@@ -256,7 +256,43 @@ header nav a.active {
   padding: 4.5rem 2.5rem;
 }
 
-/* Hero Photo Ring with Cursor Parallax */
+/* Hero 3-Column Grid Layout & Photos */
+[data-parallax-hero] > div {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(auto, 640px) minmax(180px, 1fr);
+  column-gap: 80px;
+  align-items: center;
+  position: relative;
+  min-height: 520px;
+  width: 100%;
+}
+
+.hero-col-left {
+  position: relative;
+  height: 100%;
+  min-height: 480px;
+  grid-column: 1;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-col-right {
+  position: relative;
+  height: 100%;
+  min-height: 480px;
+  grid-column: 3;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-col-text {
+  grid-column: 2;
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+  z-index: 2;
+}
+
 .hero-photo-ring {
   position: absolute;
   inset: 0;
@@ -271,15 +307,144 @@ header nav a.active {
   border-radius: 18px;
   border: 1px solid var(--ink);
   box-shadow: 0 12px 28px rgba(23, 83, 31, 0.16);
+  translate: calc(var(--px, 0) * 1px) calc((var(--py, 0) + var(--sy, 0)) * 1px);
+  will-change: translate;
   transition: opacity 0.3s ease;
   pointer-events: auto;
 }
 
-@media (max-width: 900px) {
-  .hero-photo-ring {
+[data-hero-photo] {
+  translate: calc(var(--px, 0) * 1px) calc((var(--py, 0) + var(--sy, 0)) * 1px);
+  will-change: translate;
+}
+
+/* Individual photo desktop placement */
+.hero-photo-l1 {
+  top: 25px;
+  left: 10px;
+  width: 220px;
+  height: 150px;
+}
+
+.hero-photo-l2 {
+  bottom: 35px;
+  left: 30px;
+  width: 190px;
+  height: 135px;
+}
+
+.hero-photo-r1 {
+  top: 20px;
+  right: 15px;
+  width: 200px;
+  height: 145px;
+}
+
+.hero-photo-r2 {
+  top: 185px;
+  right: 35px;
+  width: 180px;
+  height: 130px;
+}
+
+.hero-photo-r3 {
+  bottom: 25px;
+  right: 10px;
+  width: 230px;
+  height: 155px;
+}
+
+.hero-mobile-photos {
+  display: none;
+}
+
+/* Responsive: 700px - 1099px (Tablet) */
+@media (min-width: 700px) and (max-width: 1099px) {
+  [data-parallax-hero] > div {
+    grid-template-columns: minmax(130px, 1fr) minmax(auto, 520px) minmax(130px, 1fr);
+    column-gap: 40px;
+    min-height: 460px;
+  }
+
+  .hero-col-left, .hero-col-right {
+    min-height: 420px;
+  }
+
+  .hero-photo-l1 {
+    top: 30px;
+    left: 5px;
+    width: 145px;
+    height: 105px;
+  }
+
+  .hero-photo-l2 {
+    bottom: 40px;
+    left: 15px;
+    width: 130px;
+    height: 95px;
+  }
+
+  .hero-photo-r1 {
+    top: 30px;
+    right: 10px;
+    width: 140px;
+    height: 100px;
+  }
+
+  .hero-photo-r2 {
+    bottom: 40px;
+    right: 15px;
+    width: 130px;
+    height: 95px;
+  }
+
+  .hero-photo-r3 {
     display: none !important;
   }
 }
+
+/* Responsive: Below 700px (Mobile) */
+@media (max-width: 699px) {
+  [data-parallax-hero] > div {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    min-height: auto !important;
+    column-gap: 0 !important;
+  }
+
+  .hero-col-left, .hero-col-right {
+    display: none !important;
+  }
+
+  .hero-col-text {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    padding: 0 !important;
+  }
+
+  .hero-mobile-photos {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-top: 2rem !important;
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .hero-mobile-photo {
+    width: 95px !important;
+    height: 70px !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    border: 1px solid var(--ink) !important;
+    flex-shrink: 0 !important;
+  }
+}
+
 
 /* Ticker */
 .ticker-band {
