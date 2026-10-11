@@ -24,8 +24,17 @@ export default function LandingPage() {
       <HeroParallax />
 
       {/* 1. Hero Section */}
-      <GlassCard data-parallax-hero="true" style={{ padding: '4rem 2.5rem', position: 'relative', background: 'linear-gradient(180deg, var(--bg-accent) 0%, var(--bg) 50%, var(--bg-accent) 100%)', border: '1px solid var(--ink)', borderRadius: 'var(--radius)', overflow: 'hidden' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem', alignItems: 'center', position: 'relative', zIndex: 2 }}>
+      <GlassCard data-parallax-hero="true" style={{ padding: '4.5rem 2.5rem', position: 'relative', background: 'linear-gradient(180deg, var(--bg-accent) 0%, var(--bg) 50%, var(--bg-accent) 100%)', border: '1px solid var(--ink)', borderRadius: 'var(--radius)', overflow: 'hidden' }}>
+        {/* Parallax Photo Ring tracking cursor */}
+        <div className="hero-photo-ring" data-allowlist="hero-photo-ring">
+          <img src="/images/campus_students_group.png" alt="" width="220" height="150" data-depth="0.75" className="hero-photo" style={{ top: '6%', left: '3%', width: '220px', height: '150px' }} />
+          <img src="/images/college_students_corridor.png" alt="" width="200" height="145" data-depth="0.9" className="hero-photo" style={{ top: '6%', right: '3%', width: '200px', height: '145px' }} />
+          <img src="/images/campus_walk_students.png" alt="" width="190" height="135" data-depth="0.5" className="hero-photo" style={{ bottom: '8%', left: '4%', width: '190px', height: '135px' }} />
+          <img src="/images/engineering_students_tn.png" alt="" width="230" height="155" data-depth="0.65" className="hero-photo" style={{ bottom: '8%', right: '4%', width: '230px', height: '155px' }} />
+          <img src="/images/graduates_celebration.png" alt="" width="180" height="130" data-depth="1.0" className="hero-photo hero-photo-desktop" style={{ top: '44%', right: '1.5%', width: '180px', height: '130px' }} />
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', zIndex: 2, minHeight: '460px', padding: '1rem 0', maxWidth: '840px', margin: '0 auto' }}>
           <div>
             <div style={{ 
               display: 'inline-flex', 
@@ -38,23 +47,23 @@ export default function LandingPage() {
               color: 'var(--ink)', 
               fontSize: '0.8rem', 
               fontWeight: '700', 
-              marginBottom: '1.25rem' 
+              marginBottom: '1.5rem' 
             }}>
               <Sparkles size={14} /> Machine Learning &amp; Explainable AI in Engineering Higher Ed
             </div>
 
-            <h1 style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)', fontWeight: '700', lineHeight: '0.98', color: 'var(--ink)', marginBottom: '1.5rem', letterSpacing: '-0.03em' }}>
+            <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', fontWeight: '700', lineHeight: '1.02', color: 'var(--ink)', marginBottom: '2rem', letterSpacing: '-0.03em', textAlign: 'center' }}>
               AI-Powered Student Dropout Prediction &amp; Proactive Academic Intervention System
             </h1>
 
-            <p style={{ fontSize: '1.02rem', color: 'var(--ink)', lineHeight: '1.65', marginBottom: '2rem' }}>
+            <p style={{ display: 'none' }}>
               Traditional institutional retention relies on post-facto semester results when it is often too late to salvage credits. 
               This standalone engine synthesizes multi-semester continuous assessments, attendance decay trajectories, and socio-academic factors 
               across <strong>13 engineering disciplines</strong> to identify students at risk with <strong>99.35% minority-class recall</strong>, 
               explaining every prediction via SHAP feature attributions and executing automated intervention counseling.
             </p>
 
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link to="/predict" className="btn-primary" style={{ padding: '0.85rem 1.6rem', fontSize: '0.95rem' }}>
                 <span>Try Interactive Prediction</span>
                 <ArrowRight size={18} />
@@ -66,8 +75,8 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Generic Campus Life Photography Banner */}
-          <div style={{ position: 'relative' }}>
+          {/* Generic Campus Life Photography Banner (hidden from centered hero) */}
+          <div style={{ display: 'none' }}>
             <div style={{
               borderRadius: '20px',
               overflow: 'hidden',
@@ -102,24 +111,6 @@ export default function LandingPage() {
                 <span className="badge badge-low" style={{ fontSize: '0.7rem' }}>
                   4 Colleges Seeded
                 </span>
-              </div>
-            </div>
-
-            {/* Campus Photo Gallery Strip (decorative addition) */}
-            <div className="hero-photo-gallery" data-allowlist="hero-photo-ring" style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '0.75rem',
-              marginTop: '1rem'
-            }}>
-              <div style={{ borderRadius: '14px', overflow: 'hidden', border: '1px solid var(--ink)', height: '90px', background: 'var(--bg-accent)' }}>
-                <img src="/images/campus_walk_students.png" alt="Students walking on campus" width="160" height="90" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-              </div>
-              <div style={{ borderRadius: '14px', overflow: 'hidden', border: '1px solid var(--ink)', height: '90px', background: 'var(--bg-accent)' }}>
-                <img src="/images/college_students_corridor.png" alt="Students in academic corridor" width="160" height="90" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-              </div>
-              <div style={{ borderRadius: '14px', overflow: 'hidden', border: '1px solid var(--ink)', height: '90px', background: 'var(--bg-accent)' }}>
-                <img src="/images/engineering_students_tn.png" alt="Engineering undergraduates" width="160" height="90" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
             </div>
           </div>

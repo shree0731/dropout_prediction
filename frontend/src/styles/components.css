@@ -256,26 +256,29 @@ header nav a.active {
   padding: 4.5rem 2.5rem;
 }
 
-/* Hero Photo Gallery & Showcase */
-.hero-photo-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.hero-photo-gallery > div {
-  border-radius: 14px;
+/* Hero Photo Ring with Cursor Parallax */
+.hero-photo-ring {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
   overflow: hidden;
-  border: 1px solid var(--ink);
-  height: 90px;
-  background: var(--bg-accent);
-  transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
-.hero-photo-gallery > div:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(23, 83, 31, 0.15);
+.hero-photo {
+  position: absolute;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid var(--ink);
+  box-shadow: 0 12px 28px rgba(23, 83, 31, 0.16);
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+@media (max-width: 900px) {
+  .hero-photo-ring {
+    display: none !important;
+  }
 }
 
 /* Ticker */
