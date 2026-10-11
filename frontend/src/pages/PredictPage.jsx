@@ -115,26 +115,26 @@ export default function PredictPage() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       {/* Title */}
       <div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#ED4D8B', marginBottom: '0.25rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--ink)', marginBottom: '0.25rem' }}>
           <Sparkles size={20} />
-          <span style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <span style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--ink)' }}>
             Interactive Inference Sandbox
           </span>
         </div>
-        <h1 style={{ fontSize: '1.8rem', fontWeight: '800', color: '#FFFFFF' }}>
+        <h1 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', fontWeight: '700', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
           Evaluate Dropout Risk &amp; Generate Plain-Language Drivers
         </h1>
-        <p style={{ color: '#94A3B8', fontSize: '0.875rem', marginTop: '0.25rem' }}>
+        <p style={{ color: 'var(--ink)', opacity: 0.85, fontSize: '0.9rem', marginTop: '0.25rem' }}>
           Pick a real student profile from the 9,200 dataset or customize academic signals manually.
         </p>
       </div>
 
       {/* Demo Student Quick Selector */}
-      <div className="glass-card" style={{ background: '#0E1526' }}>
+      <div className="glass-card" style={{ background: 'var(--bg-accent)', border: '1px solid var(--ink)', borderRadius: 'var(--radius)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <User size={18} color="#ED4D8B" />
-            <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#FFFFFF' }}>
+            <h3 style={{ fontSize: '1.05rem', fontWeight: '700', color: 'var(--ink)' }}>
               Load Real Student Profile (One-Click Autofill)
             </h3>
           </div>
@@ -145,13 +145,14 @@ export default function PredictPage() {
                 type="button"
                 onClick={() => setFilterRisk(r)}
                 style={{
-                  padding: '0.3rem 0.75rem',
-                  borderRadius: '6px',
+                  padding: '0.35rem 0.85rem',
+                  borderRadius: '9999px',
                   fontSize: '0.75rem',
                   fontWeight: '700',
-                  border: filterRisk === r ? '1px solid #ED4D8B' : '1px solid #24304F',
-                  background: filterRisk === r ? 'rgba(237, 77, 139, 0.2)' : '#131B2E',
-                  color: filterRisk === r ? '#ED4D8B' : '#94A3B8'
+                  border: '1px solid var(--ink)',
+                  background: filterRisk === r ? 'var(--surface)' : 'transparent',
+                  color: filterRisk === r ? 'var(--ink-on-dark)' : 'var(--ink)',
+                  transition: 'all 0.15s ease'
                 }}
               >
                 {r === 'ALL' ? 'All' : `${r} Risk`}
@@ -170,21 +171,21 @@ export default function PredictPage() {
                 onClick={() => handleSelectDemo(s)}
                 style={{
                   padding: '0.75rem',
-                  borderRadius: '8px',
-                  background: isSelected ? 'rgba(237, 77, 139, 0.15)' : '#131B2E',
-                  border: isSelected ? '1px solid #ED4D8B' : '1px solid #1E293B',
+                  borderRadius: 'var(--radius-input)',
+                  background: isSelected ? 'var(--bg)' : 'transparent',
+                  border: isSelected ? '2px solid var(--ink)' : '1px solid rgba(23, 83, 31, 0.3)',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease'
                 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                  <span style={{ fontWeight: '700', fontSize: '0.85rem', color: '#FFFFFF' }}>{s.student_name}</span>
+                  <span style={{ fontWeight: '700', fontSize: '0.85rem', color: 'var(--ink)' }}>{s.student_name}</span>
                   <span className={`badge ${badgeClass}`} style={{ fontSize: '0.65rem', padding: '0.15rem 0.45rem' }}>{s.dropout_risk_label}</span>
                 </div>
-                <div style={{ fontSize: '0.75rem', color: '#64748B' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--ink)', opacity: 0.75 }}>
                   {s.student_id} &bull; {s.department} Y{s.year_of_study}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: '#94A3B8', marginTop: '0.2rem' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--ink)', marginTop: '0.2rem' }}>
                   Att: <strong>{s.attendance_pct}%</strong> &bull; Backlogs: <strong>{s.backlogs_count}</strong> &bull; GPA: <strong>{s.overall_gpa}</strong>
                 </div>
               </div>
@@ -196,15 +197,15 @@ export default function PredictPage() {
       {/* Main Grid: Form + Results */}
       <div className="grid-2">
         {/* Form Controls */}
-        <form onSubmit={handleSubmit} className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <form onSubmit={handleSubmit} className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', background: 'var(--bg)', border: '1px solid var(--ink)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
             <Sliders size={18} color="#ED4D8B" />
-            <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#FFFFFF' }}>Academic &amp; Context Features</h3>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--ink)' }}>Academic &amp; Context Features</h3>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <div>
-              <label style={{ fontSize: '0.8rem', color: '#94A3B8', display: 'block', marginBottom: '0.35rem' }}>Engineering Branch</label>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>Engineering Branch</label>
               <select
                 className="form-select"
                 value={formData.department}
@@ -217,7 +218,7 @@ export default function PredictPage() {
             </div>
 
             <div>
-              <label style={{ fontSize: '0.8rem', color: '#94A3B8', display: 'block', marginBottom: '0.35rem' }}>Year of Study (1-4)</label>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>Year of Study (1-4)</label>
               <input
                 type="number"
                 min="1"
@@ -231,7 +232,7 @@ export default function PredictPage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <div>
-              <label style={{ fontSize: '0.8rem', color: '#94A3B8', display: 'block', marginBottom: '0.35rem' }}>Overall Attendance (%)</label>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>Overall Attendance (%)</label>
               <input
                 type="number"
                 step="0.1"
@@ -244,7 +245,7 @@ export default function PredictPage() {
             </div>
 
             <div>
-              <label style={{ fontSize: '0.8rem', color: '#94A3B8', display: 'block', marginBottom: '0.35rem' }}>6-Mo Attendance Decay (%)</label>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>6-Mo Attendance Decay (%)</label>
               <input
                 type="number"
                 step="0.1"
@@ -259,7 +260,7 @@ export default function PredictPage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <div>
-              <label style={{ fontSize: '0.8rem', color: '#94A3B8', display: 'block', marginBottom: '0.35rem' }}>Cumulative GPA (0-10)</label>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>Cumulative GPA (0-10)</label>
               <input
                 type="number"
                 step="0.01"
@@ -272,7 +273,7 @@ export default function PredictPage() {
             </div>
 
             <div>
-              <label style={{ fontSize: '0.8rem', color: '#94A3B8', display: 'block', marginBottom: '0.35rem' }}>Active Backlogs Count</label>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>Active Backlogs Count</label>
               <input
                 type="number"
                 min="0"
@@ -286,7 +287,7 @@ export default function PredictPage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <div>
-              <label style={{ fontSize: '0.8rem', color: '#94A3B8', display: 'block', marginBottom: '0.35rem' }}>Core Theory Average</label>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>Core Theory Average</label>
               <input
                 type="number"
                 step="0.5"
@@ -299,7 +300,7 @@ export default function PredictPage() {
             </div>
 
             <div>
-              <label style={{ fontSize: '0.8rem', color: '#94A3B8', display: 'block', marginBottom: '0.35rem' }}>Mentor Sessions Attended</label>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>Mentor Sessions Attended</label>
               <input
                 type="number"
                 min="0"
@@ -315,7 +316,7 @@ export default function PredictPage() {
             type="submit"
             className="btn-primary"
             disabled={loading}
-            style={{ width: '100%', justifyContent: 'center', marginTop: '0.5rem', padding: '0.85rem' }}
+            style={{ width: '100%', justifyContent: 'center', marginTop: '0.5rem', padding: '0.85rem', background: 'var(--surface)', color: 'var(--ink-on-dark)', borderRadius: '9999px' }}
           >
             {loading ? <RefreshCw size={18} className="animate-spin" /> : <BrainCircuit size={18} />}
             <span>{loading ? 'Evaluating Model Inference...' : 'Run Real-Time Prediction'}</span>
@@ -323,10 +324,10 @@ export default function PredictPage() {
         </form>
 
         {/* Prediction Results Display */}
-        <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--bg)', border: '1px solid var(--ink)' }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#FFFFFF' }}>Diagnostic Inference Output</h3>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--ink)' }}>Diagnostic Inference Output</h3>
               {result && (
                 <span className={`badge ${result.prediction === 'High' ? 'badge-high' : result.prediction === 'Medium' ? 'badge-medium' : 'badge-low'}`}>
                   {result.prediction} Risk Level
@@ -335,14 +336,14 @@ export default function PredictPage() {
             </div>
 
             {error && (
-              <div style={{ padding: '1rem', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid #EF4444', borderRadius: '10px', color: '#F87171', fontSize: '0.85rem' }}>
+              <div style={{ padding: '1rem', background: 'var(--alert-bg)', border: '1px solid var(--alert-ink)', borderRadius: 'var(--radius-input)', color: 'var(--alert-ink)', fontSize: '0.85rem' }}>
                 Error: {error}
               </div>
             )}
 
             {!result && !error && (
-              <div style={{ textAlign: 'center', padding: '4rem 1rem', color: '#64748B' }}>
-                <BrainCircuit size={48} style={{ opacity: 0.3, marginBottom: '1rem' }} />
+              <div style={{ textAlign: 'center', padding: '4rem 1rem', color: 'var(--ink)', opacity: 0.65 }}>
+                <BrainCircuit size={48} style={{ opacity: 0.35, marginBottom: '1rem', color: 'var(--ink)' }} />
                 <p>Click "Run Real-Time Prediction" or choose a demo student to view probabilities and risk drivers.</p>
               </div>
             )}
@@ -350,33 +351,33 @@ export default function PredictPage() {
             {result && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 {/* Probabilities Breakdown */}
-                <div style={{ padding: '1rem', background: '#0E1526', borderRadius: '12px', border: '1px solid #1E293B' }}>
-                  <div style={{ fontSize: '0.8rem', color: '#94A3B8', fontWeight: '700', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                <div style={{ padding: '1rem', background: 'var(--bg-accent)', borderRadius: 'var(--radius-input)', border: '1px solid var(--ink)' }}>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
                     Calibrated Risk Probabilities
                   </div>
                   <div style={{ display: 'flex', gap: '1rem', fontSize: '0.85rem' }}>
                     <div style={{ flex: 1 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', color: '#34D399', fontWeight: '700' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--risk-low)', fontWeight: '700' }}>
                         <span>Low</span> <span>{(result.probabilities.Low * 100).toFixed(0)}%</span>
                       </div>
-                      <div style={{ height: '6px', background: '#1E293B', borderRadius: '3px', marginTop: '4px' }}>
-                        <div style={{ width: `${result.probabilities.Low * 100}%`, height: '100%', background: '#10B981', borderRadius: '3px' }} />
+                      <div style={{ height: '8px', background: 'rgba(23, 83, 31, 0.15)', borderRadius: '4px', marginTop: '4px' }}>
+                        <div style={{ width: `${result.probabilities.Low * 100}%`, height: '100%', background: 'var(--risk-low)', borderRadius: '4px' }} />
                       </div>
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', color: '#FBBF24', fontWeight: '700' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--risk-med)', fontWeight: '700' }}>
                         <span>Medium</span> <span>{(result.probabilities.Medium * 100).toFixed(0)}%</span>
                       </div>
-                      <div style={{ height: '6px', background: '#1E293B', borderRadius: '3px', marginTop: '4px' }}>
-                        <div style={{ width: `${result.probabilities.Medium * 100}%`, height: '100%', background: '#F59E0B', borderRadius: '3px' }} />
+                      <div style={{ height: '8px', background: 'rgba(23, 83, 31, 0.15)', borderRadius: '4px', marginTop: '4px' }}>
+                        <div style={{ width: `${result.probabilities.Medium * 100}%`, height: '100%', background: 'var(--risk-med)', borderRadius: '4px' }} />
                       </div>
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', color: '#F87171', fontWeight: '700' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--risk-high)', fontWeight: '700' }}>
                         <span>High</span> <span>{(result.probabilities.High * 100).toFixed(0)}%</span>
                       </div>
-                      <div style={{ height: '6px', background: '#1E293B', borderRadius: '3px', marginTop: '4px' }}>
-                        <div style={{ width: `${result.probabilities.High * 100}%`, height: '100%', background: '#EF4444', borderRadius: '3px' }} />
+                      <div style={{ height: '8px', background: 'rgba(23, 83, 31, 0.15)', borderRadius: '4px', marginTop: '4px' }}>
+                        <div style={{ width: `${result.probabilities.High * 100}%`, height: '100%', background: 'var(--risk-high)', borderRadius: '4px' }} />
                       </div>
                     </div>
                   </div>
@@ -384,14 +385,14 @@ export default function PredictPage() {
 
                 {/* Plain Language Drivers */}
                 <div>
-                  <div style={{ fontSize: '0.8rem', color: '#94A3B8', fontWeight: '700', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
                     Top Identified Risk Drivers (SHAP)
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     {result.top_risk_drivers.map((d, i) => (
-                      <div key={i} style={{ padding: '0.65rem 0.85rem', background: '#0E1526', borderRadius: '8px', border: '1px solid #1E293B', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: '0.85rem', color: '#E2E8F0' }}>{d.message}</span>
-                        <span style={{ fontSize: '0.75rem', fontWeight: '700', color: d.contribution.startsWith('+') ? '#F87171' : '#34D399', marginLeft: '0.5rem' }}>
+                      <div key={i} style={{ padding: '0.65rem 0.85rem', background: 'var(--bg-accent)', borderRadius: 'var(--radius-input)', border: '1px solid var(--ink)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: '0.85rem', color: 'var(--ink)' }}>{d.message}</span>
+                        <span style={{ fontSize: '0.75rem', fontWeight: '700', color: d.contribution.startsWith('+') ? 'var(--risk-high)' : 'var(--risk-low)', marginLeft: '0.5rem' }}>
                           {d.contribution}
                         </span>
                       </div>
@@ -401,12 +402,12 @@ export default function PredictPage() {
 
                 {/* Actionable Interventions */}
                 <div>
-                  <div style={{ fontSize: '0.8rem', color: '#94A3B8', fontWeight: '700', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
                     Recommended Academic Interventions
                   </div>
                   <ul style={{ listStyle: 'none', paddingLeft: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                     {result.recommended_interventions.map((rec, i) => (
-                      <li key={i} style={{ fontSize: '0.825rem', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <li key={i} style={{ fontSize: '0.825rem', color: 'var(--ink)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <CheckCircle2 size={14} color="#10B981" />
                         <span>{rec}</span>
                       </li>
@@ -418,7 +419,7 @@ export default function PredictPage() {
           </div>
 
           {result && (
-            <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid #1E293B' }}>
+            <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid rgba(23, 83, 31, 0.2)' }}>
               <button
                 type="button"
                 onClick={() => navigate('/chat', { state: { student: { ...formData, prediction: result.prediction } } })}
