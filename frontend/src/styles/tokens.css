@@ -1,0 +1,23 @@
+@import '@fontsource-variable/inter-tight';
+
+:root {
+  --bg: #F3EBDD;          /* warm sand page */
+  --bg-accent: #E8D9BE;   /* deeper sand: hero ends, nav fade, alternate sections */
+  --ink: #17531F;         /* deep forest green: text, borders, outlined buttons */
+  --ink-on-dark: #FCFAEE; /* text on green */
+  --surface: #17531F;     /* solid green cards, ticker, submit buttons */
+  --star: #F5C518;
+  --radius: 16px;
+  --radius-input: 8px;
+
+  /* Semantic colours: verify each text colour reaches 4.5:1 on its background */
+  --risk-low: #17531F;    /* always paired with the word "Low" */
+  --risk-med: #8A5A0B;    /* always paired with the word "Medium" */
+  --risk-high: #A8402C;   /* always paired with the word "High" */
+  --alert-bg: #F6E3DC;    /* crisis / error banner background */
+  --alert-ink: #7A2A1A;
+  --focus: var(--ink);
+
+  /* Fonts */
+  --font-family: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
