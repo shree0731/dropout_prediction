@@ -1,0 +1,9 @@
+{
+  "default": {
+    "desk_name": "Student Counselling Desk",
+    "email": null,
+    "phone": null,
+    "hours": null,
+    "is_demo": false
+  }
+}

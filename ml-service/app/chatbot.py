@@ -3,74 +3,54 @@ import re
 import json
 import urllib.request
 import urllib.error
+from pathlib import Path
 from typing import Dict, Any, Tuple
+from app.helplines import get_helplines_text, HELPLINES_DATA
 
 # Gemini API configuration
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 
 # Standard safety disclaimer
-DISCLAIMER_TEXT = "AI academic assistant. Not a substitute for professional counseling or official academic advice."
+DISCLAIMER_TEXT = "AI academic assistant. Not a substitute for professional counseling or official academic advice. Immediate crisis support: Tele-MANAS (14416) | KIRAN (1800-599-0019)."
 
-# --- Robust Distress Detection (Two-Layer) ---
-# Primary categories
-CRISIS_PATTERNS = [
-    # 1. Self-Harm & Suicide
-    r"\bsuicid", r"\bkill myself\b", r"\bend my life\b", r"\bhurt myself\b",
-    r"\bcutting\b", r"\bself[- ]harm\b", r"\boverdose\b", r"\bwant to die\b",
-    # 2. Hopelessness & Severe Despair
-    r"\bhopeless\b", r"\bcan't go on\b", r"\bno reason to live\b", r"\bgive up on life\b",
-    r"\bnothing matters anymore\b", r"\bcan't take it anymore\b", r"\bunbearable\b",
-    # 3. Severe Anxiety & Panic
-    r"\bpanic attack\b", r"\bsevere anxiety\b", r"\bcan't breathe\b", r"\bterrified\b",
-    r"\bextreme dread\b", r"\bmental breakdown\b",
-    # 4. Abuse & Harassment
-    r"\babuse\b", r"\bdomestic violence\b", r"\bharass(ment|ed)?\b", r"\bassault\b",
-    r"\bragging\b", r"\bbull(ied|ying)\b",
-    # 5. Severe Depression
-    r"\bsevere depression\b", r"\bdepressed\b"
-]
+def get_counselling_info(college_id: str = None) -> str:
+    _CURRENT_DIR = Path(__file__).resolve().parent
+    candidates = [
+        _CURRENT_DIR.parent.parent / "backend" / "config" / "counselling.json",
+        _CURRENT_DIR.parent.parent / "backend" / "config" / "counselling.example.json",
+        Path("config/counselling.json")
+    ]
+    for config_file in candidates:
+        if config_file.exists():
+            try:
+                with open(config_file, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                entry = (data.get(college_id) if college_id else None) or data.get("default")
+                if entry:
+                    desk = entry.get("desk_name", "Student Counselling Desk")
+                    email = entry.get("email")
+                    phone = entry.get("phone")
+                    is_demo = entry.get("is_demo", False)
+                    parts = []
+                    if email:
+                        parts.append(f"Email: {email} (demo contact)" if is_demo else f"Email: {email}")
+                    if phone:
+                        parts.append(f"Phone: {phone}")
+                    if parts:
+                        return f"• **{desk}**: {' | '.join(parts)}"
+                    return f"• **{desk}**: Direct walk-in or consult your faculty mentor"
+            except Exception as e:
+                print(f"[CounsellingConfig Notice] Error loading config: {e}")
+                break
+    return "• **Campus Student Counselling Centre**: Direct walk-in or consult your faculty mentor"
 
-# Secondary emotional intensity markers
-DISTRESS_TOKENS = {
-    "despair", "helpless", "worthless", "trapped", "suffering",
-    "exhausted", "pain", "crying", "broken", "numb", "dark",
-    "alone", "failed", "hate myself", "scared", "drowning"
-}
+from app.distress import classify_distress
 
-# Meeting intent triggers
 MEETING_TRIGGERS = [
     r"\bmeet\b", r"\bmeeting\b", r"\bschedule\b", r"\btalk to (my )?mentor\b",
     r"\bcounsel(or|ing)?\b", r"\bappointment\b", r"\bbook a session\b",
     r"\bhelp me talk\b", r"\bspeak with (a|my) (mentor|teacher|professor|counselor)\b"
 ]
-
-CRISIS_RESOURCES = {
-    "tele_manas": "14416 (24x7 Toll-Free)",
-    "kiran": "1800-599-0019 (24x7 Toll-Free)",
-    "campus_wellness": "counselor@institution.edu"
-}
-
-def detect_distress(message: str) -> Tuple[bool, str]:
-    """
-    Two-layer distress evaluation:
-    Layer 1: Explicit regex matching against critical crisis patterns.
-    Layer 2: Multi-token affective density check for deep emotional distress.
-    """
-    msg_lower = message.lower()
-
-    # Layer 1: Regex scan
-    for pat in CRISIS_PATTERNS:
-        if re.search(pat, msg_lower):
-            return True, "pattern_match"
-
-    # Layer 2: Emotional distress intensity analysis
-    words = set(re.findall(r'\b[a-z]{3,}\b', msg_lower))
-    distress_hits = words.intersection(DISTRESS_TOKENS)
-    # If 2 or more intense distress markers appear in a single message
-    if len(distress_hits) >= 2:
-        return True, "intensity_score"
-
-    return False, "none"
 
 def is_meeting_request(message: str) -> bool:
     msg_lower = message.lower()
@@ -198,32 +178,50 @@ def get_chatbot_response(message: str, student_context: dict) -> dict:
     }
     """
     # 1. Two-Layer Safety Distress Evaluation
-    is_distress, distress_type = detect_distress(message)
-    if is_distress:
+    distress_outcome, distress_score = classify_distress(message)
+
+    if distress_outcome == "crisis":
+        college_id = student_context.get("college_id") if student_context else None
+        counselling_info = get_counselling_info(college_id)
         crisis_reply = (
             "I hear how overwhelmed you are feeling right now, and I want you to know you don't have to carry this alone. "
             "Please reach out to someone who can support you immediately:\n\n"
-            f"• **National Student Mental Health Helpline (Tele-MANAS)**: Call {CRISIS_RESOURCES['tele_manas']}\n"
-            f"• **KIRAN Mental Health Helpline**: Call {CRISIS_RESOURCES['kiran']}\n"
-            f"• **Campus Wellness & Counseling Center**: Direct walk-in or email ({CRISIS_RESOURCES['campus_wellness']})\n\n"
+            f"{get_helplines_text()}\n"
+            f"{counselling_info}\n\n"
         )
         return {
             "reply": crisis_reply,
             "meeting_requested": True,
             "is_distress": True,
-            "distress_category": distress_type,
+            "distress_category": "crisis",
             "disclaimer": DISCLAIMER_TEXT,
-            "crisis_resources": CRISIS_RESOURCES,
             "meeting_details": {
                 "requested_with": "counselor",
                 "reason": "Immediate emotional distress / crisis detection"
             }
         }
 
+    if distress_outcome == "stress":
+        mentor_name = student_context.get("mentor_name", "your faculty mentor") if student_context else "your faculty mentor"
+        name = student_context.get("student_name", "there") if student_context else "there"
+        stress_reply = (
+            f"I hear how much stress and anxiety you're carrying right now, {name}. "
+            "Academic pressure and difficult exams can feel overwhelming, but please remember that setbacks are manageable and you don't have to handle them all on your own. "
+            f"Would you like me to connect you with {mentor_name} to review your situation and work out a recovery plan together?"
+        )
+        return {
+            "reply": stress_reply,
+            "meeting_requested": False,
+            "is_distress": False,
+            "distress_category": "stress",
+            "disclaimer": DISCLAIMER_TEXT,
+            "meeting_details": None
+        }
+
     # 2. Meeting / Escalation Trigger Check
     meeting_intent = is_meeting_request(message)
     requested_with = "counselor" if "counsel" in message.lower() else "mentor"
-    reason = f"Student requested meeting: '{message[:80]}'"
+    reason = "Student requested 1-on-1 faculty mentor consultation"
 
     # 3. Formulate Prompt & LLM Call
     system_instruction = build_system_instruction(student_context)

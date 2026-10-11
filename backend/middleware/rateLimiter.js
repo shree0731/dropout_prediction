@@ -24,7 +24,21 @@ const strictLimiter = rateLimit({
   }
 });
 
+// Dedicated Rate Limiter for Session Token Issuance (20 tokens per hour per IP)
+const sessionTokenLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 20, // 20 tokens per hour per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    error: 'Too Many Requests',
+    message: 'Rate limit exceeded for session token generation. Limit is 20 tokens per hour.'
+  }
+});
+
 module.exports = {
   generalLimiter,
-  strictLimiter
+  strictLimiter,
+  sessionTokenLimiter
 };
+

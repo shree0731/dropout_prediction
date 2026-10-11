@@ -94,3 +94,10 @@ exports.getDemoStudents = async (req, res) => {
     return res.status(500).json({ error: 'Failed to load demo students', details: err.message });
   }
 };
+
+exports.findDemoStudentById = async (studentId) => {
+  if (!studentId) return null;
+  const list = await loadDemoStudents();
+  return list.find(s => s.student_id === studentId) || null;
+};
+

@@ -1,9 +1,13 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
 
-process.env.API_KEY = 'test_api_key_safety_12345';
+process.env.API_KEY = 'test_api_key_safety_12345_67890_abcdef';
+process.env.SESSION_SECRET = 'test_session_secret_safety_distinct_98765';
+process.env.ERP_SERVICE_API_KEY = 'erp_srv_9c18d4e7f603a152b820e981c472d03a';
 process.env.ALLOWED_ORIGINS = 'http://localhost:5173,http://localhost:3000';
 process.env.ML_SERVICE_URL = 'http://localhost:8001';
+process.env.ERP_BASE_URL = 'http://localhost:5000';
+process.env.MODEL_DIR = '../models';
 
 const app = require('../server');
 const MeetingRequest = require('../models/MeetingRequest');
@@ -43,13 +47,12 @@ describe('Task 5 — Chatbot Safety, Honesty, and Guardrails Tests', () => {
 
     if (dbModule.getDBStatus()) {
       expect(res.body.meeting_id).not.toBeNull();
-      expect(res.body.counselor_notified).toBe(true);
-      expect(res.body.reply).toMatch(/notified your dedicated academic counselor/i);
+      expect(res.body.delivery_status).toBeDefined();
 
-      const doc = await MeetingRequest.findById(res.body.meeting_id);
+      const doc = await MeetingRequest.findOne({ request_id: res.body.meeting_id });
       expect(doc).not.toBeNull();
       expect(doc.student_id).toBe('STU_TEST_DISTRESS');
-      expect(doc.requested_with).toBe('counselor');
+      expect(doc.category).toBe('crisis');
     }
   });
 
@@ -73,11 +76,12 @@ describe('Task 5 — Chatbot Safety, Honesty, and Guardrails Tests', () => {
     expect(res.status).toBe(200);
     expect(res.body.is_distress).toBe(true);
     expect(res.body.meeting_id).toBeNull();
-    expect(res.body.counselor_notified).toBe(false);
+    expect(res.body.delivery_status).toBe('not_saved');
 
-    // CRITICAL HONESTY CHECK: Must NOT claim counselor was notified!
-    expect(res.body.reply).not.toMatch(/notified your dedicated academic counselor/i);
-    expect(res.body.reply).toMatch(/could not automatically notify your counselor/i);
+    // CRITICAL HONESTY CHECK: Must NOT claim mentor was notified or recorded!
+    expect(res.body.reply).not.toMatch(/sent your request to your mentor/i);
+    expect(res.body.reply).not.toMatch(/recorded your request/i);
+    expect(res.body.reply).toMatch(/Please call the emergency helplines above or contact/i);
 
     // Must still supply emergency helplines
     expect(res.body.reply).toMatch(/14416/);
@@ -101,7 +105,7 @@ describe('Task 5 — Chatbot Safety, Honesty, and Guardrails Tests', () => {
 
     expect(res.status).toBe(200);
     expect(res.body.disclaimer).toBe(
-      'AI academic assistant. Not a substitute for professional counseling or official academic advice.'
+      'AI academic assistant. Not a substitute for professional counseling or official academic advice. Immediate crisis support: Tele-MANAS (14416) | KIRAN (1800-599-0019).'
     );
   });
 });

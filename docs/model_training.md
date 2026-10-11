@@ -9,6 +9,8 @@
 - **Multi-Class Brier Score**: **0.0649**
 - **Defensibility Principle**: The test set was untouched during cross-validation, imbalance strategy selection, and hyperparameter tuning. Model evaluation reflects true generalization on unseen holdout data.
 
+> **DATA PROVENANCE & SIMULATED LABELS STATEMENT:** The target labels (`dropout_risk_label`, `dropout_risk_score`) in this research dataset are generated from simulated longitudinal academic performance benchmarks modeled after undergraduate engineering cohorts in Tamil Nadu. The dataset was synthesized to evaluate early-warning model architectures and does **NOT** represent real, identifiable student academic or dropout records from a named institution.
+
 ---
 
 ## 2. Cross-Validation Results on Training Set (Stratified 5-Fold)
@@ -72,42 +74,45 @@ Actual High    0      1      154
 ---
 
 ## 5. Ablation Study
-To understand feature group impact, the model was retrained on `Train + Validation` without specific feature clusters and evaluated on the untouched test set:
+To isolate feature group impact, the model was evaluated on the untouched holdout test set with specific feature clusters omitted:
 
-| Configuration | Test Macro F1 | Test High-Risk Recall | Macro F1 Delta |
-|---|---|---|---|
-| **Full Feature Set (16 features)** | **0.9265** | **0.9935** | Baseline |
-| **Without Attendance (`attendance_pct`, `attendance_decay`)** | 0.8317 | 0.8710 | -0.0948 |
-| **Without Academic Marks (`failed_subjects_count`, `core_theory_avg`, CIA, assignments, `grade_trend`)** | 0.9264 | 0.9871 | -0.0001 |
+| Configuration | Test Macro F1 | Test High-Risk Recall | Macro F1 Delta | Primary Impact |
+|---|---|---|---|---|
+| **Full Feature Set (16 features)** | **0.9265** | **0.9935** | Baseline | Reference benchmark |
+| **Without Attendance (`attendance_pct`, `attendance_decay`)** | 0.8317 | 0.8710 | **-0.0948** | Critical loss in minority-class recall and overall discriminability |
+| **Without Academic Marks (`failed_subjects_count`, `core_theory_avg`, CIA, assignments, `grade_trend`)** | 0.9264 | 0.9871 | **-0.0001** | Negligible change in overall Macro F1; marks act primarily as secondary corroboration |
 
-**Observation**: Attendance dynamics and semester academic mark averages are both essential. Removing either feature cluster severely degrades minority-class recall.
+**Data-Grounding Observation**: Longitudinal attendance features (`attendance_pct` and temporal `attendance_decay`) represent the decisive predictive signal. Omitting attendance causes a steep drop in Macro F1 (-0.0948) and reduces high-risk recall from 99.35% to 87.10%. Academic marks provide important supplementary context for faculty mentors but do not independently compensate when attendance trajectories are missing.
 
 ---
 
 ## 6. Fairness & Subgroup Breakdown
 
 ### Performance by Department
-| Department | Samples | Accuracy | Macro F1 | High-Risk Recall |
-|---|---|---|---|---|
-| AIDS | 186 | 96.8% | 0.9498 | 1.0000 |
-| AIML | 185 | 97.3% | 0.9557 | 1.0000 |
-| Automobile | 20 | 100.0% | 1.0000 | 1.0000 |
-| CSBS | 126 | 93.7% | 0.8983 | 1.0000 |
-| CSD | 117 | 97.4% | 0.9514 | 1.0000 |
-| CSE | 272 | 97.1% | 0.9442 | 1.0000 |
-| Civil | 95 | 95.8% | 0.9311 | 1.0000 |
-| Cyber Security | 148 | 94.6% | 0.9002 | 1.0000 |
-| ECE | 177 | 96.0% | 0.9395 | 1.0000 |
-| EEE | 147 | 94.6% | 0.8972 | 0.9167 |
-| IT | 214 | 93.0% | 0.8918 | 1.0000 |
-| Mechanical | 121 | 96.7% | 0.9456 | 1.0000 |
-| Robotics | 32 | 84.4% | 0.8632 | 1.0000 |
+| Department | Samples (N) | Accuracy | Macro F1 | High-Risk Recall | Sample Reliability Status |
+|---|---|---|---|---|---|
+| AIDS | 186 | 96.8% | 0.9498 | 1.0000 | Sufficient sample (N >= 50) |
+| AIML | 185 | 97.3% | 0.9557 | 1.0000 | Sufficient sample (N >= 50) |
+| Automobile | 20 | 100.0%* | 1.0000* | 1.0000* | **Insufficient sample size (N < 50)** |
+| CSBS | 126 | 93.7% | 0.8983 | 1.0000 | Sufficient sample (N >= 50) |
+| CSD | 117 | 97.4% | 0.9514 | 1.0000 | Sufficient sample (N >= 50) |
+| CSE | 272 | 97.1% | 0.9442 | 1.0000 | Sufficient sample (N >= 50) |
+| Civil | 95 | 95.8% | 0.9311 | 1.0000 | Sufficient sample (N >= 50) |
+| Cyber Security | 148 | 94.6% | 0.9002 | 1.0000 | Sufficient sample (N >= 50) |
+| ECE | 177 | 96.0% | 0.9395 | 1.0000 | Sufficient sample (N >= 50) |
+| EEE | 147 | 94.6% | 0.8972 | 0.9167 | Sufficient sample (N >= 50) |
+| IT | 214 | 93.0% | 0.8918 | 1.0000 | Sufficient sample (N >= 50) |
+| Mechanical | 121 | 96.7% | 0.9456 | 1.0000 | Sufficient sample (N >= 50) |
+| Robotics | 32 | 84.4%* | 0.8632* | 1.0000* | **Insufficient sample size (N < 50)** |
+
+> [!NOTE]
+> **Subgroup Sample Size Warning:** Departments with sample sizes below N = 50 in the holdout split (`Automobile`, N=20; `Robotics`, N=32) are marked with an asterisk (*). Due to small cohort sizes, per-department metrics in these rows have wide confidence intervals and are not statistically reliable for comparative fairness conclusions.
 
 ### Performance by First-Generation Learner Status
-| Subgroup | Samples | Accuracy | Macro F1 | High-Risk Recall |
-|---|---|---|---|---|
-| Continuing Education | 1276 | 95.5% | 0.9257 | 1.0000 |
-| First-Gen Learner | 564 | 95.7% | 0.9284 | 0.9804 |
+| Subgroup | Samples | Accuracy | Macro F1 | High-Risk Recall | Sample Reliability Status |
+|---|---|---|---|---|---|
+| Continuing Education | 1276 | 95.5% | 0.9257 | 1.0000 | Sufficient sample (N >= 50) |
+| First-Gen Learner | 564 | 95.7% | 0.9284 | 0.9804 | Sufficient sample (N >= 50) |
 
 ---
 

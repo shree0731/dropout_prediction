@@ -235,7 +235,7 @@ export default function ChatbotPage() {
           paddingTop: '0.45rem',
           letterSpacing: '0.01em'
         }}>
-          🛡️ AI academic assistant. Not a substitute for professional counseling or official academic advice.
+          🛡️ AI academic assistant. Not a substitute for professional counseling or official academic advice. Immediate crisis support: Tele-MANAS (14416) | KIRAN (1800-599-0019).
         </div>
       </div>
     </div>

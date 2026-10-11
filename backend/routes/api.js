@@ -8,9 +8,9 @@ const metricsController = require('../controllers/metricsController');
 const mlServiceClient = require('../services/mlServiceClient');
 const { getDBStatus } = require('../config/db');
 
-const { apiKeyAuth, createSessionToken } = require('../middleware/auth');
+const { apiKeyAuth, requireApiKeyOnly, createSessionToken } = require('../middleware/auth');
 const { validatePredictPayload, validateChatPayload } = require('../middleware/validation');
-const { strictLimiter } = require('../middleware/rateLimiter');
+const { strictLimiter, sessionTokenLimiter } = require('../middleware/rateLimiter');
 
 // --- 1. Public Endpoints (Serving Standalone UI without credentials) ---
 
@@ -33,17 +33,52 @@ router.get('/metrics', metricsController.getMetrics);
 // Demo Students for "Try a Prediction" Sandbox (Public sample dataset)
 router.get('/students/demo', demoController.getDemoStudents);
 
-// Issue Short-Lived Session Token for Standalone Frontend (Same-origin or allowed origins)
-router.get('/session-token', (req, res) => {
+// Issue Short-Lived Session Token for Standalone Frontend (Allowed origins only)
+router.get('/session-token', sessionTokenLimiter, (req, res) => {
+  const origin = req.headers.origin || req.headers.referer;
+  const configuredOrigins = process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim()).filter(Boolean)
+    : [];
+
+  if (!origin) {
+    return res.status(403).json({
+      error: 'Forbidden',
+      message: 'Origin or Referer header is required for session token issuance.'
+    });
+  }
+
+  let reqOrigin = origin;
+  try {
+    reqOrigin = new URL(origin).origin;
+  } catch (e) {
+    // Keep raw string
+  }
+
+  const isAllowed = configuredOrigins.some(allowed => {
+    try {
+      return new URL(allowed).origin === reqOrigin;
+    } catch {
+      return allowed === reqOrigin;
+    }
+  });
+
+  if (!isAllowed) {
+    return res.status(403).json({
+      error: 'Forbidden',
+      message: `Origin '${origin}' is not authorized to request session tokens.`
+    });
+  }
+
   try {
     const token = createSessionToken();
     res.json({
       token,
       expires_in: 900, // 15 minutes
+      scope: ['predict', 'chat'],
       type: 'Bearer'
     });
   } catch (err) {
-    console.error('[Session Token Generation Error]', err);
+    console.error('[Session Token Generation Error]', err.message);
     res.status(500).json({ error: 'Failed to generate session token' });
   }
 });
@@ -71,7 +106,7 @@ router.post(
 // Sensitive Meeting Requests Log (Protected: strictly requires X-API-Key)
 router.get(
   '/meetings',
-  apiKeyAuth,
+  requireApiKeyOnly,
   chatController.getMeetings
 );
 

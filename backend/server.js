@@ -13,11 +13,13 @@ const { connectDB } = require('./config/db');
 const { generalLimiter } = require('./middleware/rateLimiter');
 const apiRoutes = require('./routes/api');
 
+const { checkEnv } = require('./scripts/check-env');
+
 // Configuration assertion: Refuse to start if critical security env vars are missing
 function assertConfig() {
-  const apiKey = process.env.API_KEY;
-  if (!apiKey || !apiKey.trim()) {
-    throw new Error('FATAL SECURITY ERROR: API_KEY environment variable is required and cannot be empty.');
+  const result = checkEnv(process.env, { exitOnError: process.env.NODE_ENV !== 'test', silent: false });
+  if (!result.valid) {
+    throw new Error(`FATAL SECURITY ERROR: AI Gateway configuration invalid: ${result.errors.join('; ')}`);
   }
 }
 

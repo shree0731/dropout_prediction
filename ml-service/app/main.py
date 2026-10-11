@@ -57,6 +57,7 @@ def health_check():
         "status": "healthy",
         "service": "ai-dropout-prediction-ml-microservice",
         "model_loaded": "XGBoost",
+        "safety_filter": "rule_based",
         "port": 8001
     }
 

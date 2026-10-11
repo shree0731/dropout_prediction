@@ -38,21 +38,31 @@ flowchart TD
 
 ### Prerequisites
 - Node.js >= 18.x
-- Python >= 3.10 with `pip`
+- Python >= 3.11 (Python 3.11 or 3.12 recommended) with `pip`
 - MongoDB (local or Atlas)
 
-### Step 1: Environment Setup
+### Step 1: First-Time Setup & Secret Generation
+Copy the example environment template:
 ```bash
 cd backend
 cp .env.example .env
 ```
-Configure `backend/.env`:
+Generate cryptographically secure 32-byte hexadecimal secrets:
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+Configure `backend/.env` with the generated values:
 - `PORT=5001`
-- `API_KEY=replace_with_shared_service_api_key_in_production` (Must match ERP)
+- `API_KEY`: Random 32+ character hex string (service-to-service key; must match `AI_SERVICE_API_KEY` in ERP).
+- `SESSION_SECRET`: Distinct random 32+ character hex string (used for frontend browser session tokens; **cannot** equal `API_KEY`).
+- `ERP_BASE_URL=http://localhost:5000`
+- `ERP_SERVICE_API_KEY`: Service key for outgoing meeting requests to ERP (must match `ERP_SERVICE_API_KEY` in ERP).
 - `ALLOWED_ORIGINS=http://localhost:5173,http://localhost:5174,http://localhost:3000`
 - `MONGO_URI=mongodb://localhost:27017/student_dropout_erp`
 - `ML_SERVICE_URL=http://localhost:8001`
 - `MODEL_DIR=../models`
+
+Startup will fail fast with clear diagnostics (`node scripts/check-env.js`) if any required secret is missing, under 32 characters, contains default placeholders, or if `SESSION_SECRET === API_KEY`.
 
 ### Step 2: Install Dependencies
 ```bash

@@ -138,16 +138,54 @@ X-API-Key: ai-dropout-secret-key-2026
 
 ---
 
-### 3.2. Intervention Chatbot & Meeting Scheduling (`POST /api/chat`)
+### 3.2. Meeting Request Ingestion (`POST /api/integrations/meeting-requests`)
+Implemented in InSightERP backend (`FSD/backend/controllers/integrationController.js`) and called by the AI delivery service (`ai-dropout-prediction/backend/services/erpDeliveryService.js`).
+
+#### Authentication
+- **Header**: `X-Service-Key: <ERP_SERVICE_API_KEY>` (Timing-safe evaluation via `crypto.timingSafeEqual`)
+- **Caller Guard**: Ingestion is triggered **only** for authenticated service-key calls (`req.authType === 'api-key'`), never for public sandbox session-token calls.
+
+#### Request Shape
+```json
+POST http://localhost:5000/api/integrations/meeting-requests
+Content-Type: application/json
+X-Service-Key: <ERP_SERVICE_API_KEY>
+
+{
+  "request_id": "9f7b1e84-18c2-48ea-8b4e-28c049b1a5e1",
+  "student_id": "STU_EEC_CSE_Y2_0001",
+  "college_id": "C101",
+  "category": "crisis",
+  "urgency": "urgent",
+  "reason_short": "Immediate emotional distress / crisis detection"
+}
+```
+
+> **PRIVACY INVARIANT (Zero Transcript Leakage):** The `reason_short` field is strictly mapped from the enum category (`crisis` -> emotional distress, `academic` -> academic performance review, `meeting` -> 1-on-1 mentor consultation). Raw student chat messages or conversational transcripts are **never** transmitted in the integration payload.
+
+#### Response Shape
+```json
+{
+  "message": "Meeting request ingested successfully",
+  "request_id": "9f7b1e84-18c2-48ea-8b4e-28c049b1a5e1",
+  "mentor_id": "FAC_1001",
+  "mentor_name": "Dr. Kavitha Ramanathan",
+  "urgency": "urgent"
+}
+```
+
+---
+
+### 3.3. Empathetic Advisor & Three-State Honest Wording (`POST /api/chat`)
 
 #### Request Shape
 ```json
 POST http://localhost:5001/api/chat
 Content-Type: application/json
-X-API-Key: ai-dropout-secret-key-2026
+X-API-Key: <AI_SERVICE_API_KEY>
 
 {
-  "message": "I'm stressed about my backlogs. Can you schedule a meeting with my mentor?",
+  "message": "I'm overwhelmed and need help.",
   "student_context": {
     "student_id": "STU_EEC_CSE_Y2_0001",
     "student_name": "Arun Kumar",
@@ -155,25 +193,15 @@ X-API-Key: ai-dropout-secret-key-2026
     "year_of_study": 2,
     "attendance_pct": 64.5,
     "overall_gpa": 5.4,
-    "backlogs_count": 3,
-    "prediction": "High",
-    "mentor_name": "Dr. Kavitha Swaminathan"
+    "backlogs_count": 3
   }
 }
 ```
 
-#### Response Shape
-```json
-{
-  "reply": "Hello Arun! It is completely understandable to feel stressed with 3 uncleared backlogs, but you are not alone in handling this. We have structured remedial tutorial sessions and faculty guidance ready to support you.\n\n[Meeting Request Logged]: I've submitted a request for you to connect with your faculty mentor (Dr. Kavitha Swaminathan). You will receive confirmation on your student portal.",
-  "meeting_requested": true,
-  "meeting_details": {
-    "requested_with": "mentor",
-    "reason": "Student requested meeting: 'I'm stressed about my backlogs. Can you schedule a meeting with my mentor?'"
-  },
-  "meeting_id": "6700cfa149e6d0152f36bc42"
-}
-```
+#### Honest Reply States
+1. **Delivered**: `"I've sent your request to your mentor (Dr. Kavitha Ramanathan)."`
+2. **Saved but Pending Delivery**: `"I've recorded your request but couldn't reach your mentor's inbox right now. Please also contact [Campus Student Counselling Desk]."`
+3. **Not Saved / System Offline**: Emergency national helplines (Tele-MANAS: 14416, KIRAN: 1800-599-0019) and campus contacts provided directly; **zero** false claims that anything was recorded.
 
 ---
 

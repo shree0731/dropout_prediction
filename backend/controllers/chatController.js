@@ -1,45 +1,69 @@
+const crypto = require('crypto');
 const mlServiceClient = require('../services/mlServiceClient');
 const MeetingRequest = require('../models/MeetingRequest');
 const { getDBStatus } = require('../config/db');
+const { formatHelplinesText } = require('../constants/helplines');
+const { resolveCounsellingContact } = require('../utils/counsellingConfig');
+const { buildDeliveryReplyWording } = require('../utils/replyWording');
+const { processInitialDelivery, generateReasonShort } = require('../services/erpDeliveryService');
+const { findDemoStudentById } = require('./demoController');
 
-const DISCLAIMER_TEXT = 'AI academic assistant. Not a substitute for professional counseling or official academic advice.';
+const DISCLAIMER_TEXT = 'AI academic assistant. Not a substitute for professional counseling or official academic advice. Immediate crisis support: Tele-MANAS (14416) | KIRAN (1800-599-0019).';
 
 const CRISIS_PATTERNS = [
   /\bsuicid/i, /\bkill myself\b/i, /\bend my life\b/i, /\bhurt myself\b/i,
   /\bcutting\b/i, /\bself[- ]harm\b/i, /\boverdose\b/i, /\bwant to die\b/i,
   /\bhopeless\b/i, /\bcan't go on\b/i, /\bno reason to live\b/i, /\bgive up on life\b/i,
   /\bnothing matters anymore\b/i, /\bcan't take it anymore\b/i, /\bunbearable\b/i,
-  /\bpanic attack\b/i, /\bsevere anxiety\b/i, /\bcan't breathe\b/i, /\bterrified\b/i,
-  /\bextreme dread\b/i, /\bmental breakdown\b/i,
   /\babuse\b/i, /\bdomestic violence\b/i, /\bharass(ment|ed)?\b/i, /\bassault\b/i,
-  /\bragging\b/i, /\bbull(ied|ying)\b/i,
-  /\bsevere depression\b/i, /\bdepressed\b/i
+  /\bragging\b/i, /\bmy final goodbye\b/i, /\bgoodbye everyone\b/i, /\bthis is goodbye\b/i
 ];
 
-const DISTRESS_TOKENS = new Set([
-  'despair', 'helpless', 'worthless', 'trapped', 'suffering',
-  'exhausted', 'pain', 'crying', 'broken', 'numb', 'dark',
-  'alone', 'failed', 'hate', 'scared', 'drowning'
-]);
-
-function checkDistress(message) {
+function isCrisisMessage(message) {
   const msgLower = (message || '').toLowerCase();
   for (const pat of CRISIS_PATTERNS) {
     if (pat.test(msgLower)) return true;
   }
-  const words = (msgLower.match(/\b[a-z]{3,}\b/g) || []);
-  let count = 0;
-  for (const w of words) {
-    if (DISTRESS_TOKENS.has(w)) count++;
-  }
-  return count >= 2;
+  return false;
 }
 
 exports.handleChat = async (req, res) => {
-  const { message = '', student_context = {} } = req.body || {};
+  const { message = '', student_context: rawContext = {} } = req.body || {};
 
   if (!message || typeof message !== 'string') {
     return res.status(400).json({ error: 'Message text is required' });
+  }
+
+  // Subtask 5.3: Server-side data lookup for session-token calls; ignore client-supplied context
+  let student_context = {};
+  if (req.authType === 'session-token') {
+    const requestedStudentId = rawContext.student_id;
+    const verifiedDemoStudent = await findDemoStudentById(requestedStudentId);
+
+    if (verifiedDemoStudent) {
+      student_context = {
+        student_id: verifiedDemoStudent.student_id,
+        student_name: verifiedDemoStudent.student_name,
+        college_id: verifiedDemoStudent.college_id,
+        attendance_pct: verifiedDemoStudent.attendance_pct,
+        overall_gpa: verifiedDemoStudent.overall_gpa,
+        backlogs_count: verifiedDemoStudent.backlogs_count,
+        mentor_name: 'Dr. Faculty Mentor (Assigned)'
+      };
+    } else {
+      student_context = {
+        student_id: 'STU_DEMO',
+        student_name: 'Student',
+        college_id: 'C101',
+        attendance_pct: 75.0,
+        overall_gpa: 7.0,
+        backlogs_count: 0,
+        mentor_name: 'Campus Faculty Mentor'
+      };
+    }
+  } else {
+    // API-Key calls (from ERP backend): use verified context supplied by ERP
+    student_context = { ...rawContext };
   }
 
   const studentId = student_context?.student_id || 'STU_ANONYMOUS';
@@ -55,74 +79,97 @@ exports.handleChat = async (req, res) => {
     }
 
     // Determine if query is distress or meeting
-    const isDistress = chatResponse?.is_distress || checkDistress(message);
+    const isDistress = chatResponse?.is_distress || isCrisisMessage(message);
     const meetingRequested = chatResponse?.meeting_requested || isDistress || /(meet|meeting|schedule|appointment|talk to (my )?mentor|counsel|book a session)/i.test(message);
-    const requestedWith = (isDistress || /counsel/i.test(message)) ? 'counselor' : 'mentor';
-    const reason = isDistress
-      ? 'Immediate emotional distress / crisis detection'
-      : (chatResponse?.meeting_details?.reason || `Student requested meeting: "${message.slice(0, 80)}"`);
+    
+    // Categorize meeting request: crisis | academic | meeting
+    const category = isDistress
+      ? 'crisis'
+      : (/(grade|mark|exam|backlog|arrear|fail|study|tutoring)/i.test(message) ? 'academic' : 'meeting');
+    const urgency = (category === 'crisis') ? 'urgent' : 'normal';
+    const reasonShort = generateReasonShort(category);
+    const requestId = crypto.randomUUID();
+    const collegeId = student_context?.college_id || 'C101';
 
     let meetingRecord = null;
-    let counselorNotified = false;
+    let deliveryResult = { delivered: false, mentorName: null };
 
     if (meetingRequested) {
-      if (getDBStatus()) {
-        try {
-          meetingRecord = await MeetingRequest.create({
-            student_id: studentId,
-            student_name: studentName,
-            requested_with: requestedWith,
-            reason,
-            status: 'pending'
-          });
-          counselorNotified = (requestedWith === 'counselor');
-          console.log(`[Meeting Request Logged] Created DB record ID ${meetingRecord._id} for ${studentId}`);
-        } catch (dbErr) {
-          console.error('[Meeting Request DB Error] Failed to persist meeting record:', dbErr.message);
+      if (req.authType === 'api-key') {
+        if (getDBStatus()) {
+          try {
+            meetingRecord = await MeetingRequest.create({
+              request_id: requestId,
+              student_id: studentId,
+              student_name: studentName,
+              college_id: collegeId,
+              category,
+              urgency,
+              reason_short: reasonShort,
+              delivery_status: 'pending',
+              caller_auth_type: req.authType || 'anonymous'
+            });
+
+            // Deliver to the ERP only for service-key calls (handled in processInitialDelivery)
+            deliveryResult = await processInitialDelivery(meetingRecord, req.authType);
+            console.log(`[Meeting Request Logged] ID: ${meetingRecord.request_id}, Delivery: ${meetingRecord.delivery_status}`);
+          } catch (dbErr) {
+            console.error('[Meeting Request DB Error] Failed to persist meeting record:', dbErr.message);
+            meetingRecord = null;
+          }
+        } else {
+          console.warn(`[Meeting Request Notice] Database is offline; cannot persist meeting for ${studentId}`);
           meetingRecord = null;
-          counselorNotified = false;
         }
       } else {
-        console.warn(`[Meeting Request Notice] Database is offline; cannot persist meeting for ${studentId}`);
+        console.log(`[Meeting Request Notice] Sandbox caller (authType: ${req.authType}) - skipping institutional outbox persistence`);
         meetingRecord = null;
-        counselorNotified = false;
       }
     }
+
+    const resolvedMentor = deliveryResult.mentorName || student_context?.mentor_name;
+    const deliveryStatus = meetingRecord
+      ? (deliveryResult.delivered ? 'delivered' : 'pending')
+      : 'not_saved';
+    const counsellingInfo = resolveCounsellingContact(collegeId);
 
     let finalReply = '';
 
     if (isDistress) {
+      const deskLine = counsellingInfo?.contactDetails
+        ? `• **${counsellingInfo.deskName}**: ${counsellingInfo.contactDetails}\n\n`
+        : `• **${counsellingInfo.deskName || 'Campus Student Counselling Desk'}**: Direct walk-in or consult your faculty mentor\n\n`;
+
       const baseCrisisText = 
         "I hear how overwhelmed you are feeling right now, and I want you to know you don't have to carry this alone. " +
         "Please reach out to someone who can support you immediately:\n\n" +
-        "• **National Student Mental Health Helpline (Tele-MANAS)**: Call 14416 (Toll-Free, 24x7)\n" +
-        "• **KIRAN Mental Health Helpline**: Call 1800-599-0019 (Toll-Free, 24x7)\n" +
-        "• **Campus Wellness & Counseling Center**: Direct walk-in or emergency contact\n\n";
+        formatHelplinesText() + "\n" +
+        deskLine;
 
-      if (meetingRecord && counselorNotified) {
-        finalReply = baseCrisisText +
-          `I have logged an urgent meeting request (Reference: ${meetingRecord._id}) and notified your dedicated academic counselor to follow up with you on your student portal.`;
-      } else {
-        // Honesty guarantee: If DB record failed or DB is down, NEVER claim anyone was notified!
-        finalReply = baseCrisisText +
-          "Note: We could not automatically notify your counselor at this moment due to a temporary system disruption. " +
-          "Please contact the campus counseling office directly (Email: counselor@institution.edu / Phone: +91-44-2223-1111) or call the crisis helplines above.";
-      }
+      const notificationNote = buildDeliveryReplyWording({
+        deliveryStatus,
+        mentorName: resolvedMentor,
+        counsellingInfo,
+        isCrisis: true
+      });
+
+      finalReply = baseCrisisText + notificationNote;
     } else if (chatResponse && chatResponse.reply) {
       finalReply = chatResponse.reply;
       if (meetingRequested) {
-        if (meetingRecord) {
-          finalReply += `\n\n[Meeting Request Logged]: I've submitted a request (Ref: ${meetingRecord._id}) for you to connect with ${requestedWith}. You will receive confirmation on your student portal.`;
-        } else {
-          finalReply += `\n\n[Notice]: Meeting requests cannot be logged automatically right now because the database is offline. Please reach out directly to your assigned mentor or department office.`;
-        }
+        finalReply += `\n\n` + buildDeliveryReplyWording({
+          deliveryStatus,
+          mentorName: resolvedMentor,
+          counsellingInfo,
+          isCrisis: false
+        });
       }
     } else {
       // Offline rule-based fallback advisor
       const att = student_context.attendance_pct || 75.0;
       const backlogs = student_context.backlogs_count || 0;
       const gpa = student_context.overall_gpa || 6.8;
-      const mentor = student_context.mentor_name || 'your faculty mentor';
+      const mentor = resolvedMentor || 'your faculty mentor';
 
       const msgLower = message.toLowerCase();
       if (msgLower.includes('attendance') || msgLower.includes('cutoff')) {
@@ -138,19 +185,20 @@ exports.handleChat = async (req, res) => {
       }
 
       if (meetingRequested) {
-        if (meetingRecord) {
-          finalReply += `\n\n[Meeting Request Logged]: I've submitted a request (Ref: ${meetingRecord._id}) for you to connect with ${requestedWith}. You will receive confirmation on your student portal.`;
-        } else {
-          finalReply += `\n\n[Notice]: Meeting requests cannot be logged automatically right now because the database is offline. Please reach out directly to ${mentor}.`;
-        }
+        finalReply += `\n\n` + buildDeliveryReplyWording({
+          deliveryStatus,
+          mentorName: resolvedMentor,
+          counsellingInfo,
+          isCrisis: false
+        });
       }
     }
 
     return res.json({
       reply: finalReply,
       meeting_requested: meetingRequested,
-      meeting_id: meetingRecord ? meetingRecord._id : null,
-      counselor_notified: counselorNotified,
+      meeting_id: meetingRecord ? meetingRecord.request_id : null,
+      delivery_status: deliveryStatus,
       is_distress: isDistress,
       disclaimer: DISCLAIMER_TEXT,
       source: chatResponse ? 'ml_microservice' : 'resilient_guardrail'

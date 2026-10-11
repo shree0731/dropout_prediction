@@ -14,6 +14,7 @@ db.txt
 .env.development.local
 .env.test.local
 .env.production.local
+backend/config/counselling.json
 
 # Logs
 npm-debug.log*

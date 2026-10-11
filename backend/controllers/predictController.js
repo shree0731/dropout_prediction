@@ -1,14 +1,34 @@
 const mlServiceClient = require('../services/mlServiceClient');
+const { findDemoStudentById } = require('./demoController');
 
 exports.predictRisk = async (req, res) => {
   const payload = req.validatedBody || req.body;
+  let finalPayload = { ...payload };
+
+  // Subtask 5.3: In standalone session-token mode, if student_id is a recognized demo student, enforce server-side truth
+  if (req.authType === 'session-token' && payload.student_id && payload.student_id !== 'STU_CUSTOM') {
+    const verifiedDemo = await findDemoStudentById(payload.student_id);
+    if (verifiedDemo) {
+      finalPayload = {
+        ...finalPayload,
+        attendance_pct: verifiedDemo.attendance_pct,
+        overall_gpa: verifiedDemo.overall_gpa,
+        backlogs_count: verifiedDemo.backlogs_count,
+        cutoff_mark_200: verifiedDemo.cutoff_mark_200,
+        mentor_meetings_attended: verifiedDemo.mentor_meetings_attended,
+        family_income_annual: verifiedDemo.family_income_annual,
+        first_gen_learner: verifiedDemo.first_gen_learner,
+        distance_from_home_km: verifiedDemo.distance_from_home_km
+      };
+    }
+  }
 
   try {
-    const predictionResult = await mlServiceClient.predictStudent(payload);
+    const predictionResult = await mlServiceClient.predictStudent(finalPayload);
     return res.json(predictionResult);
   } catch (err) {
     console.warn('[PredictController Notice] ML microservice unreachable, executing fallback scoring:', err.message);
-    const { attendance_pct = 75, overall_gpa = 6.8, backlogs_count = 0, student_id = 'STU_CUSTOM' } = payload;
+    const { attendance_pct = 75, overall_gpa = 6.8, backlogs_count = 0, student_id = 'STU_CUSTOM' } = finalPayload;
 
     let prediction = 'Low';
     let probas = { Low: 0.85, Medium: 0.10, High: 0.05 };

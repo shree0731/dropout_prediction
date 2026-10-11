@@ -1,0 +1,30 @@
+{
+  "_notice": "Official national mental health emergency helplines. Status: unverified – owner to confirm. Official source URLs included below.",
+  "status": "unverified – owner to confirm",
+  "verified": false,
+  "last_verified": "2026-10-11",
+  "helplines": [
+    {
+      "id": "tele_manas",
+      "name": "National Student Mental Health Helpline (Tele-MANAS)",
+      "number": "14416",
+      "hours": "24x7",
+      "cost": "Toll-Free",
+      "source_url": "https://telemanas.mohfw.gov.in/",
+      "verified": false,
+      "status": "unverified – owner to confirm",
+      "last_verified": "2026-10-11"
+    },
+    {
+      "id": "kiran",
+      "name": "KIRAN Mental Health Helpline",
+      "number": "1800-599-0019",
+      "hours": "24x7",
+      "cost": "Toll-Free",
+      "source_url": "https://depwd.gov.in/",
+      "verified": false,
+      "status": "unverified – owner to confirm",
+      "last_verified": "2026-10-11"
+    }
+  ]
+}
