@@ -215,7 +215,7 @@ function normalizeAST(ast, isWorking = false) {
         }
       }
 
-      // Normalise JSX text: drop whitespace-only text, normalize internal whitespace
+      // Normalise JSX children: drop whitespace-only text, normalize internal whitespace, and drop JSX comments ({/* ... */})
       if (node.type === 'JSXElement' || node.type === 'JSXFragment') {
         if (Array.isArray(node.children)) {
           const cleanChildren = [];
@@ -226,6 +226,9 @@ function normalizeAST(ast, isWorking = false) {
                 continue; // drop whitespace-only
               }
               child.value = child.value.replace(/\s+/g, ' ').trim();
+            }
+            if (child.type === 'JSXExpressionContainer' && (!child.expression || child.expression.type === 'JSXEmptyExpression')) {
+              continue; // drop JSX comment containers
             }
             cleanChildren.push(child);
           }
