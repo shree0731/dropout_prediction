@@ -5,10 +5,10 @@ import { useEffect } from 'react';
  * Unified cursor-follow and scroll parallax for the hero photo ring:
  * - Computes normalized pointer offset [-1, 1] relative to hero center.
  * - Targets (normX * 60 * depth)px and (normY * 40 * depth)px.
- * - Smooths movement with requestAnimationFrame lerp (factor 0.07).
+ * - Smooths movement with requestAnimationFrame lerp (factor 0.08).
  * - Dynamically clamps targetX so photo inner edge stays >= 16px away from text column.
- * - Computes scroll parallax offset --sy = clamp(-48px, -scrollY * depth * 0.18, 48px).
- * - Writes CSS variables --px, --py, --sy and updates translate.
+ * - Computes scroll parallax offset --sy = clamp(-60px, -scrollY * depth * 0.22, 60px).
+ * - Writes CSS variables --px, --py, --sy and updates translate/transform.
  * - Respects prefers-reduced-motion: reduce and (hover: none) touch environments.
  * - Pauses RAF animation when hero scrolls out of view via IntersectionObserver.
  */
@@ -73,7 +73,7 @@ export default function HeroParallax() {
       for (const item of photoStates) {
         let targetX = isTouchDevice ? 0 : targetNormX * 60 * item.depth;
         let targetY = isTouchDevice ? 0 : targetNormY * 40 * item.depth;
-        const targetScrollY = Math.max(-48, Math.min(48, -scrollY * item.depth * 0.18));
+        const targetScrollY = Math.max(-60, Math.min(60, -scrollY * item.depth * 0.22));
 
         // Dynamic clamp: ensure photo inner edge never comes within 16px of text column
         if (textRect) {
@@ -94,20 +94,22 @@ export default function HeroParallax() {
           }
         }
 
-        // Smooth lerp (factor 0.07)
-        item.currentX += (targetX - item.currentX) * 0.07;
-        item.currentY += (targetY - item.currentY) * 0.07;
-        item.currentScrollY += (targetScrollY - item.currentScrollY) * 0.07;
+        // Smooth lerp (factor 0.08)
+        item.currentX += (targetX - item.currentX) * 0.08;
+        item.currentY += (targetY - item.currentY) * 0.08;
+        item.currentScrollY += (targetScrollY - item.currentScrollY) * 0.08;
 
         // Apply CSS custom properties and translation
         const px = item.currentX.toFixed(2);
         const py = item.currentY.toFixed(2);
         const sy = item.currentScrollY.toFixed(2);
+        const totalY = (item.currentY + item.currentScrollY).toFixed(2);
 
         item.el.style.setProperty('--px', px);
         item.el.style.setProperty('--py', py);
         item.el.style.setProperty('--sy', sy);
-        item.el.style.translate = `${px}px ${(item.currentY + item.currentScrollY).toFixed(2)}px`;
+        item.el.style.translate = `${px}px ${totalY}px`;
+        item.el.style.transform = `translate3d(${px}px, ${totalY}px, 0)`;
       }
 
       rafId = requestAnimationFrame(animate);
@@ -126,10 +128,17 @@ export default function HeroParallax() {
     );
     observer.observe(hero);
 
+    const handleScroll = () => {
+      if (isVisible && !rafId) {
+        rafId = requestAnimationFrame(animate);
+      }
+    };
+
     if (!isTouchDevice) {
       window.addEventListener('mousemove', handleMouseMove, { passive: true });
       hero.addEventListener('mouseleave', handleMouseLeave);
     }
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     rafId = requestAnimationFrame(animate);
 
@@ -138,6 +147,7 @@ export default function HeroParallax() {
         window.removeEventListener('mousemove', handleMouseMove);
         hero.removeEventListener('mouseleave', handleMouseLeave);
       }
+      window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
       if (rafId) cancelAnimationFrame(rafId);
       for (const item of photoStates) {
@@ -145,6 +155,7 @@ export default function HeroParallax() {
         item.el.style.setProperty('--py', '0');
         item.el.style.setProperty('--sy', '0');
         item.el.style.translate = '0px 0px';
+        item.el.style.transform = '';
       }
     };
   }, []);

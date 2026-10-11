@@ -196,7 +196,7 @@ export default function LandingPage() {
 
         {/* 3 Step Tiles */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '2.5rem' }}>
-          <div className="card-sand">
+          <div className="card-sand" data-speed="0.05">
             <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--ink)', opacity: 0.6, marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
               STEP 01
             </div>
@@ -208,7 +208,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="card-green">
+          <div className="card-green" data-speed="0.03">
             <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--ink-on-dark)', opacity: 0.75, marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
               STEP 02
             </div>
@@ -220,7 +220,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="card-sand">
+          <div className="card-sand" data-speed="0.06">
             <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--ink)', opacity: 0.6, marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
               STEP 03
             </div>
@@ -235,7 +235,7 @@ export default function LandingPage() {
 
         {/* 3 Route Link Cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
-          <Link to="/metrics" className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
+          <Link to="/metrics" className="card" data-speed="0.04" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
             <div>
               <div style={{ width: '40px', height: '40px', borderRadius: '10px', border: '1px solid var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: 'var(--ink)' }}>
                 <BarChart3 size={20} />
@@ -253,7 +253,7 @@ export default function LandingPage() {
             </div>
           </Link>
 
-          <Link to="/predict" className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
+          <Link to="/predict" className="card" data-speed="0.06" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
             <div>
               <div style={{ width: '40px', height: '40px', borderRadius: '10px', border: '1px solid var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: 'var(--ink)' }}>
                 <BrainCircuit size={20} />
@@ -271,7 +271,7 @@ export default function LandingPage() {
             </div>
           </Link>
 
-          <Link to="/chat" className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
+          <Link to="/chat" className="card" data-speed="0.03" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
             <div>
               <div style={{ width: '40px', height: '40px', borderRadius: '10px', border: '1px solid var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: 'var(--ink)' }}>
                 <MessageSquare size={20} />
@@ -307,19 +307,19 @@ export default function LandingPage() {
         padding: '2.5rem 2rem',
         boxShadow: '0 8px 24px rgba(23, 83, 31, 0.08)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>
+        <div data-speed="0.15" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>
           <TrendingUp size={20} />
           <span style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Empirical Grounding &amp; State Education Research
           </span>
         </div>
 
-        <h2 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', fontWeight: '700', color: 'var(--ink)', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
+        <h2 data-speed="0.08" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', fontWeight: '700', color: 'var(--ink)', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
           Why This Project: The Reality of Academic Distress in Tamil Nadu
         </h2>
 
         {/* 2-3 sentence "Why This Project" narrative */}
-        <div style={{ 
+        <div data-speed="0.04" style={{ 
           background: 'var(--bg-accent)', 
           borderLeft: '4px solid var(--ink)', 
           padding: '1.25rem 1.5rem', 
@@ -341,7 +341,7 @@ export default function LandingPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem', marginBottom: '2rem' }}>
           
           {/* Stat Card 1: Sand tile */}
-          <GlassCard style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
+          <GlassCard data-speed="0.06" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
             <div>
               <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--risk-high)', marginBottom: '0.5rem' }}>
                 7.7% → 8.5%
@@ -362,7 +362,7 @@ export default function LandingPage() {
           </GlassCard>
 
           {/* Stat Card 2: Solid green card */}
-          <GlassCard style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--surface)', border: '1px solid var(--surface)' }}>
+          <GlassCard data-speed="0.03" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--surface)', border: '1px solid var(--surface)' }}>
             <div>
               <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--ink-on-dark)', marginBottom: '0.5rem' }}>
                 10.7% / 23.3%
@@ -383,7 +383,7 @@ export default function LandingPage() {
           </GlassCard>
 
           {/* Stat Card 3: Solid green card */}
-          <GlassCard style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--surface)', border: '1px solid var(--surface)' }}>
+          <GlassCard data-speed="0.05" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--surface)', border: '1px solid var(--surface)' }}>
             <div>
               <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--ink-on-dark)', marginBottom: '0.5rem' }}>
                 13% Churn
@@ -404,7 +404,7 @@ export default function LandingPage() {
           </GlassCard>
 
           {/* Stat Card 4: Sand tile */}
-          <GlassCard style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
+          <GlassCard data-speed="0.04" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
             <div>
               <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--risk-high)', marginBottom: '0.5rem' }}>
                 24 Colleges / 0%
@@ -427,7 +427,7 @@ export default function LandingPage() {
         </div>
 
         {/* Clarification Callout on Seat Vacancy vs. Student Dropout */}
-        <div style={{
+        <div data-speed="0.03" style={{
           display: 'flex',
           alignItems: 'flex-start',
           gap: '0.75rem',
@@ -451,7 +451,7 @@ export default function LandingPage() {
 
       {/* 3. Feature Pillar Cards */}
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
-        <GlassCard>
+        <GlassCard data-speed="0.05">
           <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'transparent', border: '1px solid var(--ink)', color: 'var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
             <BrainCircuit size={24} />
           </div>
@@ -466,7 +466,7 @@ export default function LandingPage() {
           </div>
         </GlassCard>
 
-        <GlassCard>
+        <GlassCard data-speed="0.03">
           <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'transparent', border: '1px solid var(--ink)', color: 'var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
             <BarChart3 size={24} />
           </div>
@@ -481,7 +481,7 @@ export default function LandingPage() {
           </div>
         </GlassCard>
 
-        <GlassCard>
+        <GlassCard data-speed="0.06">
           <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'transparent', border: '1px solid var(--ink)', color: 'var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
             <MessageSquare size={24} />
           </div>
@@ -498,7 +498,7 @@ export default function LandingPage() {
       </section>
 
       {/* 4. Photographic Campus Life & Retention Goal Banner */}
-      <GlassCard style={{ padding: '2rem', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
+      <GlassCard data-speed="0.04" style={{ padding: '2rem', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -547,18 +547,18 @@ export default function LandingPage() {
         padding: '2.5rem 2rem',
         boxShadow: '0 8px 24px rgba(23, 83, 31, 0.08)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>
+        <div data-speed="0.15" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>
           <Layers size={20} />
           <span style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Dual-Layer Enterprise Architecture
           </span>
         </div>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--ink)', marginBottom: '1rem' }}>
+        <h2 data-speed="0.08" style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--ink)', marginBottom: '1rem' }}>
           How the Standalone AI Service Integrates with Institutional Systems
         </h2>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', marginTop: '1.5rem' }}>
-          <GlassCard style={{ padding: '1.25rem', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
+          <GlassCard data-speed="0.05" style={{ padding: '1.25rem', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
             <div style={{ color: 'var(--ink)', fontWeight: '700', fontSize: '0.9rem', marginBottom: '0.4rem' }}>
               1. Public Express Gateway (Port 5001)
             </div>
@@ -567,7 +567,7 @@ export default function LandingPage() {
             </p>
           </GlassCard>
 
-          <GlassCard style={{ padding: '1.25rem', background: 'var(--surface)', border: '1px solid var(--surface)', color: 'var(--ink-on-dark)' }}>
+          <GlassCard data-speed="0.03" style={{ padding: '1.25rem', background: 'var(--surface)', border: '1px solid var(--surface)', color: 'var(--ink-on-dark)' }}>
             <div style={{ color: 'var(--ink-on-dark)', fontWeight: '700', fontSize: '0.9rem', marginBottom: '0.4rem' }}>
               2. Internal FastAPI Microservice (Port 8001)
             </div>
@@ -576,7 +576,7 @@ export default function LandingPage() {
             </p>
           </GlassCard>
 
-          <GlassCard style={{ padding: '1.25rem', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
+          <GlassCard data-speed="0.06" style={{ padding: '1.25rem', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
             <div style={{ color: 'var(--ink)', fontWeight: '700', fontSize: '0.9rem', marginBottom: '0.4rem' }}>
               3. College ERP Live Integration
             </div>
