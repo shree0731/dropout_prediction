@@ -62,7 +62,7 @@ All text colors achieve at least WCAG 2.1 AA (4.5:1) contrast on their respectiv
 - **`.input` / `.form-input`**: Transparent background, 1px solid `--ink` border, 8px radius, bold label pairings.
 - **`.chip` / `.badge`**: Outlined pill badges for metadata tags and status indicators.
 - **`.ticker-band` & `.ticker-track`**: Continuous horizontal marquee band in solid forest green with warm star (`var(--star)`) separators. Automatically pauses on user hover and includes an `aria-hidden` duplicated track for smooth looping.
-- **`.hero-photo-ring`**: Parallax photo ring tracking mouse position via `HeroParallax.jsx` with hardware-accelerated CSS `translate` and lerp easing.
+- **`.hero-photo-gallery`**: Dedicated 3-photo campus gallery strip in the right column showcasing campus moments without overlapping editorial typography.
 
 ---
 
