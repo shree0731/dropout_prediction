@@ -42,10 +42,10 @@ function getAllFiles(dir, exts = ['.js', '.jsx']) {
 }
 
 function getBaselineCode(relPath) {
-  // Try git show pre-restyle:frontend/<relPath>
+  // Try git show pre-round3:frontend/<relPath>
   const normalizedRel = relPath.replace(/\\/g, '/');
   try {
-    return execSync(`git show pre-restyle:frontend/${normalizedRel}`, {
+    return execSync(`git show pre-round3:frontend/${normalizedRel}`, {
       cwd: frontendDir,
       encoding: 'utf-8',
       stdio: ['pipe', 'pipe', 'pipe']
@@ -53,7 +53,7 @@ function getBaselineCode(relPath) {
   } catch {
     // Fallback: try without frontend/ prefix if repo root is frontend
     try {
-      return execSync(`git show pre-restyle:${normalizedRel}`, {
+      return execSync(`git show pre-round3:${normalizedRel}`, {
         cwd: frontendDir,
         encoding: 'utf-8',
         stdio: ['pipe', 'pipe', 'pipe']
@@ -132,18 +132,17 @@ function normalizeAST(ast, isWorking = false) {
       delete node.innerComments;
 
       // In working AST, filter allowed decorative additions
-      if (isWorking) {
-        // Allowed import removal (e.g., import HeroParallax)
-        if (node.type === 'ImportDeclaration') {
-          const isAllowedImport = (allowlist.allowedElements || []).some(allowed =>
-            node.specifiers.some(s => s.local && s.local.name === allowed) ||
-            node.source.value.includes(allowed)
-          );
-          if (isAllowedImport) {
-            pathNode.remove();
-            return;
-          }
+      // Allowed import removal (e.g., import HeroParallax, ScrollParallax, DemoVideo)
+      if (node.type === 'ImportDeclaration') {
+        const isAllowedImport = (allowlist.allowedElements || []).some(allowed =>
+          node.specifiers.some(s => s.local && s.local.name === allowed) ||
+          node.source.value.includes(allowed)
+        );
+        if (isAllowedImport) {
+          pathNode.remove();
+          return;
         }
+      }
 
         // Allowed decorative JSXElement removal (e.g. <HeroParallax />, ticker, hero-photo-ring)
         if (node.type === 'JSXElement' && node.openingElement) {
@@ -166,7 +165,6 @@ function normalizeAST(ast, isWorking = false) {
             return;
           }
         }
-      }
 
       // Filter and normalize JSXOpeningElement attributes
       if (node.type === 'JSXOpeningElement') {

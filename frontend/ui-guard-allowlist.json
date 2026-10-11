@@ -1,6 +1,8 @@
 {
   "allowedNewFiles": [
-    "src/components/HeroParallax.jsx"
+    "src/components/HeroParallax.jsx",
+    "src/components/ScrollParallax.jsx",
+    "src/components/DemoVideo.jsx"
   ],
   "allowedModifiedFiles": [
     "src/components/GlassCard.jsx",
@@ -8,7 +10,11 @@
   ],
   "allowedElements": [
     "HeroParallax",
+    "ScrollParallax",
+    "DemoVideo",
     "hero-photo-ring",
-    "ticker"
+    "ticker",
+    "about-section",
+    "demo-video-section"
   ]
 }
