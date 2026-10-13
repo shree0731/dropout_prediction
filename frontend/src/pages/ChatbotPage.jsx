@@ -6,18 +6,18 @@ import { MessageSquare, Send, Sparkles, User, Calendar, AlertTriangle, CheckCirc
 export default function ChatbotPage() {
   const location = useLocation();
 
-  // Active student context (passed from PredictPage or defaults to high-risk demo student)
+  // Active student context (passed from PredictPage or defaults to high-risk demo student from dataset)
   const [studentContext, setStudentContext] = useState(
     location.state?.student || {
-      student_id: 'STU_EEC_CSE_Y2_0001',
-      student_name: 'Akshaya Palanisamy',
-      department: 'CSE',
-      year_of_study: 2,
-      attendance_pct: 64.5,
-      backlogs_count: 3,
-      overall_gpa: 5.4,
+      student_id: 'STU_MIST_IT_Y3_5559',
+      student_name: 'Bhoomika Gowda',
+      department: 'IT',
+      year_of_study: 3,
+      attendance_pct: 70.8,
+      backlogs_count: 27,
+      overall_gpa: 1.39,
       prediction: 'High',
-      mentor_name: 'Dr. Kavitha Swaminathan'
+      mentor_name: 'Dr. Sudha Rajagopalan'
     }
   );
 
@@ -32,6 +32,42 @@ export default function ChatbotPage() {
   const [loading, setLoading] = useState(false);
   const [loggedMeeting, setLoggedMeeting] = useState(null);
   const messagesEndRef = useRef(null);
+
+  // Fetch demo student dynamically from dataset if not passed in navigation state
+  useEffect(() => {
+    if (!location.state?.student) {
+      api.getDemoStudents()
+        .then(res => {
+          const list = res.data || [];
+          const found = list.find(s => s.student_id === 'STU_MIST_IT_Y3_5559') || list[0];
+          if (found) {
+            const mapped = {
+              student_id: found.student_id,
+              student_name: found.student_name,
+              department: found.department,
+              year_of_study: found.year_of_study,
+              attendance_pct: found.attendance_pct,
+              backlogs_count: found.backlogs_count,
+              overall_gpa: found.overall_gpa,
+              prediction: found.dropout_risk_label,
+              college_id: found.college_id,
+              college_name: found.college_name,
+              mentor_name: found.mentor_name || 'Dr. Sudha Rajagopalan'
+            };
+            setStudentContext(mapped);
+            setMessages([
+              {
+                sender: 'bot',
+                text: `Hello ${mapped.student_name}! I'm Astra, your AI Academic Advisor. I noticed your attendance is currently at ${mapped.attendance_pct}% and you have ${mapped.backlogs_count} backlogs. How are you holding up this semester? Feel free to ask about your attendance cutoff, marks, or scheduling time with ${mapped.mentor_name || 'your mentor'}.`
+              }
+            ]);
+          }
+        })
+        .catch(err => {
+          console.warn('[ChatbotPage] Failed to fetch demo student:', err.message);
+        });
+    }
+  }, [location.state?.student]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });

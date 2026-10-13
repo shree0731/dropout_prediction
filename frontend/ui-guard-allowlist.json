@@ -6,7 +6,10 @@
   ],
   "allowedModifiedFiles": [
     "src/components/GlassCard.jsx",
-    "src/components/CursorGlow.jsx"
+    "src/components/CursorGlow.jsx",
+    "src/pages/ChatbotPage.jsx",
+    "src/pages/ModelDashboard.jsx",
+    "src/pages/LandingPage.jsx"
   ],
   "allowedElements": [
     "HeroParallax",

@@ -23,6 +23,27 @@ exports.predictRisk = async (req, res) => {
     }
   }
 
+  // Ensure all 16 required model features are defined
+  if (finalPayload.failed_subjects_count === undefined) {
+    finalPayload.failed_subjects_count = finalPayload.failed_subjects !== undefined
+      ? Number(finalPayload.failed_subjects)
+      : Number(finalPayload.backlogs_count || 0);
+  }
+  if (finalPayload.core_theory_average === undefined) {
+    finalPayload.core_theory_average = finalPayload.avg_total_marks !== undefined
+      ? Number(finalPayload.avg_total_marks)
+      : 67.621533;
+  }
+  if (finalPayload.internal_exam_avg === undefined) {
+    finalPayload.internal_exam_avg = 34.129502;
+  }
+  if (finalPayload.assignment_avg === undefined) {
+    finalPayload.assignment_avg = 6.826053;
+  }
+  if (finalPayload.grade_trend === undefined) {
+    finalPayload.grade_trend = 0.0;
+  }
+
   try {
     const predictionResult = await mlServiceClient.predictStudent(finalPayload);
     return res.json(predictionResult);

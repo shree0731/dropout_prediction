@@ -15,12 +15,39 @@ try {
 
 let isConnected = false;
 
+function extractDbName(uri) {
+  if (!uri || typeof uri !== 'string') return null;
+  try {
+    const cleanUri = uri.replace(/^mongodb(\+srv)?:\/\//, 'http://');
+    const url = new URL(cleanUri);
+    const pathname = url.pathname.replace(/^\//, '');
+    if (pathname) return pathname.split('?')[0];
+  } catch (e) {
+    const match = uri.match(/\/([^/?]+)(\?|$)/);
+    if (match) return match[1];
+  }
+  return null;
+}
+
 const connectDB = async () => {
-  const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/student_dropout_erp';
+  const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/ai_dropout_prediction';
+  const role = process.env.APP_DB_ROLE || 'ai';
+  const dbName = extractDbName(uri) || 'ai_dropout_prediction';
+
+  // Startup check: log the database name in use (never log credentials or full URI)
+  console.log(`[Database] Role: ${role}, Active Database: ${dbName}`);
+
+  // Refusal check: AI service must not use the ERP database or an ERP role
+  if (role !== 'ai') {
+    throw new Error(`[Database Error] Refusing to start: Invalid APP_DB_ROLE '${role}' for AI backend. Must be 'ai'.`);
+  }
+  if (dbName === 'student_dropout_erp') {
+    throw new Error(`[Database Error] Refusing to start: AI backend cannot share database 'student_dropout_erp' with ERP service. Configure MONGO_URI with database 'ai_dropout_prediction'.`);
+  }
 
   try {
     const conn = await mongoose.connect(uri, {
-      dbName: 'student_dropout_erp',
+      dbName: dbName,
       serverSelectionTimeoutMS: 10000,
     });
     isConnected = true;
@@ -28,12 +55,12 @@ const connectDB = async () => {
     return true;
   } catch (error) {
     isConnected = false;
-    console.warn(`[MongoDB Warning] Could not connect to MongoDB at ${uri}.`);
+    console.warn(`[MongoDB Warning] Could not connect to MongoDB database '${dbName}'.`);
     console.warn(`[MongoDB Warning] Details: ${error.message}`);
     return false;
   }
 };
 
-const getDBStatus = () => isConnected;
+const getDBStatus = () => isConnected || mongoose.connection.readyState === 1;
 
-module.exports = { connectDB, getDBStatus };
+module.exports = { connectDB, getDBStatus, extractDbName };

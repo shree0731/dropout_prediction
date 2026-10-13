@@ -1,5 +1,6 @@
 {
   "model_name": "XGBoost (Tuned)",
+  "model_version": "v1.0",
   "accuracy": 0.9559782608695652,
   "macro_f1": 0.9265277390211367,
   "weighted_f1": 0.9588943772292412,

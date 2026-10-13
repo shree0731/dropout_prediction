@@ -40,6 +40,8 @@ const predictSchema = z.object({
   min_total_marks: z.number().min(0).max(100).optional(),
   std_total_marks: z.number().min(0).max(100).optional(),
   failed_subjects: z.number().int().min(0).max(50).optional(),
+  failed_subjects_count: z.number().int().min(0).max(50).optional(),
+  core_theory_average: z.number().min(0).max(100).optional(),
   internal_exam_avg: z.number().min(0).max(100).optional(),
   avg_external: z.number().min(0).max(100).optional(),
   assignment_avg: z.number().min(0).max(100).optional(),

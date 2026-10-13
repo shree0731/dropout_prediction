@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { api } from '../services/api';
 import GlassCard from '../components/GlassCard';
 import HeroParallax from '../components/HeroParallax';
 import ScrollParallax from '../components/ScrollParallax';
@@ -15,12 +16,18 @@ import {
   BookOpen, 
   Award, 
   Layers, 
-  Info,
-  CheckCircle2,
-  Users
+  Info, 
+  CheckCircle2, 
+  Users 
 } from 'lucide-react';
 
 export default function LandingPage() {
+  const [metrics, setMetrics] = useState(null);
+
+  useEffect(() => {
+    api.getMetrics().then(setMetrics).catch(() => {});
+  }, []);
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
       <HeroParallax />
@@ -139,7 +146,7 @@ export default function LandingPage() {
           <span className="ticker-star">★</span>
           <span>Only 87% transition to higher secondary — 13% churn (UDISE+ Table 6.14)</span>
           <span className="ticker-star">★</span>
-          <span>24 engineering colleges with 0% pass across 4 years (Anna University audit)</span>
+          <span>24 engineering colleges with 0% pass across 4 years (DT Next analysis of Anna University exam results)</span>
           <span className="ticker-star">★</span>
           <span aria-hidden="true">Tamil Nadu secondary school dropout rose 7.7% → 8.5% (UDISE+ 2024-25)</span>
           <span className="ticker-star" aria-hidden="true">★</span>
@@ -147,7 +154,7 @@ export default function LandingPage() {
           <span className="ticker-star" aria-hidden="true">★</span>
           <span aria-hidden="true">Only 87% transition to higher secondary — 13% churn (UDISE+ Table 6.14)</span>
           <span className="ticker-star" aria-hidden="true">★</span>
-          <span aria-hidden="true">24 engineering colleges with 0% pass across 4 years (Anna University audit)</span>
+          <span aria-hidden="true">24 engineering colleges with 0% pass across 4 years (DT Next analysis of Anna University exam results)</span>
         </div>
       </div>
 
@@ -328,11 +335,11 @@ export default function LandingPage() {
           color: 'var(--ink)',
           fontSize: '0.95rem'
         }}>
-          In 2026, an Anna University academic audit revealed that across 24 affiliated engineering colleges in Tamil Nadu, 
-          not a single student out of 2,425 enrolled passed any semester examinations across four full years. 
+          In 2026, a DT Next analysis of Anna University exam results revealed that across 24 affiliated engineering colleges in Tamil Nadu, 
+          not a single student out of 2,425 who sat for semester examinations passed any semester examinations across four full years (the source reports the university had not yet received the data from the Directorate of Technical Education). 
           Academic failure in higher education is rarely an abrupt, unpredictable event—it is a slow-motion accumulation 
           of uncleared course arrears, attendance decay, and unaddressed learning difficulties that compounds semester after semester. 
-          This system was specifically designed to catch this gradual disengagement at the subject level before it reaches this point, 
+          This system was specifically designed to catch this gradual disengagement from attendance, marks and backlog signals before it reaches this point, 
           converting passive administrative logs into timely, compassionate mentor interventions.
         </div>
 
@@ -346,7 +353,7 @@ export default function LandingPage() {
                 7.7% → 8.5%
               </div>
               <p style={{ color: 'var(--ink)', fontSize: '0.9rem', lineHeight: '1.5', fontWeight: '500', marginBottom: '1.25rem' }}>
-                "Tamil Nadu's secondary school dropout rate rose from 7.7% to 8.5% in a single year (2023-24 → 2024-25)."
+                Tamil Nadu's secondary school dropout rate rose from 7.7% to 8.5% in a single year (2023-24 → 2024-25).
               </p>
             </div>
             <div style={{ 
@@ -367,7 +374,7 @@ export default function LandingPage() {
                 10.7% / 23.3%
               </div>
               <p style={{ color: 'var(--ink-on-dark)', fontSize: '0.9rem', lineHeight: '1.5', fontWeight: '500', marginBottom: '1.25rem' }}>
-                "SC students in Tamil Nadu face a 10.7% dropout rate; ST students face 23.3% — far above the state average of 8.5%."
+                SC students in Tamil Nadu face a 10.7% dropout rate; ST students face 23.3% — far above the state average of 8.5%.
               </p>
             </div>
             <div style={{ 
@@ -388,7 +395,7 @@ export default function LandingPage() {
                 13% Churn
               </div>
               <p style={{ color: 'var(--ink-on-dark)', fontSize: '0.9rem', lineHeight: '1.5', fontWeight: '500', marginBottom: '1.25rem' }}>
-                "Only 87% of Tamil Nadu students transition from secondary to higher secondary education — 13% never make that jump at all."
+                Only 87% of Tamil Nadu students transition from secondary to higher secondary education — 13% never make that jump at all.
               </p>
             </div>
             <div style={{ 
@@ -409,7 +416,7 @@ export default function LandingPage() {
                 24 Colleges / 0%
               </div>
               <p style={{ color: 'var(--ink)', fontSize: '0.9rem', lineHeight: '1.5', fontWeight: '500', marginBottom: '1.25rem' }}>
-                "A 2026 Anna University exam audit found 24 engineering colleges in Tamil Nadu where not a single student, out of 2,425 enrolled, passed any semester exam across 4 full years."
+                A 2026 DT Next analysis of Anna University exam results found 24 engineering colleges in Tamil Nadu where not a single student, out of 2,425 who sat for semester examinations, passed any semester exam across 4 full years (the source reports the university had not yet received the data from the Directorate of Technical Education).
               </p>
             </div>
             <div style={{ 
@@ -419,7 +426,7 @@ export default function LandingPage() {
               color: 'var(--ink)',
               fontWeight: '600'
             }}>
-              Source: <span style={{ color: 'var(--risk-high)', fontWeight: '700' }}>Anna University exam audit, reported by DT Next (2026)</span>
+              Source: <span style={{ color: 'var(--risk-high)', fontWeight: '700' }}>DT Next analysis of Anna University exam results (2026)</span>
             </div>
           </GlassCard>
 
@@ -442,7 +449,7 @@ export default function LandingPage() {
           <div>
             <strong style={{ color: 'var(--ink)' }}>Important Methodological Distinction:</strong> Tamil Nadu's widely reported engineering seat 
             <em> vacancy</em> (where approved seats go unfilled during single-window TNEA counseling at admission) is an admissions phenomenon. 
-            In contrast, <strong>student dropout</strong> refers to enrolled scholars who experience academic, emotional, or financial friction 
+            In contrast, <strong>student dropout</strong> refers to enrolled students who experience academic, emotional, or financial friction 
             and discontinue their engineering degrees. This platform addresses post-enrollment retention and semester persistence.
           </div>
         </div>
@@ -458,10 +465,14 @@ export default function LandingPage() {
             Trained XGBoost Classifier
           </h3>
           <p style={{ color: 'var(--ink)', fontSize: '0.875rem', lineHeight: '1.6', marginBottom: '1rem', opacity: 0.9 }}>
-            Tuned with 5-fold cross-validation and cost-sensitive class-weighting to handle extreme minority class proportions (81.65% Low / 9.92% Medium / 8.42% High).
+            Tuned with 5-fold cross-validation and cost-sensitive class-weighting to handle minority classes (81.65% Low / 9.92% Medium / 8.42% High).
           </p>
           <div style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            <span>96.58% Overall Accuracy • 0.9370 Macro F1 • 99.35% High Recall</span>
+            <span>
+              {metrics 
+                ? `${(metrics.accuracy * 100).toFixed(2)}% Overall Accuracy • ${metrics.macro_f1.toFixed(4)} Macro F1 • ${(metrics.classes?.High?.recall * 100).toFixed(2)}% High Recall` 
+                : 'Trained XGBoost offline benchmark'}
+            </span>
           </div>
         </GlassCard>
 
@@ -473,7 +484,7 @@ export default function LandingPage() {
             SHAP Explainability Engine
           </h3>
           <p style={{ color: 'var(--ink)', fontSize: '0.875rem', lineHeight: '1.6', marginBottom: '1rem', opacity: 0.9 }}>
-            Eliminates black-box scores. TreeExplainer translates mathematical feature attributions into natural language drivers such as "3 active uncleared backlogs".
+            Explains each score with SHAP. TreeExplainer translates mathematical feature attributions into natural language drivers such as "3 active uncleared backlogs".
           </p>
           <div style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
             <span>Per-student SHAP attributions &amp; tailored action plan</span>
@@ -488,7 +499,7 @@ export default function LandingPage() {
             Contextual Intervention Chatbot
           </h3>
           <p style={{ color: 'var(--ink)', fontSize: '0.875rem', lineHeight: '1.6', marginBottom: '1rem', opacity: 0.9 }}>
-            Grounded directly in verified student records, offering proactive check-ins, answering 75% attendance cutoff rules, and logging faculty mentor meetings.
+            Grounded in the student's record in the (simulated) dataset, offering proactive check-ins, answering 75% attendance cutoff rules, and logging faculty mentor meetings.
           </p>
           <div style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
             <span>Auto-logs MeetingRequest records into MongoDB Atlas</span>
@@ -523,8 +534,7 @@ export default function LandingPage() {
             </h3>
             <p style={{ color: 'var(--ink)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.25rem' }}>
               By intercepting attendance declines and arrear accumulation early in Year 1 and Year 2, academic counselors 
-              can schedule timely tutoring, peer groups, and condonation recovery sessions—ensuring every admitted scholar 
-              has a clear, supported path to graduation and placement eligibility.
+              can schedule timely tutoring, peer groups, and condonation recovery sessions.
             </p>
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
               <span className="badge badge-low" style={{ fontSize: '0.75rem' }}>
@@ -562,7 +572,7 @@ export default function LandingPage() {
               1. Public Express Gateway (Port 5001)
             </div>
             <p style={{ fontSize: '0.8rem', color: 'var(--ink)', lineHeight: '1.5' }}>
-              Serves public CORS-enabled endpoints (`/api/predict`, `/api/metrics`, `/api/chat`), validates requests via `X-API-Key`, and stores demo students &amp; meeting logs in MongoDB Atlas.
+              Serves API endpoints protected by an API key and an origin allowlist (`/api/predict`, `/api/metrics`, `/api/chat`), validates requests via `X-API-Key` or session token, and stores demo students &amp; meeting logs in MongoDB Atlas.
             </p>
           </GlassCard>
 
@@ -580,7 +590,7 @@ export default function LandingPage() {
               3. College ERP Live Integration
             </div>
             <p style={{ fontSize: '0.8rem', color: 'var(--ink)', lineHeight: '1.5' }}>
-              The existing institutional ERP calls this standalone API to render real-time risk badges in mentor dashboards and embed the intervention dialogue agent.
+              The prototype ERP shows the live assessment on the student detail page and its chat widget uses this service to render real-time risk badges in mentor dashboards and embed the intervention dialogue agent.
             </p>
           </GlassCard>
         </div>

@@ -74,4 +74,4 @@ const MeetingRequestSchema = new mongoose.Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model('MeetingRequest', MeetingRequestSchema);
+module.exports = mongoose.model('MeetingRequest', MeetingRequestSchema, 'ai_meeting_outbox');

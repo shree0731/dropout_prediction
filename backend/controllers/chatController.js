@@ -8,6 +8,9 @@ const { buildDeliveryReplyWording } = require('../utils/replyWording');
 const { processInitialDelivery, generateReasonShort } = require('../services/erpDeliveryService');
 const { findDemoStudentById } = require('./demoController');
 
+const inMemoryOutbox = new Map();
+exports.inMemoryOutbox = inMemoryOutbox;
+
 const DISCLAIMER_TEXT = 'AI academic assistant. Not a substitute for professional counseling or official academic advice. Immediate crisis support: Tele-MANAS (14416) | KIRAN (1800-599-0019).';
 
 const CRISIS_PATTERNS = [
@@ -117,9 +120,28 @@ exports.handleChat = async (req, res) => {
             console.error('[Meeting Request DB Error] Failed to persist meeting record:', dbErr.message);
             meetingRecord = null;
           }
-        } else {
-          console.warn(`[Meeting Request Notice] Database is offline; cannot persist meeting for ${studentId}`);
+        } else if (isDistress) {
+          // Safety requirement: For distress / crisis when DB is down, never claim persistence
+          console.warn(`[Meeting Request Notice] Database is offline; cannot persist distress meeting for ${studentId}`);
           meetingRecord = null;
+        } else {
+          // Resilient in-memory fallback outbox for normal meetings in offline / local mode
+          const inMemoryRecord = {
+            request_id: requestId,
+            student_id: studentId,
+            student_name: studentName,
+            college_id: collegeId,
+            category,
+            urgency,
+            reason_short: reasonShort,
+            delivery_status: 'pending',
+            caller_auth_type: req.authType || 'anonymous',
+            save: async function() { inMemoryOutbox.set(this.request_id, this); return this; }
+          };
+          inMemoryOutbox.set(requestId, inMemoryRecord);
+          meetingRecord = inMemoryRecord;
+          deliveryResult = await processInitialDelivery(meetingRecord, req.authType);
+          console.log(`[Meeting Request Logged (In-Memory)] ID: ${meetingRecord.request_id}, Delivery: ${meetingRecord.delivery_status}`);
         }
       } else {
         console.log(`[Meeting Request Notice] Sandbox caller (authType: ${req.authType}) - skipping institutional outbox persistence`);
@@ -218,7 +240,7 @@ exports.getMeetings = async (req, res) => {
       const meetings = await MeetingRequest.find().sort({ createdAt: -1 }).limit(100);
       return res.json(meetings);
     }
-    return res.json([]);
+    return res.json(Array.from(inMemoryOutbox.values()));
   } catch (err) {
     console.error('[GetMeetings Error]', err);
     return res.status(500).json({ error: 'Failed to fetch meetings' });

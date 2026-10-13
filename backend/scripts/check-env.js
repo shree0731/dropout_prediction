@@ -36,6 +36,17 @@ function checkEnv(env = process.env, options = { exitOnError: true, silent: fals
     errors.push('MONGO_URI is missing or empty.');
   } else if (!env.MONGO_URI.startsWith('mongodb://') && !env.MONGO_URI.startsWith('mongodb+srv://')) {
     errors.push('MONGO_URI must be a valid connection string starting with mongodb:// or mongodb+srv://');
+  } else {
+    const dbMatch = env.MONGO_URI.match(/\/([^/?]+)(\?|$)/);
+    const dbName = dbMatch ? dbMatch[1] : '';
+    if (dbName === 'student_dropout_erp') {
+      errors.push("MONGO_URI cannot point to 'student_dropout_erp'. AI backend must use separate database 'ai_dropout_prediction'.");
+    }
+  }
+
+  // 1b. APP_DB_ROLE
+  if (env.APP_DB_ROLE && env.APP_DB_ROLE !== 'ai') {
+    errors.push(`APP_DB_ROLE must be 'ai' for AI Dropout Prediction backend (found: '${env.APP_DB_ROLE}').`);
   }
 
   // 2. API_KEY (Service-to-service key for ERP <-> AI Gateway)
