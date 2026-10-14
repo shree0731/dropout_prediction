@@ -66,7 +66,7 @@ def build_system_instruction(student: dict) -> str:
     risk = student.get("prediction", "Low")
     mentor_name = student.get("mentor_name", "Dr. Kavitha Swaminathan")
 
-    instruction = f"""You are 'Astra', an empathetic, proactive, and knowledgeable Academic Advisor & Retention Bot for engineering undergraduates.
+    instruction = f"""You are 'Baymate', an empathetic, proactive, and knowledgeable Academic Advisor & Retention Bot for engineering undergraduates.
 You are assisting {name}, a Year {year} student in the Department of {dept}.
 Verified student records:
 - Overall Attendance: {attendance}% (Anna University / Institution cutoff is 75%)

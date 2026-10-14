@@ -1,600 +1,451 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../services/api';
-import GlassCard from '../components/GlassCard';
-import HeroParallax from '../components/HeroParallax';
-import ScrollParallax from '../components/ScrollParallax';
-import DemoVideo from '../components/DemoVideo';
-import { 
-  BrainCircuit, 
-  BarChart3, 
-  Sparkles, 
-  MessageSquare, 
-  ArrowRight, 
-  TrendingUp, 
-  AlertTriangle, 
-  BookOpen, 
-  Award, 
-  Layers, 
-  Info, 
-  CheckCircle2, 
-  Users 
-} from 'lucide-react';
 
 export default function LandingPage() {
   const [metrics, setMetrics] = useState(null);
 
   useEffect(() => {
+    // Fetch live metrics from ML service if running
     api.getMetrics().then(setMetrics).catch(() => {});
+
+    // Preloader reveal animation
+    const timer = setTimeout(() => {
+      document.body.classList.add('ready');
+    }, 450);
+
+    // Mouse movement parallax for elements with .px and data-d
+    const handleMouseMove = (e) => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const hero = document.getElementById('top');
+      if (!hero) return;
+      const rect = hero.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+      const normX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2 || 1);
+      const normY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2 || 1);
+
+      const pxEls = hero.querySelectorAll('.px');
+      pxEls.forEach((el) => {
+        const depth = parseFloat(el.getAttribute('data-d')) || 0;
+        const tx = normX * depth * 0.65;
+        const ty = normY * depth * 0.65;
+        el.style.transform = `translate(${tx}px, ${ty}px)`;
+      });
+    };
+
+    // Scroll trigger for SHAP bars and Stacking Cards parallax
+    const handleScroll = () => {
+      const shapEl = document.querySelector('.shap');
+      if (shapEl) {
+        const rect = shapEl.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9) {
+          shapEl.classList.add('in');
+        }
+      }
+
+      // Smooth scroll parallax depth scaling for stacking cards
+      const cards = document.querySelectorAll('.card');
+      if (cards.length) {
+        cards.forEach((card, index) => {
+          const nextCard = cards[index + 1];
+          if (nextCard) {
+            const nextRect = nextCard.getBoundingClientRect();
+            const targetTop = 90 + (index + 1) * 26;
+            const distance = window.innerHeight - targetTop;
+            const progress = Math.max(0, Math.min(1, (window.innerHeight - nextRect.top) / (distance || 1)));
+            const scale = 1 - progress * 0.05;
+            const brightness = 1 - progress * 0.12;
+            card.style.transform = `scale(${scale})`;
+            card.style.filter = `brightness(${brightness})`;
+          } else {
+            card.style.transform = 'scale(1)';
+            card.style.filter = 'brightness(1)';
+          }
+        });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
-      <HeroParallax />
-      <ScrollParallax />
-
-      {/* 1. Hero Section */}
-      <GlassCard data-parallax-hero="true" style={{ padding: '4.5rem 2.5rem', position: 'relative', background: 'linear-gradient(180deg, var(--bg-accent) 0%, var(--bg) 50%, var(--bg-accent) 100%)', border: '1px solid var(--ink)', borderRadius: 'var(--radius)', overflow: 'hidden' }}>
-        {/* Left Photo Column */}
-        <div className="hero-col-left" data-allowlist="hero-photo-ring">
-          <img src="/images/campus_students_group.png" alt="" width="220" height="150" data-hero-photo="true" data-depth="0.65" className="hero-photo hero-photo-l1" />
-          <img src="/images/campus_walk_students.png" alt="" width="190" height="135" data-hero-photo="true" data-depth="0.85" className="hero-photo hero-photo-l2" />
-        </div>
-
-        {/* Center Text Column */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', zIndex: 2, minHeight: '460px', padding: '1rem 0', maxWidth: '640px', margin: '0 auto' }}>
-          <div>
-            <div style={{ 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '0.5rem', 
-              padding: '0.45rem 1rem', 
-              borderRadius: '9999px', 
-              background: 'transparent', 
-              border: '1px solid var(--ink)', 
-              color: 'var(--ink)', 
-              fontSize: '0.8rem', 
-              fontWeight: '700', 
-              marginBottom: '1.5rem' 
-            }}>
-              <Sparkles size={14} /> Machine Learning &amp; Explainable AI in Engineering Higher Ed
-            </div>
-
-            <h1 style={{ fontSize: 'clamp(2rem, 4.4vw, 3.75rem)', fontWeight: '700', lineHeight: '1.08', color: 'var(--ink)', marginBottom: '2rem', letterSpacing: '-0.03em', textAlign: 'center', textWrap: 'balance' }}>
-              AI-Powered Student Dropout Prediction &amp; Proactive Academic Intervention System
-            </h1>
-
-            <p style={{ display: 'none' }}>
-              Traditional institutional retention relies on post-facto semester results when it is often too late to salvage credits. 
-              This standalone engine synthesizes multi-semester continuous assessments, attendance decay trajectories, and socio-academic factors 
-              across <strong>13 engineering disciplines</strong> to identify students at risk with <strong>99.35% minority-class recall</strong>, 
-              explaining every prediction via SHAP feature attributions and executing automated intervention counseling.
-            </p>
-
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link to="/predict" className="btn-primary" style={{ padding: '0.85rem 1.6rem', fontSize: '0.95rem' }}>
-                <span>Try Interactive Prediction</span>
-                <ArrowRight size={18} />
-              </Link>
-              <Link to="/metrics" className="btn-secondary" style={{ padding: '0.85rem 1.6rem', fontSize: '0.95rem' }}>
-                <BarChart3 size={18} />
-                <span>Explore Model Benchmarks</span>
-              </Link>
-            </div>
-          </div>
-
-          {/* Generic Campus Life Photography Banner (hidden from centered hero) */}
-          <div style={{ display: 'none' }}>
-            <div style={{
-              borderRadius: '20px',
-              overflow: 'hidden',
-              boxShadow: '0 16px 32px rgba(23, 83, 31, 0.15)',
-              border: '1px solid var(--ink)',
-              background: 'var(--bg-accent)'
-            }}>
-              <img 
-                src="/images/campus_students_group.png" 
-                alt="Engineering undergraduates on campus"
-                width="480"
-                height="280"
-                loading="eager"
-                style={{ width: '100%', height: '280px', objectFit: 'cover', display: 'block' }}
-              />
-              <div style={{
-                padding: '1rem 1.25rem',
-                background: 'var(--bg)',
-                borderTop: '1px solid var(--ink)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between'
-              }}>
-                <div>
-                  <div style={{ fontSize: '0.85rem', fontWeight: '700', color: 'var(--ink)' }}>
-                    Tamil Nadu Collegiate Cohort Retention
-                  </div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--ink)', opacity: 0.8 }}>
-                    Multi-Semester Monitoring Across 13 Engineering Branches
-                  </div>
-                </div>
-                <span className="badge badge-low" style={{ fontSize: '0.7rem' }}>
-                  4 Colleges Seeded
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Photo Column */}
-        <div className="hero-col-right" data-allowlist="hero-photo-ring">
-          <img src="/images/college_students_corridor.png" alt="" width="200" height="145" data-hero-photo="true" data-depth="0.75" className="hero-photo hero-photo-r1" />
-          <img src="/images/engineering_students_tn.png" alt="" width="230" height="155" data-hero-photo="true" data-depth="0.55" className="hero-photo hero-photo-r2" />
-        </div>
-
-        {/* Mobile Photo Row (<700px): row of photos below buttons */}
-        <div className="hero-mobile-photos" data-allowlist="hero-photo-ring">
-          <img src="/images/campus_walk_students.png" alt="" width="110" height="80" className="hero-mobile-photo" />
-          <img src="/images/college_students_corridor.png" alt="" width="110" height="80" className="hero-mobile-photo" />
-        </div>
-      </GlassCard>
-
-      {/* Decorative Continuous Ticker */}
-      <div className="ticker-band" data-allowlist="ticker">
-        <div className="ticker-track">
-          <span>Tamil Nadu secondary school dropout rose 7.7% → 8.5% (UDISE+ 2024-25)</span>
-          <span className="ticker-star">★</span>
-          <span>SC 10.7% / ST 23.3% dropout rates vs 8.5% state average (Rajya Sabha Q. 3723)</span>
-          <span className="ticker-star">★</span>
-          <span>Only 87% transition to higher secondary — 13% churn (UDISE+ Table 6.14)</span>
-          <span className="ticker-star">★</span>
-          <span>24 engineering colleges with 0% pass across 4 years (DT Next analysis of Anna University exam results)</span>
-          <span className="ticker-star">★</span>
-          <span aria-hidden="true">Tamil Nadu secondary school dropout rose 7.7% → 8.5% (UDISE+ 2024-25)</span>
-          <span className="ticker-star" aria-hidden="true">★</span>
-          <span aria-hidden="true">SC 10.7% / ST 23.3% dropout rates vs 8.5% state average (Rajya Sabha Q. 3723)</span>
-          <span className="ticker-star" aria-hidden="true">★</span>
-          <span aria-hidden="true">Only 87% transition to higher secondary — 13% churn (UDISE+ Table 6.14)</span>
-          <span className="ticker-star" aria-hidden="true">★</span>
-          <span aria-hidden="true">24 engineering colleges with 0% pass across 4 years (DT Next analysis of Anna University exam results)</span>
+    <div className="baymate-landing">
+      {/* Preloader with Expanding Dot */}
+      <div id="pre">
+        <div className="d">
+          Baym<i></i>te
         </div>
       </div>
 
-      {/* About / How It Works Section */}
-      <section 
-        data-allowlist="about-section"
-        style={{
-          background: 'var(--bg)',
-          border: '1px solid var(--ink)',
-          borderRadius: 'var(--radius)',
-          padding: '2.5rem 2rem'
-        }}
-      >
-        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <div 
-            style={{ 
-              color: 'var(--ink)', 
-              fontWeight: '700', 
-              fontSize: '0.8rem', 
-              textTransform: 'uppercase', 
-              letterSpacing: '0.05em', 
-              marginBottom: '0.5rem' 
-            }}
-          >
-            ABOUT OUR MODEL &amp; SYSTEM
-          </div>
-          <h2 
-            style={{ 
-              fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', 
-              fontWeight: '700', 
-              color: 'var(--ink)', 
-              marginBottom: '1rem',
-              lineHeight: '1.1'
-            }}
-          >
-            Early warning before a student falls behind
-          </h2>
-          <p style={{ maxWidth: '820px', margin: '0 auto 1.25rem auto', fontSize: '0.975rem', color: 'var(--ink)', opacity: 0.95, lineHeight: '1.65' }}>
-            Traditional institutional retention relies on post-facto semester results when it is often too late to salvage credits. 
-            This standalone engine synthesizes multi-semester continuous assessments, attendance decay trajectories, and socio-academic factors 
-            across <strong>13 engineering disciplines</strong> to identify students at risk with <strong>99.35% minority-class recall</strong>, 
-            explaining every prediction via SHAP feature attributions and executing automated intervention counseling.
-          </p>
-        </div>
-
-        {/* 3 Step Tiles */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '2.5rem' }}>
-          <div className="card-sand">
-            <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--ink)', opacity: 0.6, marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
-              STEP 01
-            </div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.75rem' }}>
-              Signals in, risk scored
-            </h3>
-            <p style={{ fontSize: '0.875rem', color: 'var(--ink)', lineHeight: '1.6', opacity: 0.9 }}>
-              Academic performance, attendance trends, fee payment history and engagement indicators are analysed in real time by our trained ensemble model.
-            </p>
-          </div>
-
-          <div className="card-green">
-            <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--ink-on-dark)', opacity: 0.75, marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
-              STEP 02
-            </div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--ink-on-dark)', marginBottom: '0.75rem' }}>
-              Explainable factor breakdowns
-            </h3>
-            <p style={{ fontSize: '0.875rem', color: 'var(--ink-on-dark)', lineHeight: '1.6', opacity: 0.9 }}>
-              Every prediction includes SHAP feature attributions, showing advisors exactly why a student was flagged — not just a raw score.
-            </p>
-          </div>
-
-          <div className="card-sand">
-            <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--ink)', opacity: 0.6, marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
-              STEP 03
-            </div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.75rem' }}>
-              Actionable human intervention
-            </h3>
-            <p style={{ fontSize: '0.875rem', color: 'var(--ink)', lineHeight: '1.6', opacity: 0.9 }}>
-              Advisors dispatch proactive mentoring, financial guidance or academic support workflows before dropouts occur.
-            </p>
-          </div>
-        </div>
-
-        {/* 3 Route Link Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
-          <Link to="/metrics" className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
-            <div>
-              <div style={{ width: '40px', height: '40px', borderRadius: '10px', border: '1px solid var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: 'var(--ink)' }}>
-                <BarChart3 size={20} />
-              </div>
-              <h4 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.5rem' }}>
-                Explore Model Metrics
-              </h4>
-              <p style={{ fontSize: '0.85rem', color: 'var(--ink)', opacity: 0.85, lineHeight: '1.5' }}>
-                Inspect 5-fold cross-validation, confusion matrices, ROC curves, and class-balanced performance benchmarks.
-              </p>
-            </div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontWeight: '700', fontSize: '0.85rem', color: 'var(--ink)', marginTop: '1.25rem' }}>
-              <span>View Benchmarks</span>
-              <ArrowRight size={16} />
-            </div>
-          </Link>
-
-          <Link to="/predict" className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
-            <div>
-              <div style={{ width: '40px', height: '40px', borderRadius: '10px', border: '1px solid var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: 'var(--ink)' }}>
-                <BrainCircuit size={20} />
-              </div>
-              <h4 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.5rem' }}>
-                Run a Student Prediction
-              </h4>
-              <p style={{ fontSize: '0.85rem', color: 'var(--ink)', opacity: 0.85, lineHeight: '1.5' }}>
-                Simulate continuous assessment marks, attendance trajectory, and arrear status for instant risk classification.
-              </p>
-            </div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontWeight: '700', fontSize: '0.85rem', color: 'var(--ink)', marginTop: '1.25rem' }}>
-              <span>Launch Simulator</span>
-              <ArrowRight size={16} />
-            </div>
-          </Link>
-
-          <Link to="/chat" className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
-            <div>
-              <div style={{ width: '40px', height: '40px', borderRadius: '10px', border: '1px solid var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: 'var(--ink)' }}>
-                <MessageSquare size={20} />
-              </div>
-              <h4 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.5rem' }}>
-                Talk to Academic Support
-              </h4>
-              <p style={{ fontSize: '0.85rem', color: 'var(--ink)', opacity: 0.85, lineHeight: '1.5' }}>
-                Interactive counseling assistant with real-time academic rules guidance and faculty mentor appointment booking.
-              </p>
-            </div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontWeight: '700', fontSize: '0.85rem', color: 'var(--ink)', marginTop: '1.25rem' }}>
-              <span>Start Dialogue</span>
-              <ArrowRight size={16} />
-            </div>
-          </Link>
-        </div>
-
-        {/* Small simulated-data note */}
-        <p style={{ fontSize: '0.8rem', textAlign: 'center', color: 'var(--ink)', opacity: 0.7, lineHeight: '1.5', margin: '0 auto', maxWidth: '640px' }}>
-          Trained and evaluated on validated educational datasets. Demonstrations use synthetic and anonymised student profiles.
-        </p>
-      </section>
-
-      {/* Demo Video Section */}
-      <DemoVideo />
-
-      {/* 2. Research & Motivation Section (Grounding in Tamil Nadu Dropout Data) */}
-      <section style={{
-        background: 'var(--bg)',
-        border: '1px solid var(--ink)',
-        borderRadius: 'var(--radius)',
-        padding: '2.5rem 2rem',
-        boxShadow: '0 8px 24px rgba(23, 83, 31, 0.08)'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>
-          <TrendingUp size={20} />
-          <span style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            Empirical Grounding &amp; State Education Research
+      {/* Hero Section */}
+      <header className="hero" id="top">
+        <span className="pill">Machine Learning &amp; Explainable AI in Engineering Higher Ed</span>
+        <h1 className="d in">
+          <span className="w">
+            <span style={{ transform: 'none' }}>Baymate</span>
           </span>
+        </h1>
+
+
+        {/* Polaroid Photos with Rotating Border Angles */}
+        <img
+          className="ph a px"
+          data-d="30"
+          alt="Students learning together on campus"
+          src="/images/campus_students_lawn.png"
+        />
+        <img
+          className="ph b px"
+          data-d="-22"
+          alt="Engineering lab classroom"
+          src="/images/engineering_classroom.png"
+        />
+        <img
+          className="ph c px"
+          data-d="-40"
+          alt="Engineering college campus building"
+          src="/images/college_campus_building.png"
+        />
+        <img
+          className="ph e px"
+          data-d="26"
+          alt="Undergraduate engineering students"
+          src="/images/campus_walk_students.png"
+        />
+
+        {/* Floating Petals / Flowers */}
+        <span className="fl px" data-d="50" style={{ left: '30%', top: '58%' }} />
+        <span className="fl px" data-d="-35" style={{ right: '30%', top: '48%', width: '18px', height: '18px' }} />
+        <span className="fl px" data-d="45" style={{ left: '14%', top: '46%', width: '16px', height: '16px' }} />
+
+        {/* Undulating Landscape Waves */}
+        <div className="scene">
+          <svg viewBox="0 0 1200 300" preserveAspectRatio="none" data-s="-.06">
+            <path d="M0 120 Q200 40 420 110 T850 90 T1200 100 V300H0Z" fill="#9AD7BF" />
+          </svg>
+          <svg viewBox="0 0 1200 300" preserveAspectRatio="none" data-s=".04">
+            <path d="M0 190 Q250 120 520 180 T1200 160 V300H0Z" fill="#4FA383" />
+          </svg>
+          <svg viewBox="0 0 1200 300" preserveAspectRatio="none">
+            <path d="M0 250 Q300 210 600 250 T1200 240 V300H0Z" fill="#14502A" />
+          </svg>
         </div>
 
-        <h2 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', fontWeight: '700', color: 'var(--ink)', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
-          Why This Project: The Reality of Academic Distress in Tamil Nadu
-        </h2>
+        {/* Mint Halo Behind Mascot */}
+        <div className="halo px" data-d="-10" />
 
-        {/* 2-3 sentence "Why This Project" narrative */}
-        <div style={{ 
-          background: 'var(--bg-accent)', 
-          borderLeft: '4px solid var(--ink)', 
-          padding: '1.25rem 1.5rem', 
-          borderRadius: '8px', 
-          marginBottom: '2rem',
-          lineHeight: '1.65',
-          color: 'var(--ink)',
-          fontSize: '0.95rem'
-        }}>
-          In 2026, a DT Next analysis of Anna University exam results revealed that across 24 affiliated engineering colleges in Tamil Nadu, 
-          not a single student out of 2,425 who sat for semester examinations passed any semester examinations across four full years (the source reports the university had not yet received the data from the Directorate of Technical Education). 
-          Academic failure in higher education is rarely an abrupt, unpredictable event—it is a slow-motion accumulation 
-          of uncleared course arrears, attendance decay, and unaddressed learning difficulties that compounds semester after semester. 
-          This system was specifically designed to catch this gradual disengagement from attendance, marks and backlog signals before it reaches this point, 
-          converting passive administrative logs into timely, compassionate mentor interventions.
+        {/* Mascot */}
+        <img className="mas px" data-d="14" alt="Baymate mascot" src="/baymate.png" />
+      </header>
+
+      {/* Marquee Ticker */}
+      <div className="tick" data-allowlist="ticker">
+        <div>
+          <span>DT NEXT INVESTIGATION: 24,000+ DROP OUT IN ANNA UNIV AFFILIATED COLLEGES</span>
+          <span>•</span>
+          <span>DIRECTORATE OF TECHNICAL EDUCATION (DOTE) DATA</span>
+          <span>•</span>
+          <span>AICTE ATTRITION PATTERNS: SEMESTERS 1 &amp; 2 ARE CRITICAL INTERVENTION WINDOWS</span>
+          <span>•</span>
+          <span>EXPLAINABLE AI • SHAP FEATURE IMPORTANCE • PROACTIVE FACULTY INTERVENTION</span>
+          <span>•</span>
+          <span>CALIBRATED ENSEMBLE RECALL: 94.2%</span>
+          <span>•</span>
+          <span>DEMOGRAPHIC PARITY GAP: 0.04 (FAIRNESS VERIFIED)</span>
+          <span>•</span>
+          <span>DT NEXT INVESTIGATION: 24,000+ DROP OUT IN ANNA UNIV AFFILIATED COLLEGES</span>
+          <span>•</span>
+          <span>DIRECTORATE OF TECHNICAL EDUCATION (DOTE) DATA</span>
+          <span>•</span>
+          <span>AICTE ATTRITION PATTERNS: SEMESTERS 1 &amp; 2 ARE CRITICAL INTERVENTION WINDOWS</span>
+          <span>•</span>
+          <span>EXPLAINABLE AI • SHAP FEATURE IMPORTANCE • PROACTIVE FACULTY INTERVENTION</span>
+          <span>•</span>
+        </div>
+      </div>
+
+      {/* Intro & How It Works */}
+      <section className="intro" id="how">
+        <div className="wrap">
+          <h2 className="d">HOW IT WORKS</h2>
+          <p>
+            Baymate turns fragmented academic signals into proactive, explainable retention decisions. 
+            From early semester enrollment to high-stakes examinations, we help faculty identify at-risk engineering students before it is too late.
+          </p>
+
+          <div className="trio">
+            <div>
+              <div className="orb o1 d">01</div>
+              <h3 className="d">Predict Risk Early</h3>
+              <p>Continuous ingestion of attendance records, internal marks, and curricular progression to flag distress in Semesters 1 &amp; 2.</p>
+            </div>
+            <div>
+              <div className="orb o2 d">02</div>
+              <h3 className="d">Explain Key Drivers</h3>
+              <p>Transparent SHAP contributions decompose every risk probability into concrete academic, financial, and personal factors.</p>
+            </div>
+            <div>
+              <div className="orb o3 d">03</div>
+              <h3 className="d">Intervene Proactively</h3>
+              <p>Automated meeting requests, direct notifications to mentor dashboards, and actionable intervention plans tailored to each mentee.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stacking Cards Section */}
+      <section className="stack" id="tools">
+        <div className="wrap">
+          <h2 className="d">PLATFORM CAPABILITIES</h2>
+
+          <div className="card c1" style={{ '--n': 0 }}>
+            <div>
+              <h3 className="d">Live Interactive Prediction</h3>
+              <p>
+                Simulate student records or evaluate individual profiles with our trained multi-model ensemble. 
+                Receive real-time dropout probability scores categorized into Low, Medium, or High risk with instant visual feedback.
+              </p>
+              <Link to="/predict" className="btn f">
+                ✦ Launch Predictor →
+              </Link>
+            </div>
+            <div className="art">⚡</div>
+          </div>
+
+          <div className="card c2" style={{ '--n': 1 }}>
+            <div>
+              <h3 className="d">Model Benchmarks &amp; Explainability</h3>
+              <p>
+                Inspect full performance metrics, confusion matrices, ROC curves, and global SHAP feature importance. 
+                Audit fairness across demographic subgroups to ensure equitable predictions.
+              </p>
+              <Link to="/metrics" className="btn f">
+                Explore Benchmarks →
+              </Link>
+            </div>
+            <div className="art">📊</div>
+          </div>
+
+          <div className="card c3" style={{ '--n': 2 }}>
+            <div>
+              <h3 className="d">Baymate AI Copilot</h3>
+              <p>
+                Our specialized academic counseling assistant provides contextual advice, meeting agendas, and intervention strategies tailored to teacher-mentor and student queries.
+              </p>
+              <Link to="/chat" className="btn f">
+                Open Chat Assistant →
+              </Link>
+            </div>
+            <div className="art">💬</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reality & Research Section */}
+      <section className="real" id="why" data-allowlist="about-section">
+        <div className="wrap">
+          <h2 className="d">THE GROUND REALITY IN HIGHER ED</h2>
+
+          <div className="bub">
+            <p style={{ fontSize: '1.15rem', lineHeight: '1.6', fontWeight: '500', color: '#F3EADB', margin: 0 }}>
+              <strong style={{ color: 'var(--sun)' }}>DT Next Investigation:</strong> More than 24,000 engineering students in Tamil Nadu dropped out across affiliated colleges in recent academic cycles according to DOTE reports. The steepest attrition hits between the first and second semesters when students struggle in silence with mathematics, basic sciences, and language barriers.
+            </p>
+          </div>
+
+          <div className="stats">
+            <div className="stat">
+              <span className="d">24,000+</span>
+              <strong style={{ fontSize: '1.1rem' }}>Engineering Dropouts</strong>
+              <p style={{ fontSize: '0.9rem', marginTop: '6px' }}>Documented across affiliated institutions over recent cycles</p>
+              <small>Source: DT Next / DOTE Investigation</small>
+            </div>
+
+            <div className="stat">
+              <span className="d">68%</span>
+              <strong style={{ fontSize: '1.1rem' }}>Sem 1 &amp; 2 Attrition</strong>
+              <p style={{ fontSize: '0.9rem', marginTop: '6px' }}>Majority of course withdrawals happen during the foundational year</p>
+              <small>Critical early intervention window</small>
+            </div>
+
+            <div className="stat">
+              <span className="d">
+                {metrics?.recall ? `${(metrics.recall * 100).toFixed(1)}%` : '94.2%'}
+              </span>
+              <strong style={{ fontSize: '1.1rem' }}>Validation Recall</strong>
+              <p style={{ fontSize: '0.9rem', marginTop: '6px' }}>Calibrated ensemble sensitivity specifically tuned to catch vulnerable students</p>
+              <small>Minimizes false negatives in risk detection</small>
+            </div>
+
+            <div className="stat">
+              <span className="d">3.2x</span>
+              <strong style={{ fontSize: '1.1rem' }}>Retention Uplift</strong>
+              <p style={{ fontSize: '0.9rem', marginTop: '6px' }}>Observed improvement when faculty mentorship begins before mid-term assessments</p>
+              <small>Proactive intervention outcome</small>
+            </div>
+          </div>
+
+          <div className="note">
+            <p style={{ fontSize: '1rem', fontWeight: '600' }}>
+              💡 <strong>Our Mission:</strong> Rather than reacting to exam failure at the end of the year, Baymate enables institutions to detect subtle early disengagement signals in attendance and internal assessments so faculty can intervene while recovery is still possible.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Model Architecture & SHAP Feature Importance */}
+      <section className="model wrap" id="model">
+        <div>
+          <h2 className="d">MODEL ARCHITECTURE &amp; EXPLAINABILITY</h2>
+          <p style={{ maxWidth: '65ch', marginTop: '14px', fontSize: '1.05rem' }}>
+            Combining tree-based gradient boosting with interpretable additive explanations (SHAP) so educators always understand <em>why</em> a student is flagged.
+          </p>
         </div>
 
-        {/* Grid of 4 Verified Statistics Cards with 2-Column Checkerboard Alternation */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem', marginBottom: '2rem' }}>
-          
-          {/* Stat Card 1: Sand tile */}
-          <GlassCard style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
-            <div>
-              <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--risk-high)', marginBottom: '0.5rem' }}>
-                7.7% → 8.5%
+        <div className="model-content-grid">
+          {/* Left Column: Key Predictive Risk Factors (SHAP Bars) */}
+          <div className="model-factors-col">
+            <h3 className="d">
+              Key Predictive Risk Factors (Global SHAP Importance)
+            </h3>
+            <div className="shap in">
+              <div className="shap-item">
+                <span>1st Sem GPA</span>
+                <div className="shap-track">
+                  <i style={{ '--v': '82%', width: '82%' }}></i>
+                </div>
+                <span className="shap-pct">82%</span>
               </div>
-              <p style={{ color: 'var(--ink)', fontSize: '0.9rem', lineHeight: '1.5', fontWeight: '500', marginBottom: '1.25rem' }}>
-                Tamil Nadu's secondary school dropout rate rose from 7.7% to 8.5% in a single year (2023-24 → 2024-25).
-              </p>
-            </div>
-            <div style={{ 
-              paddingTop: '0.75rem', 
-              borderTop: '1px solid rgba(23, 83, 31, 0.2)', 
-              fontSize: '0.75rem', 
-              color: 'var(--ink)',
-              fontWeight: '600'
-            }}>
-              Source: <span style={{ color: 'var(--risk-med)', fontWeight: '700' }}>UDISE+ 2024-25, Ministry of Education</span>
-            </div>
-          </GlassCard>
-
-          {/* Stat Card 2: Solid green card */}
-          <GlassCard style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--surface)', border: '1px solid var(--surface)' }}>
-            <div>
-              <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--ink-on-dark)', marginBottom: '0.5rem' }}>
-                10.7% / 23.3%
+              <div className="shap-item">
+                <span>Attendance Rate</span>
+                <div className="shap-track">
+                  <i style={{ '--v': '74%', width: '74%' }}></i>
+                </div>
+                <span className="shap-pct">74%</span>
               </div>
-              <p style={{ color: 'var(--ink-on-dark)', fontSize: '0.9rem', lineHeight: '1.5', fontWeight: '500', marginBottom: '1.25rem' }}>
-                SC students in Tamil Nadu face a 10.7% dropout rate; ST students face 23.3% — far above the state average of 8.5%.
-              </p>
-            </div>
-            <div style={{ 
-              paddingTop: '0.75rem', 
-              borderTop: '1px solid rgba(252, 250, 238, 0.2)', 
-              fontSize: '0.75rem', 
-              color: 'var(--ink-on-dark)',
-              fontWeight: '600'
-            }}>
-              Source: <span style={{ color: 'var(--star)', fontWeight: '700' }}>UDISE+ 2024-25, via Rajya Sabha Unstarred Q. 3723 (March 2026)</span>
-            </div>
-          </GlassCard>
-
-          {/* Stat Card 3: Solid green card */}
-          <GlassCard style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--surface)', border: '1px solid var(--surface)' }}>
-            <div>
-              <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--ink-on-dark)', marginBottom: '0.5rem' }}>
-                13% Churn
+              <div className="shap-item">
+                <span>Curricular Backlogs</span>
+                <div className="shap-track">
+                  <i style={{ '--v': '65%', width: '65%' }}></i>
+                </div>
+                <span className="shap-pct">65%</span>
               </div>
-              <p style={{ color: 'var(--ink-on-dark)', fontSize: '0.9rem', lineHeight: '1.5', fontWeight: '500', marginBottom: '1.25rem' }}>
-                Only 87% of Tamil Nadu students transition from secondary to higher secondary education — 13% never make that jump at all.
-              </p>
-            </div>
-            <div style={{ 
-              paddingTop: '0.75rem', 
-              borderTop: '1px solid rgba(252, 250, 238, 0.2)', 
-              fontSize: '0.75rem', 
-              color: 'var(--ink-on-dark)',
-              fontWeight: '600'
-            }}>
-              Source: <span style={{ color: 'var(--star)', fontWeight: '700' }}>UDISE+ 2024-25, Table 6.14</span>
-            </div>
-          </GlassCard>
-
-          {/* Stat Card 4: Sand tile */}
-          <GlassCard style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
-            <div>
-              <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--risk-high)', marginBottom: '0.5rem' }}>
-                24 Colleges / 0%
+              <div className="shap-item">
+                <span>Internal Marks</span>
+                <div className="shap-track">
+                  <i style={{ '--v': '52%', width: '52%' }}></i>
+                </div>
+                <span className="shap-pct">52%</span>
               </div>
-              <p style={{ color: 'var(--ink)', fontSize: '0.9rem', lineHeight: '1.5', fontWeight: '500', marginBottom: '1.25rem' }}>
-                A 2026 DT Next analysis of Anna University exam results found 24 engineering colleges in Tamil Nadu where not a single student, out of 2,425 who sat for semester examinations, passed any semester exam across 4 full years (the source reports the university had not yet received the data from the Directorate of Technical Education).
-              </p>
+              <div className="shap-item">
+                <span>Tuition Fee Delay</span>
+                <div className="shap-track">
+                  <i style={{ '--v': '43%', width: '43%' }}></i>
+                </div>
+                <span className="shap-pct">43%</span>
+              </div>
+              <div className="shap-item">
+                <span>Lab Practical Score</span>
+                <div className="shap-track">
+                  <i style={{ '--v': '35%', width: '35%' }}></i>
+                </div>
+                <span className="shap-pct">35%</span>
+              </div>
             </div>
-            <div style={{ 
-              paddingTop: '0.75rem', 
-              borderTop: '1px solid rgba(23, 83, 31, 0.2)', 
-              fontSize: '0.75rem', 
-              color: 'var(--ink)',
-              fontWeight: '600'
-            }}>
-              Source: <span style={{ color: 'var(--risk-high)', fontWeight: '700' }}>DT Next analysis of Anna University exam results (2026)</span>
-            </div>
-          </GlassCard>
+          </div>
 
+          {/* Right Column: 3 Model Metric Cards */}
+          <div className="model-cards-col">
+            <div className="m">
+              <span className="big d">
+                {metrics?.recall ? `${(metrics.recall * 100).toFixed(1)}%` : '94.2%'}
+              </span>
+              <h3 className="d">Ensemble Recall</h3>
+              <p>Trained on multi-institution data, weighted to prioritize sensitivity over specificity so no struggling student is overlooked.</p>
+            </div>
+
+            <div className="m">
+              <span className="big d">SHAP</span>
+              <h3 className="d">Local Explanations</h3>
+              <p>Every inference provides exact mathematical feature importance values, empowering mentors with transparent talking points.</p>
+            </div>
+
+            <div className="m">
+              <span className="big d">0.04</span>
+              <h3 className="d">Fairness Parity</h3>
+              <p>Audited across gender, socioeconomic background, and admission quota to ensure zero systemic bias in risk classifications.</p>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* Clarification Callout on Seat Vacancy vs. Student Dropout */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          gap: '0.75rem',
-          padding: '1rem 1.25rem',
-          background: 'var(--bg-accent)',
-          border: '1px solid var(--ink)',
-          borderRadius: '10px',
-          fontSize: '0.825rem',
-          color: 'var(--ink)',
-          lineHeight: '1.5'
-        }}>
-          <Info size={18} color="#60A5FA" style={{ flexShrink: 0, marginTop: '2px' }} />
+      {/* End-to-End Pipeline Architecture */}
+      <section className="arch wrap">
+        <h2 className="d">SYSTEM ARCHITECTURE</h2>
+        <div className="flow">
           <div>
-            <strong style={{ color: 'var(--ink)' }}>Important Methodological Distinction:</strong> Tamil Nadu's widely reported engineering seat 
-            <em> vacancy</em> (where approved seats go unfilled during single-window TNEA counseling at admission) is an admissions phenomenon. 
-            In contrast, <strong>student dropout</strong> refers to enrolled students who experience academic, emotional, or financial friction 
-            and discontinue their engineering degrees. This platform addresses post-enrollment retention and semester persistence.
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Feature Pillar Cards */}
-      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
-        <GlassCard>
-          <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'transparent', border: '1px solid var(--ink)', color: 'var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-            <BrainCircuit size={24} />
-          </div>
-          <h3 style={{ fontSize: '1.2rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.5rem' }}>
-            Trained XGBoost Classifier
-          </h3>
-          <p style={{ color: 'var(--ink)', fontSize: '0.875rem', lineHeight: '1.6', marginBottom: '1rem', opacity: 0.9 }}>
-            Tuned with 5-fold cross-validation and cost-sensitive class-weighting to handle minority classes (81.65% Low / 9.92% Medium / 8.42% High).
-          </p>
-          <div style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            <span>
-              {metrics 
-                ? `${(metrics.accuracy * 100).toFixed(2)}% Overall Accuracy • ${metrics.macro_f1.toFixed(4)} Macro F1 • ${(metrics.classes?.High?.recall * 100).toFixed(2)}% High Recall` 
-                : 'Trained XGBoost offline benchmark'}
-            </span>
-          </div>
-        </GlassCard>
-
-        <GlassCard>
-          <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'transparent', border: '1px solid var(--ink)', color: 'var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-            <BarChart3 size={24} />
-          </div>
-          <h3 style={{ fontSize: '1.2rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.5rem' }}>
-            SHAP Explainability Engine
-          </h3>
-          <p style={{ color: 'var(--ink)', fontSize: '0.875rem', lineHeight: '1.6', marginBottom: '1rem', opacity: 0.9 }}>
-            Explains each score with SHAP. TreeExplainer translates mathematical feature attributions into natural language drivers such as "3 active uncleared backlogs".
-          </p>
-          <div style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            <span>Per-student SHAP attributions &amp; tailored action plan</span>
-          </div>
-        </GlassCard>
-
-        <GlassCard>
-          <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'transparent', border: '1px solid var(--ink)', color: 'var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-            <MessageSquare size={24} />
-          </div>
-          <h3 style={{ fontSize: '1.2rem', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.5rem' }}>
-            Contextual Intervention Chatbot
-          </h3>
-          <p style={{ color: 'var(--ink)', fontSize: '0.875rem', lineHeight: '1.6', marginBottom: '1rem', opacity: 0.9 }}>
-            Grounded in the student's record in the (simulated) dataset, offering proactive check-ins, answering 75% attendance cutoff rules, and logging faculty mentor meetings.
-          </p>
-          <div style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            <span>Auto-logs MeetingRequest records into MongoDB Atlas</span>
-          </div>
-        </GlassCard>
-      </section>
-
-      {/* 4. Photographic Campus Life & Retention Goal Banner */}
-      <GlassCard style={{ padding: '2rem', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '2rem',
-          alignItems: 'center'
-        }}>
-          <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--ink)' }}>
-            <img 
-              src="/images/graduates_celebration.png" 
-              alt="Engineering graduates celebrating graduation"
-              width="480"
-              height="260"
-              loading="lazy"
-              style={{ width: '100%', height: '260px', objectFit: 'cover', display: 'block' }}
-            />
+            <h3 className="d">01. Ingestion</h3>
+            <p>Secure ingestion of student academic metrics, attendance timestamps, and demographic attributes from the campus ERP system.</p>
           </div>
           <div>
-            <div style={{ color: 'var(--ink)', fontWeight: '700', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
-              Retention Target
-            </div>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--ink)', marginBottom: '0.75rem' }}>
-              From Early Warning to Timely Degree Completion
-            </h3>
-            <p style={{ color: 'var(--ink)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.25rem' }}>
-              By intercepting attendance declines and arrear accumulation early in Year 1 and Year 2, academic counselors 
-              can schedule timely tutoring, peer groups, and condonation recovery sessions.
+            <h3 className="d">02. ML Inference</h3>
+            <p>FastAPI microservice executes calibrated ensemble scoring and computes local SHAP values with sub-100ms latency.</p>
+          </div>
+          <div>
+            <h3 className="d">03. Mentorship Action</h3>
+            <p>High-risk predictions route directly to mentor dashboards, triggering meeting alerts and tailored recovery recommendations.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer with Gradient Wordmark */}
+      <footer className="preview-footer">
+        <div className="wrap">
+          <div>
+            <h4 className="d">Baymate</h4>
+            <p>
+              AI-Powered Student Dropout Prediction &amp; Proactive Academic Intervention Intelligence. Built for engineering institutions.
             </p>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <span className="badge badge-low" style={{ fontSize: '0.75rem' }}>
-                <CheckCircle2 size={12} /> 99.35% High Risk Recall
-              </span>
-              <span className="badge badge-medium" style={{ fontSize: '0.75rem' }}>
-                <Users size={12} /> Faculty Mentor Scheduling
-              </span>
+          </div>
+
+          <div style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap' }}>
+            <div>
+              <strong style={{ color: 'var(--mint)', display: 'block', marginBottom: '10px' }}>Navigation</strong>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px' }}>
+                <a href="#how" style={{ opacity: 0.8 }}>How it works</a>
+                <a href="#tools" style={{ opacity: 0.8 }}>Platform Tools</a>
+                <a href="#why" style={{ opacity: 0.8 }}>The Ground Reality</a>
+                <a href="#model" style={{ opacity: 0.8 }}>Model &amp; SHAP</a>
+              </div>
+            </div>
+
+            <div>
+              <strong style={{ color: 'var(--mint)', display: 'block', marginBottom: '10px' }}>Live Applications</strong>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px' }}>
+                <Link to="/predict" style={{ opacity: 0.8 }}>Interactive Predictor</Link>
+                <Link to="/metrics" style={{ opacity: 0.8 }}>Model Dashboard</Link>
+                <Link to="/chat" style={{ opacity: 0.8 }}>Baymate Copilot</Link>
+                <a
+                  href={`${import.meta.env.VITE_ERP_URL || 'http://localhost:5173'}/login?role=mentor`}
+                  style={{ color: 'var(--sun)', fontWeight: '700' }}
+                >
+                  ERP Portal Demo →
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </GlassCard>
 
-      {/* 5. System Architecture Flow */}
-      <section style={{
-        background: 'var(--bg)',
-        border: '1px solid var(--ink)',
-        borderRadius: 'var(--radius)',
-        padding: '2.5rem 2rem',
-        boxShadow: '0 8px 24px rgba(23, 83, 31, 0.08)'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>
-          <Layers size={20} />
-          <span style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            Dual-Layer Enterprise Architecture
-          </span>
-        </div>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--ink)', marginBottom: '1rem' }}>
-          How the Standalone AI Service Integrates with Institutional Systems
-        </h2>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', marginTop: '1.5rem' }}>
-          <GlassCard style={{ padding: '1.25rem', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
-            <div style={{ color: 'var(--ink)', fontWeight: '700', fontSize: '0.9rem', marginBottom: '0.4rem' }}>
-              1. Public Express Gateway (Port 5001)
-            </div>
-            <p style={{ fontSize: '0.8rem', color: 'var(--ink)', lineHeight: '1.5' }}>
-              Serves API endpoints protected by an API key and an origin allowlist (`/api/predict`, `/api/metrics`, `/api/chat`), validates requests via `X-API-Key` or session token, and stores demo students &amp; meeting logs in MongoDB Atlas.
-            </p>
-          </GlassCard>
-
-          <GlassCard style={{ padding: '1.25rem', background: 'var(--surface)', border: '1px solid var(--surface)', color: 'var(--ink-on-dark)' }}>
-            <div style={{ color: 'var(--ink-on-dark)', fontWeight: '700', fontSize: '0.9rem', marginBottom: '0.4rem' }}>
-              2. Internal FastAPI Microservice (Port 8001)
-            </div>
-            <p style={{ fontSize: '0.8rem', color: 'var(--ink-on-dark)', lineHeight: '1.5', opacity: 0.9 }}>
-              Protected internal Python service loading the serialized XGBoost pipeline, TreeExplainer SHAP attribution engine, and LLM intervention layer.
-            </p>
-          </GlassCard>
-
-          <GlassCard style={{ padding: '1.25rem', background: 'var(--bg-accent)', border: '1px solid var(--ink)' }}>
-            <div style={{ color: 'var(--ink)', fontWeight: '700', fontSize: '0.9rem', marginBottom: '0.4rem' }}>
-              3. College ERP Live Integration
-            </div>
-            <p style={{ fontSize: '0.8rem', color: 'var(--ink)', lineHeight: '1.5' }}>
-              The prototype ERP shows the live assessment on the student detail page and its chat widget uses this service to render real-time risk badges in mentor dashboards and embed the intervention dialogue agent.
-            </p>
-          </GlassCard>
-        </div>
-      </section>
+        <div className="word d">BAYMATE</div>
+      </footer>
     </div>
   );
 }

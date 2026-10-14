@@ -41,7 +41,7 @@ This document specifies how the existing College ERP system (`FSD/`) integrates 
 |  |                                                                             |  |
 |  |  • Trained XGBoost Pipeline (Macro F1: 0.9370, High Recall: 99.35%)         |  |
 |  |  • SHAP TreeExplainer & Plain-Language Driver Translation                   |  |
-|  |  • Astra Dialog Agent (Gemini 2.5 Flash + Rule-Based Safe Grounding)        |  |
+|  |  • Baymate Dialog Agent (Gemini 2.5 Flash + Rule-Based Safe Grounding)      |  |
 |  +-----------------------------------------------------------------------------+  |
 +-----------------------------------------------------------------------------------+
 ```
@@ -139,7 +139,7 @@ X-API-Key: ai-dropout-secret-key-2026
 ---
 
 ### 3.2. Meeting Request Ingestion (`POST /api/integrations/meeting-requests`)
-Implemented in InSightERP backend (`FSD/backend/controllers/integrationController.js`) and called by the AI delivery service (`ai-dropout-prediction/backend/services/erpDeliveryService.js`).
+Implemented in ERP backend (`FSD/backend/controllers/integrationController.js`) and called by the AI delivery service (`ai-dropout-prediction/backend/services/erpDeliveryService.js`).
 
 #### Authentication
 - **Header**: `X-Service-Key: <ERP_SERVICE_API_KEY>` (Timing-safe evaluation via `crypto.timingSafeEqual`)

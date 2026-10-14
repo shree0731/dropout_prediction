@@ -24,7 +24,10 @@ export default function PredictPage() {
     first_gen_learner: 1,
     distance_from_home_km: 32.0,
     failed_subjects_count: 3,
-    core_theory_average: 48.0
+    core_theory_average: 48.0,
+    internal_exam_avg: 26.0,
+    assignment_avg: 5.0,
+    grade_trend: -0.4
   });
 
   const [loading, setLoading] = useState(false);
@@ -62,8 +65,12 @@ export default function PredictPage() {
       family_income_annual: student.family_income_annual,
       first_gen_learner: student.first_gen_learner,
       distance_from_home_km: student.distance_from_home_km,
-      failed_subjects_count: student.backlogs_count,
-      core_theory_average: student.subject_marks_summary?.core_theory_average || 55.0
+      // Real marks-derived aggregates computed server-side from marks.csv (no invented values)
+      failed_subjects_count: student.marks_features?.failed_subjects_count ?? student.subject_marks_summary?.failed_subjects_count ?? 0,
+      core_theory_average: student.marks_features?.core_theory_average ?? student.subject_marks_summary?.core_theory_average ?? 0,
+      internal_exam_avg: student.marks_features?.internal_exam_avg ?? 0,
+      assignment_avg: student.marks_features?.assignment_avg ?? 0,
+      grade_trend: student.marks_features?.grade_trend ?? 0
     });
     setResult(null);
     setError(null);
@@ -79,10 +86,7 @@ export default function PredictPage() {
       department: formData.department,
       year_of_study: Number(formData.year_of_study),
       attendance_pct: Number(formData.attendance_pct),
-      monthly_attendance_trend: [
-        Number(formData.attendance_pct) + Number(formData.attendance_decay),
-        Number(formData.attendance_pct)
-      ],
+      attendance_decay: Number(formData.attendance_decay),
       overall_gpa: Number(formData.overall_gpa),
       backlogs_count: Number(formData.backlogs_count),
       cutoff_mark_200: Number(formData.cutoff_mark_200),
@@ -90,10 +94,11 @@ export default function PredictPage() {
       family_income_annual: Number(formData.family_income_annual),
       first_gen_learner: Number(formData.first_gen_learner),
       distance_from_home_km: Number(formData.distance_from_home_km),
-      subject_marks_summary: {
-        failed_subjects_count: Number(formData.failed_subjects_count),
-        core_theory_average: Number(formData.core_theory_average)
-      }
+      failed_subjects_count: Number(formData.failed_subjects_count),
+      core_theory_average: Number(formData.core_theory_average),
+      internal_exam_avg: Number(formData.internal_exam_avg),
+      assignment_avg: Number(formData.assignment_avg),
+      grade_trend: Number(formData.grade_trend)
     };
 
     try {
@@ -245,12 +250,12 @@ export default function PredictPage() {
             </div>
 
             <div>
-              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>6-Mo Attendance Decay (%)</label>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>Attendance Drop, first→latest month (pts)</label>
               <input
                 type="number"
                 step="0.1"
-                min="0"
-                max="60"
+                min="-100"
+                max="100"
                 className="form-input"
                 value={formData.attendance_decay}
                 onChange={e => setFormData({ ...formData, attendance_decay: e.target.value })}
@@ -277,7 +282,7 @@ export default function PredictPage() {
               <input
                 type="number"
                 min="0"
-                max="15"
+                max="100"
                 className="form-input"
                 value={formData.backlogs_count}
                 onChange={e => setFormData({ ...formData, backlogs_count: e.target.value })}
@@ -304,11 +309,41 @@ export default function PredictPage() {
               <input
                 type="number"
                 min="0"
-                max="8"
+                max="100"
                 className="form-input"
                 value={formData.mentor_meetings_attended}
                 onChange={e => setFormData({ ...formData, mentor_meetings_attended: e.target.value })}
               />
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>Failed Subjects (Arrear results)</label>
+              <input type="number" step="1" min="0" max="100" className="form-input"
+                value={formData.failed_subjects_count}
+                onChange={e => setFormData({ ...formData, failed_subjects_count: e.target.value })} />
+            </div>
+            <div>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>Internal Exam Average</label>
+              <input type="number" step="0.1" min="0" max="100" className="form-input"
+                value={formData.internal_exam_avg}
+                onChange={e => setFormData({ ...formData, internal_exam_avg: e.target.value })} />
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>Assignment Average</label>
+              <input type="number" step="0.1" min="0" max="100" className="form-input"
+                value={formData.assignment_avg}
+                onChange={e => setFormData({ ...formData, assignment_avg: e.target.value })} />
+            </div>
+            <div>
+              <label style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: '700', display: 'block', marginBottom: '0.35rem' }}>Grade Trend (last sem − first sem)</label>
+              <input type="number" step="0.1" min="-10" max="10" className="form-input"
+                value={formData.grade_trend}
+                onChange={e => setFormData({ ...formData, grade_trend: e.target.value })} />
             </div>
           </div>
 
@@ -424,10 +459,12 @@ export default function PredictPage() {
                 type="button"
                 onClick={() => navigate('/chat', { state: { student: { ...formData, prediction: result.prediction } } })}
                 className="btn-secondary"
-                style={{ width: '100%', justifyContent: 'center' }}
+                style={{ width: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center', gap: '0.6rem' }}
               >
-                <MessageSquare size={16} color="#ED4D8B" />
-                <span>Open in Astra Academic Advisor Bot</span>
+                <div style={{ width: '22px', height: '22px', borderRadius: '50%', overflow: 'hidden', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }}>
+                  <img src="/baymate-avatar.png" alt="Baymate" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+                <span>Open in Baymate Academic Advisor Bot</span>
                 <ArrowRight size={16} />
               </button>
             </div>

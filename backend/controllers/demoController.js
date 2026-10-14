@@ -3,7 +3,56 @@ const path = require('path');
 const readline = require('readline');
 
 const DATA_PATH = path.join(__dirname, '../../data/students.csv');
+const MARKS_PATH = path.join(__dirname, '../../data/marks.csv');
 let cachedDemoStudents = null;
+
+/**
+ * Computes the five marks-derived model features for the selected demo students from the
+ * real marks.csv, using the SAME formulas as models/train_pipeline.py:
+ *   failed_subjects_count = count(result == 'Arrear')
+ *   core_theory_average   = mean(total_marks | Theory)
+ *   internal_exam_avg     = mean((internal_exam_1 + internal_exam_2) / 2)
+ *   assignment_avg        = mean((assignment_1 + assignment_2) / 2)
+ *   grade_trend           = mean grade_point(last semester) - mean grade_point(first semester)
+ */
+async function attachMarksFeatures(students) {
+  const wanted = new Map(students.map(s => [s.student_id, { failed: 0, theory: [], cia: [], asg: [], sem: {} }]));
+  if (!wanted.size || !fs.existsSync(MARKS_PATH)) return;
+
+  const rl = readline.createInterface({ input: fs.createReadStream(MARKS_PATH, { encoding: 'utf-8' }), crlfDelay: Infinity });
+  let header = null;
+  for await (const line of rl) {
+    if (!line.trim()) continue;
+    const cols = line.split(',');
+    if (!header) { header = cols.map(c => c.trim()); continue; }
+    const acc = wanted.get(cols[0]);
+    if (!acc) continue;
+    const r = {};
+    header.forEach((h, i) => { r[h] = cols[i]; });
+    if (r.result && r.result.trim() === 'Arrear') acc.failed += 1;
+    if (r.subject_type === 'Theory') acc.theory.push(Number(r.total_marks));
+    acc.cia.push((Number(r.internal_exam_1_marks) + Number(r.internal_exam_2_marks)) / 2);
+    acc.asg.push((Number(r.assignment_1_marks) + Number(r.assignment_2_marks)) / 2);
+    (acc.sem[r.semester] = acc.sem[r.semester] || []).push(Number(r.grade_point));
+  }
+
+  const mean = a => a.reduce((x, y) => x + y, 0) / a.length;
+  for (const s of students) {
+    const a = wanted.get(s.student_id);
+    const sems = Object.keys(a.sem).map(Number).sort((x, y) => x - y);
+    s.marks_features = {
+      failed_subjects_count: a.failed,
+      core_theory_average: a.theory.length ? Number(mean(a.theory).toFixed(6)) : undefined,
+      internal_exam_avg: a.cia.length ? Number(mean(a.cia).toFixed(6)) : undefined,
+      assignment_avg: a.asg.length ? Number(mean(a.asg).toFixed(6)) : undefined,
+      grade_trend: sems.length >= 2 ? Number((mean(a.sem[sems[sems.length - 1]]) - mean(a.sem[sems[0]])).toFixed(6)) : 0
+    };
+    s.subject_marks_summary = {
+      failed_subjects_count: s.marks_features.failed_subjects_count,
+      core_theory_average: s.marks_features.core_theory_average
+    };
+  }
+}
 
 async function loadDemoStudents() {
   if (cachedDemoStudents) return cachedDemoStudents;
@@ -61,10 +110,6 @@ async function loadDemoStudents() {
         admission_quota: row.admission_quota,
         dropout_risk_label: row.dropout_risk_label,
         dropout_risk_score: Number(row.dropout_risk_score),
-        subject_marks_summary: {
-          failed_subjects_count: Number(row.backlogs_count),
-          core_theory_average: Number(row.overall_gpa) > 7 ? 68.5 : Number(row.overall_gpa) > 5.5 ? 52.0 : 42.5
-        }
       };
 
       if (row.student_id === 'STU_MIST_IT_Y3_5559') {
@@ -86,7 +131,9 @@ async function loadDemoStudents() {
       highRisk.unshift(targetStudent);
     }
 
-  cachedDemoStudents = [...highRisk, ...medRisk, ...lowRisk];
+  const chosen = [...highRisk, ...medRisk, ...lowRisk];
+  await attachMarksFeatures(chosen);
+  cachedDemoStudents = chosen;
   return cachedDemoStudents;
 }
 

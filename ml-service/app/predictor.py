@@ -4,7 +4,7 @@ import joblib
 import numpy as np
 import pandas as pd
 import shap
-from pydantic import BaseModel, Field, ValidationError
+from pydantic import BaseModel, Field, ValidationError, field_validator
 from typing import Literal, Optional, List, Dict, Any
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -31,32 +31,52 @@ with open(METRICS_PATH, 'r') as f:
 with open(FEATURE_SPEC_PATH, 'r') as f:
     FEATURE_SPEC = json.load(f)
 
-# Pydantic schema enforcing exact model features without silent defaults
-VALID_DEPARTMENTS = (
-    'CSE', 'IT', 'ECE', 'EEE', 'MECH', 'CIVIL',
-    'AIDS', 'AIML', 'CSBS', 'BME', 'CHEM', 'AUTO', 'AERO'
-)
+# Department names are taken from the trained preprocessor itself so the API schema can
+# never drift from what the model was fitted on (it was previously a hand-typed list that
+# rejected 29% of real students, e.g. 'Mechanical', 'Civil', 'Cyber Security').
+VALID_DEPARTMENTS = tuple(preprocessor.named_transformers_['cat'].categories_[0])
+
+# Legacy short codes still accepted from older clients; mapped to the trained names.
+DEPARTMENT_ALIASES = {
+    'MECH': 'Mechanical', 'MECHANICAL': 'Mechanical',
+    'CIVIL': 'Civil',
+    'AUTO': 'Automobile', 'AUTOMOBILE': 'Automobile',
+    'CYBER': 'Cyber Security', 'CYBERSECURITY': 'Cyber Security', 'CYBER SECURITY': 'Cyber Security',
+    'ROBOTICS': 'Robotics',
+}
+
+def normalize_department(value):
+    """Case-insensitive match to a trained department name; aliases supported."""
+    if not isinstance(value, str):
+        return value
+    key = value.strip()
+    for name in VALID_DEPARTMENTS:
+        if name.lower() == key.lower():
+            return name
+    return DEPARTMENT_ALIASES.get(key.upper(), value)
 
 class ModelStudentFeatures(BaseModel):
     attendance_pct: float = Field(..., ge=0.0, le=100.0, description="Overall attendance percentage")
     attendance_decay: float = Field(..., ge=-100.0, le=100.0, description="Attendance drop from month 1 to last month")
     overall_gpa: float = Field(..., ge=0.0, le=10.0, description="Cumulative grade point average")
-    backlogs_count: int = Field(..., ge=0, le=50, description="Total active uncleared backlogs")
+    backlogs_count: int = Field(..., ge=0, le=100, description="Total active uncleared backlogs")
     cutoff_mark_200: float = Field(..., ge=0.0, le=200.0, description="Admission cutoff mark (/200)")
     family_income_annual: float = Field(..., ge=0.0, description="Annual family income")
     mentor_meetings_attended: int = Field(..., ge=0, le=100, description="Mentor meetings attended")
     first_gen_learner: int = Field(..., ge=0, le=1, description="First-generation learner flag (0 or 1)")
     distance_from_home_km: float = Field(..., ge=0.0, le=2000.0, description="Distance from home in km")
-    failed_subjects_count: int = Field(..., ge=0, le=50, description="Failed subjects in semester marks")
+    failed_subjects_count: int = Field(..., ge=0, le=100, description="Failed subjects in semester marks")
     core_theory_average: float = Field(..., ge=0.0, le=100.0, description="Core theory course mark average")
     internal_exam_avg: float = Field(..., ge=0.0, le=100.0, description="Average continuous internal exam marks")
     assignment_avg: float = Field(..., ge=0.0, le=100.0, description="Average continuous assignment marks")
     grade_trend: float = Field(..., ge=-10.0, le=10.0, description="Grade progression from first to latest semester")
     year_of_study: int = Field(..., ge=1, le=4, description="Curriculum year of study")
-    department: Literal[
-        'CSE', 'IT', 'ECE', 'EEE', 'MECH', 'CIVIL',
-        'AIDS', 'AIML', 'CSBS', 'BME', 'CHEM', 'AUTO', 'AERO'
-    ]
+    department: Literal[VALID_DEPARTMENTS] = Field(..., description="Academic department (must be one the model was trained on)")
+
+    @field_validator('department', mode='before')
+    @classmethod
+    def _normalize_department(cls, v):
+        return normalize_department(v)
 
 def extract_features_from_payload(payload: dict) -> pd.DataFrame:
     """
@@ -93,77 +113,112 @@ def extract_features_from_payload(payload: dict) -> pd.DataFrame:
     row = {f: getattr(validated, f) for f in feature_order}
     return pd.DataFrame([row])
 
-def derive_plain_language_drivers(features_df: pd.DataFrame, pred_class: str, probas: dict) -> list:
+FEATURE_ORDER = [
+    'attendance_pct', 'attendance_decay', 'overall_gpa', 'backlogs_count',
+    'cutoff_mark_200', 'family_income_annual', 'mentor_meetings_attended',
+    'first_gen_learner', 'distance_from_home_km', 'failed_subjects_count',
+    'core_theory_average', 'internal_exam_avg', 'assignment_avg', 'grade_trend',
+    'year_of_study', 'department'
+]
+
+def _describe_feature(feature: str, row, predicted: str) -> str:
+    """Plain-language sentence for a feature, quoting the student's actual value."""
+    v = row[feature]
+    risky = predicted in ('Medium', 'High')
+    if feature == 'backlogs_count':
+        return f"{int(v)} active backlog(s)" if v else "No active backlogs"
+    if feature == 'failed_subjects_count':
+        return f"{int(v)} subject(s) with an Arrear result" if v else "No failed subjects"
+    if feature == 'attendance_pct':
+        note = " (below the 75% eligibility bar)" if v < 75 else ""
+        return f"Overall attendance is {v:.1f}%{note}"
+    if feature == 'attendance_decay':
+        if v > 0:
+            return f"Attendance fell {v:.1f} points from the first to the latest month"
+        return f"Attendance is steady/improving ({-v:.1f} points change over the period)"
+    if feature == 'overall_gpa':
+        return f"Cumulative GPA is {v:.2f}/10"
+    if feature == 'core_theory_average':
+        return f"Core theory average is {v:.1f}/100"
+    if feature == 'internal_exam_avg':
+        return f"Internal exam average is {v:.1f}"
+    if feature == 'assignment_avg':
+        return f"Assignment average is {v:.1f}"
+    if feature == 'grade_trend':
+        return f"Grade trend across semesters is {v:+.2f} grade points"
+    if feature == 'mentor_meetings_attended':
+        return f"Attended {int(v)} mentor meeting(s)"
+    if feature == 'cutoff_mark_200':
+        return f"Admission cutoff mark is {v:.1f}/200"
+    if feature == 'family_income_annual':
+        return f"Annual family income is Rs {v:,.0f}"
+    if feature == 'distance_from_home_km':
+        return f"Lives {v:.0f} km from home"
+    if feature == 'first_gen_learner':
+        return "First-generation learner" if v else "Not a first-generation learner"
+    if feature == 'year_of_study':
+        return f"Year {int(v)} of study"
+    if feature == 'department':
+        return f"Department: {v}"
+    return f"{feature} = {v}"
+
+def compute_shap_drivers(X_trans, features_df: pd.DataFrame, pred_num: int, pred_label: str, top_n: int = 4):
+    """
+    Real per-student explanation: TreeExplainer SHAP values for the PREDICTED class,
+    with one-hot department columns folded back into a single 'department' feature.
+    Positive SHAP = pushes the model towards the predicted class (log-odds units).
+    Returns None if the explainer is unavailable (caller falls back, labelled as such).
+    """
+    if tree_explainer is None:
+        return None
+    sv = np.asarray(tree_explainer.shap_values(X_trans))
+    # Newer shap: (n_samples, n_features, n_classes); older: list of (n_samples, n_features)
+    if sv.ndim == 3 and sv.shape[0] == 1:
+        class_sv = sv[0, :, pred_num]
+    elif sv.ndim == 3:
+        class_sv = sv[pred_num, 0, :]
+    else:
+        return None
+
+    names = list(preprocessor.get_feature_names_out())
+    agg = {}
+    for name, val in zip(names, class_sv):
+        base = name.split('__', 1)[1]
+        if name.startswith('cat__department_'):
+            base = 'department'
+        agg[base] = agg.get(base, 0.0) + float(val)
+
+    row = features_df.iloc[0]
+    risky = pred_label in ('Medium', 'High')
+    ranked = sorted(((f, c) for f, c in agg.items() if c > 0.05), key=lambda x: -x[1])[:top_n]
+    return [{
+        "feature": f,
+        "contribution": f"{c:+.2f}",
+        "impact": round(c, 4),
+        "direction": "raises_risk" if risky else "protective",
+        "message": _describe_feature(f, row, pred_label)
+    } for f, c in ranked]
+
+def derive_rule_based_drivers(features_df: pd.DataFrame, pred_class: str) -> list:
+    """Clearly-labelled fallback used only if SHAP is unavailable."""
     row = features_df.iloc[0]
     drivers = []
-
-    backlogs = row['backlogs_count']
-    if backlogs >= 3:
-        drivers.append({
-            "feature": "backlogs_count",
-            "contribution": "+0.34",
-            "message": f"{backlogs} active uncleared backlogs detected across semesters"
-        })
-    elif backlogs >= 1:
-        drivers.append({
-            "feature": "backlogs_count",
-            "contribution": "+0.18",
-            "message": f"{backlogs} active backlog subject requiring remedial clearance"
-        })
-
-    decay = row['attendance_decay']
-    if decay > 10.0:
-        drivers.append({
-            "feature": "attendance_decay",
-            "contribution": f"+{min(0.35, round(decay/50.0, 2))}",
-            "message": f"Attendance declined {decay:.1f}% over the semester"
-        })
-    elif row['attendance_pct'] < 75.0:
-        drivers.append({
-            "feature": "attendance_pct",
-            "contribution": "+0.25",
-            "message": f"Attendance ({row['attendance_pct']}%) is below statutory 75% exam eligibility"
-        })
-
-    gpa = row['overall_gpa']
-    if gpa < 6.0:
-        drivers.append({
-            "feature": "overall_gpa",
-            "contribution": "+0.20",
-            "message": f"Cumulative GPA ({gpa:.2f}/10) reflects sustained academic stress"
-        })
-
-    core_theory = row['core_theory_average']
-    if core_theory < 50.0:
-        drivers.append({
-            "feature": "core_theory_average",
-            "contribution": "+0.15",
-            "message": f"Core theory exam performance ({core_theory:.1f}%) is in critical zone"
-        })
-
-    meetings = row['mentor_meetings_attended']
-    if meetings <= 1 and pred_class in ['Medium', 'High']:
-        drivers.append({
-            "feature": "mentor_meetings_attended",
-            "contribution": "+0.12",
-            "message": f"Low advisory engagement: attended only {meetings} mentor meeting(s)"
-        })
-
+    if row['backlogs_count'] >= 1:
+        drivers.append({"feature": "backlogs_count", "contribution": "n/a", "direction": "raises_risk",
+                        "message": _describe_feature('backlogs_count', row, pred_class)})
+    if row['attendance_decay'] > 10.0 or row['attendance_pct'] < 75.0:
+        f = 'attendance_decay' if row['attendance_decay'] > 10.0 else 'attendance_pct'
+        drivers.append({"feature": f, "contribution": "n/a", "direction": "raises_risk",
+                        "message": _describe_feature(f, row, pred_class)})
+    if row['overall_gpa'] < 6.0:
+        drivers.append({"feature": "overall_gpa", "contribution": "n/a", "direction": "raises_risk",
+                        "message": _describe_feature('overall_gpa', row, pred_class)})
     if not drivers:
-        drivers.append({
-            "feature": "attendance_pct",
-            "contribution": "-0.30",
-            "message": f"Healthy attendance ({row['attendance_pct']}%) and consistent submissions"
-        })
-        drivers.append({
-            "feature": "overall_gpa",
-            "contribution": "-0.25",
-            "message": f"Stable GPA performance ({row['overall_gpa']:.2f}/10) with zero active backlogs"
-        })
-
+        drivers.append({"feature": "overall_gpa", "contribution": "n/a", "direction": "protective",
+                        "message": _describe_feature('overall_gpa', row, pred_class)})
     return drivers[:4]
 
-def derive_recommended_interventions(pred_class: str, drivers: list) -> list:
+def _base_interventions(pred_class: str) -> list:
     if pred_class == 'High':
         return [
             "Schedule mandatory 1-on-1 faculty mentor counseling session",
@@ -183,6 +238,27 @@ def derive_recommended_interventions(pred_class: str, drivers: list) -> list:
             "Consider enrolling in technical certification or honors tracks"
         ]
 
+DRIVER_INTERVENTIONS = {
+    'attendance_decay': "Investigate the recent attendance drop with the student (health, transport, hostel, finances)",
+    'attendance_pct': "Issue the 75% attendance shortage notice and plan compensatory classes",
+    'backlogs_count': "Build an arrear-clearance plan with a tutor for each pending subject",
+    'failed_subjects_count': "Arrange remedial coaching for failed subjects before the next exam window",
+    'overall_gpa': "Review study habits and workload; consider a peer mentor",
+    'internal_exam_avg': "Offer targeted practice for continuous internal assessments",
+    'assignment_avg': "Check assignment submission difficulties and deadlines",
+    'family_income_annual': "Screen the student for scholarship / fee-relief eligibility",
+    'distance_from_home_km': "Review hostel or commute support",
+}
+
+def derive_recommended_interventions(pred_class: str, drivers: list) -> list:
+    items = _base_interventions(pred_class)
+    if pred_class in ('Medium', 'High'):
+        for d in drivers:
+            extra = DRIVER_INTERVENTIONS.get(d.get('feature'))
+            if extra and extra not in items:
+                items.append(extra)
+    return items[:6]
+
 def predict_student(payload: dict) -> dict:
     df = extract_features_from_payload(payload)
     X_trans = preprocessor.transform(df)
@@ -197,7 +273,15 @@ def predict_student(payload: dict) -> dict:
         'High': round(float(probas[2]), 2)
     }
 
-    drivers = derive_plain_language_drivers(df, pred_label, prob_dict)
+    drivers = None
+    method = 'shap_tree_explainer'
+    try:
+        drivers = compute_shap_drivers(X_trans, df, pred_num, pred_label)
+    except Exception as exc:  # never let explanation failure break a prediction
+        print(f"[predictor] SHAP explanation failed: {exc}")
+    if not drivers:
+        drivers = derive_rule_based_drivers(df, pred_label)
+        method = 'rule_based_fallback'
     interventions = derive_recommended_interventions(pred_label, drivers)
 
     return {
@@ -205,5 +289,6 @@ def predict_student(payload: dict) -> dict:
         "prediction": pred_label,
         "probabilities": prob_dict,
         "top_risk_drivers": drivers,
+        "explanation_method": method,
         "recommended_interventions": interventions
     }

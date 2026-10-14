@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { ArrowRight } from 'lucide-react';
 
 /**
  * DemoVideo Component
@@ -165,6 +166,21 @@ export default function DemoVideo() {
         fontWeight: '600'
       }}>
         Recorded demo · simulated data
+      </div>
+
+      {/* Direct Link to Live ERP Demo */}
+      <div style={{ textAlign: 'center', marginTop: '1.25rem' }}>
+        <button
+          type="button"
+          onClick={() => {
+            window.location.href = `${import.meta.env.VITE_ERP_URL || 'http://localhost:5173'}/login?role=mentor`;
+          }}
+          className="btn-primary"
+          style={{ padding: '0.75rem 1.6rem', fontSize: '0.9rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+        >
+          <span>See Live ERP Demo</span>
+          <ArrowRight size={16} />
+        </button>
       </div>
     </section>
   );

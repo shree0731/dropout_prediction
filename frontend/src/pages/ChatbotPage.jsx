@@ -24,7 +24,7 @@ export default function ChatbotPage() {
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: `Hello ${studentContext.student_name}! I'm Astra, your AI Academic Advisor. I noticed your attendance is currently at ${studentContext.attendance_pct}% and you have ${studentContext.backlogs_count} backlogs. How are you holding up this semester? Feel free to ask about your attendance cutoff, marks, or scheduling time with ${studentContext.mentor_name || 'your mentor'}.`
+      text: `Hello ${studentContext.student_name}! I'm Baymate, your AI academic advisor. I noticed your attendance is currently at ${studentContext.attendance_pct}% and you have ${studentContext.backlogs_count} backlogs. How are you holding up this semester? Feel free to ask about your attendance cutoff, marks, or scheduling time with ${studentContext.mentor_name || 'your mentor'}.`
     }
   ]);
 
@@ -58,7 +58,7 @@ export default function ChatbotPage() {
             setMessages([
               {
                 sender: 'bot',
-                text: `Hello ${mapped.student_name}! I'm Astra, your AI Academic Advisor. I noticed your attendance is currently at ${mapped.attendance_pct}% and you have ${mapped.backlogs_count} backlogs. How are you holding up this semester? Feel free to ask about your attendance cutoff, marks, or scheduling time with ${mapped.mentor_name || 'your mentor'}.`
+                text: `Hello ${mapped.student_name}! I'm Baymate, your AI academic advisor. I noticed your attendance is currently at ${mapped.attendance_pct}% and you have ${mapped.backlogs_count} backlogs. How are you holding up this semester? Feel free to ask about your attendance cutoff, marks, or scheduling time with ${mapped.mentor_name || 'your mentor'}.`
               }
             ]);
           }
@@ -120,7 +120,7 @@ export default function ChatbotPage() {
           </span>
         </div>
         <h1 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', fontWeight: '700', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
-          Astra Context-Aware Academic Advisor
+          Baymate Context-Aware Academic Advisor
         </h1>
         <p style={{ color: 'var(--ink)', opacity: 0.85, fontSize: '0.9rem', marginTop: '0.25rem' }}>
           Equipped with factual academic grounding, proactive check-ins, safety guardrails, and automated mentor meeting logging.
@@ -186,8 +186,8 @@ export default function ChatbotPage() {
                 }}
               >
                 {isBot && (
-                  <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'var(--surface)', color: 'var(--ink-on-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                    <Sparkles size={14} />
+                  <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px', overflow: 'hidden', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                    <img src="/baymate-avatar.png" alt="Baymate" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                 )}
                 <div style={{
@@ -207,9 +207,12 @@ export default function ChatbotPage() {
             );
           })}
           {loading && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--ink)', opacity: 0.8, fontSize: '0.8rem', marginLeft: '34px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--ink)', opacity: 0.8, fontSize: '0.8rem', marginLeft: '36px' }}>
+              <div style={{ width: '18px', height: '18px', borderRadius: '50%', overflow: 'hidden', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img src="/baymate-avatar.png" alt="Baymate" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
               <RefreshCw size={14} className="animate-spin" color="#ED4D8B" />
-              <span>Astra is analyzing verified academic records...</span>
+              <span>Baymate is analyzing verified academic records...</span>
             </div>
           )}
           <div ref={messagesEndRef} />

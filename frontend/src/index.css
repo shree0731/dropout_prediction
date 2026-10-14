@@ -1,5 +1,6 @@
 @import './styles/tokens.css';
 @import './styles/components.css';
+@import './styles/baymate-preview.css';
 
 /* Global Reset */
 *, *::before, *::after {
@@ -82,7 +83,12 @@ label {
   flex-direction: column;
   background: var(--bg);
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+.app-container:has(.baymate-landing) {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
 }
 
 .content-wrap {
@@ -93,6 +99,15 @@ label {
   padding: 1.5rem 1.5rem 5rem;
   position: relative;
   z-index: 10;
+}
+
+.content-wrap:has(.baymate-landing),
+.baymate-landing-wrap {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
 }
 
 /* Plain Rounded Card (GlassCard replacement) */

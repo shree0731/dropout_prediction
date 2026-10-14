@@ -93,7 +93,7 @@ export const api = {
       const att = studentContext.attendance_pct || 75.0;
       const backlogs = studentContext.backlogs_count || 0;
       
-      let reply = `Hello ${studentName}! I'm Astra, your AI Academic Advisor. Your records show ${att}% attendance and ${backlogs} backlogs. `;
+      let reply = `Hello ${studentName}! I'm Baymate, your AI academic advisor. Your records show ${att}% attendance and ${backlogs} backlogs. `;
       if (/attendance|cutoff|exam/i.test(message)) {
         reply = att < 75 
           ? `Your attendance is currently ${att}%, which is below the mandatory 75% cutoff for end-semester exams. You will need consistent attendance to avoid condonation.`

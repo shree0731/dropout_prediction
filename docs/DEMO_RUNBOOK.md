@@ -1,4 +1,4 @@
-# Demo Runbook: InSightERP + AI Dropout Prediction System
+# Demo Runbook: ERP + Baymate System
 
 This runbook guides presenters and evaluators through the complete startup, verification, and end-to-end demonstration of the integrated Student Dropout Prediction & Intervention System.
 
@@ -54,9 +54,9 @@ The launcher starts each service in order, polls each health endpoint until read
 |---|---|---|---|
 | **Python ML Engine** | `8001` | `http://127.0.0.1:8001` | `http://127.0.0.1:8001/health` |
 | **AI REST Gateway** | `5001` | `http://localhost:5001` | `http://localhost:5001/api/health` |
-| **AI Standalone UI** | `5174` | `http://localhost:5174` | `http://localhost:5174` |
-| **InSightERP Backend** | `5000` | `http://localhost:5000` | `http://localhost:5000/api/health` |
-| **InSightERP Frontend** | `5173` | `http://localhost:5173` | `http://localhost:5173` |
+| **Baymate UI** | `5174` | `http://localhost:5174` | `http://localhost:5174` |
+| **ERP Backend** | `5000` | `http://localhost:5000` | `http://localhost:5000/api/health` |
+| **ERP Frontend** | `5173` | `http://localhost:5173` | `http://localhost:5173` |
 
 ---
 

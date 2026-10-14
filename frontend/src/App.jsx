@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import CursorGlow from './components/CursorGlow';
+import BaymateFloatingTrigger from './components/BaymateFloatingTrigger';
 import LandingPage from './pages/LandingPage';
 import ModelDashboard from './pages/ModelDashboard';
 import PredictPage from './pages/PredictPage';
@@ -22,6 +23,8 @@ export default function App() {
             <Route path="/chat" element={<ChatbotPage />} />
           </Routes>
         </main>
+        {/* Floating Baymate Mascot button: click opens the chat */}
+        <BaymateFloatingTrigger />
       </div>
     </Router>
   );

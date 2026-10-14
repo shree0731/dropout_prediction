@@ -9,9 +9,9 @@ Endpoints:
 """
 
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field, ValidationError
+from pydantic import BaseModel, Field, ValidationError, field_validator
 from typing import Optional, List, Dict, Any, Literal
-from app.predictor import predict_student, EVALUATION_METRICS, ModelStudentFeatures
+from app.predictor import predict_student, EVALUATION_METRICS, ModelStudentFeatures, VALID_DEPARTMENTS, normalize_department
 from app.chatbot import get_chatbot_response
 
 app = FastAPI(
@@ -24,26 +24,28 @@ app = FastAPI(
 
 class PredictRequest(BaseModel):
     student_id: Optional[str] = "STU_DEMO_001"
-    department: Literal[
-        'CSE', 'IT', 'ECE', 'EEE', 'MECH', 'CIVIL',
-        'AIDS', 'AIML', 'CSBS', 'BME', 'CHEM', 'AUTO', 'AERO'
-    ]
+    department: Literal[VALID_DEPARTMENTS]
     year_of_study: int = Field(..., ge=1, le=4)
     attendance_pct: float = Field(..., ge=0.0, le=100.0)
     attendance_decay: Optional[float] = None
     monthly_attendance_trend: Optional[List[float]] = None
     overall_gpa: float = Field(..., ge=0.0, le=10.0)
-    backlogs_count: int = Field(..., ge=0, le=50)
+    backlogs_count: int = Field(..., ge=0, le=100)
     cutoff_mark_200: float = Field(..., ge=0.0, le=200.0)
     family_income_annual: float = Field(..., ge=0.0)
     mentor_meetings_attended: int = Field(..., ge=0, le=100)
     first_gen_learner: int = Field(..., ge=0, le=1)
     distance_from_home_km: float = Field(..., ge=0.0, le=2000.0)
-    failed_subjects_count: int = Field(..., ge=0, le=50)
+    failed_subjects_count: int = Field(..., ge=0, le=100)
     core_theory_average: float = Field(..., ge=0.0, le=100.0)
     internal_exam_avg: float = Field(..., ge=0.0, le=100.0)
     assignment_avg: float = Field(..., ge=0.0, le=100.0)
     grade_trend: float = Field(..., ge=-10.0, le=10.0)
+
+    @field_validator('department', mode='before')
+    @classmethod
+    def _normalize_department(cls, v):
+        return normalize_department(v)
 
 class ChatRequest(BaseModel):
     message: str

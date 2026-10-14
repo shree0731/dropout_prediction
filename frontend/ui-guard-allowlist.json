@@ -2,19 +2,25 @@
   "allowedNewFiles": [
     "src/components/HeroParallax.jsx",
     "src/components/ScrollParallax.jsx",
-    "src/components/DemoVideo.jsx"
+    "src/components/DemoVideo.jsx",
+    "src/components/BaymateFloatingTrigger.jsx"
   ],
   "allowedModifiedFiles": [
     "src/components/GlassCard.jsx",
     "src/components/CursorGlow.jsx",
-    "src/pages/ChatbotPage.jsx",
+    "src/pages/LandingPage.jsx",
     "src/pages/ModelDashboard.jsx",
-    "src/pages/LandingPage.jsx"
+    { "file": "src/App.jsx", "reason": "baymate character floating trigger" },
+    { "file": "src/components/Navbar.jsx", "reason": "rename" },
+    { "file": "src/pages/ChatbotPage.jsx", "reason": "rename" },
+    { "file": "src/pages/PredictPage.jsx", "reason": "rename" },
+    { "file": "src/services/api.js", "reason": "rename" }
   ],
   "allowedElements": [
     "HeroParallax",
     "ScrollParallax",
     "DemoVideo",
+    "BaymateFloatingTrigger",
     "hero-photo-ring",
     "ticker",
     "about-section",

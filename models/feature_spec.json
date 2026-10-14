@@ -1,7 +1,11 @@
 {
   "version": "1.0.0",
   "target": "dropout_risk_label",
-  "classes": ["Low", "Medium", "High"],
+  "classes": [
+    "Low",
+    "Medium",
+    "High"
+  ],
   "features": [
     {
       "name": "attendance_pct",
@@ -35,7 +39,7 @@
       "type": "int",
       "category": "numeric",
       "min": 0,
-      "max": 50,
+      "max": 100,
       "description": "Number of currently active uncleared course backlogs/arrears",
       "formula": "student.backlogs_count"
     },
@@ -89,7 +93,7 @@
       "type": "int",
       "category": "numeric",
       "min": 0,
-      "max": 50,
+      "max": 100,
       "description": "Number of course subjects with Arrear result in semester marks records",
       "formula": "count(marks[result == 'Arrear'])"
     },
@@ -143,8 +147,19 @@
       "type": "str",
       "category": "categorical",
       "allowed_values": [
-        "CSE", "IT", "ECE", "EEE", "MECH", "CIVIL",
-        "AIDS", "AIML", "CSBS", "BME", "CHEM", "AUTO", "AERO"
+        "AIDS",
+        "AIML",
+        "Automobile",
+        "CSBS",
+        "CSD",
+        "CSE",
+        "Civil",
+        "Cyber Security",
+        "ECE",
+        "EEE",
+        "IT",
+        "Mechanical",
+        "Robotics"
       ],
       "description": "Academic department engineering branch",
       "formula": "student.department"

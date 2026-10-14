@@ -7,7 +7,7 @@ This standalone platform is an end-to-end, AI-powered system engineered to ident
 - **Sibling Directory Architecture**: Resides in `ai-dropout-prediction/` alongside `FSD/` (the College ERP).
 - **Core ML Model**: Gradient-Boosted Decision Trees (**XGBoost**) calibrated with cost-sensitive class weighting for high minority-class recall.
 - **Explainability Engine**: SHAP (**SHapley Additive exPlanations**) TreeExplainer translating raw mathematical shapley values into plain-language actionable academic drivers (e.g., *"3 active uncleared backlogs"*, *"Attendance declined 17% over 6 months"*).
-- **Intervention Dialogue Agent**: Context-aware advisor (*Astra*) with institutional policy grounding, proactive check-ins, suicide/distress guardrails (Tele-MANAS integration), and automated faculty mentor meeting scheduling persisted into MongoDB.
+- **Intervention Dialogue Agent**: Context-aware advisor (*Baymate*) with institutional policy grounding, proactive check-ins, suicide/distress guardrails (Tele-MANAS integration), and automated faculty mentor meeting scheduling persisted into MongoDB.
 
 ---
 
@@ -25,14 +25,14 @@ This standalone platform is an end-to-end, AI-powered system engineered to ident
 [ ML Microservice / Python FastAPI ] (Port 8001)
    ├── XGBoost Pipeline (dropout_model.pkl)
    ├── SHAP TreeExplainer Attribution
-   └── Astra Intervention Engine (Gemini 2.5 Flash + Rule-Based Guardrails)
+   └── Baymate Intervention Engine (Gemini 2.5 Flash + Rule-Based Guardrails)
 ```
 
 1. **Frontend (React 18 + Vite)** on `http://localhost:5174`:
    - Modern dark UI with glassmorphic styling, pink accents (`#ED4D8B`), and clean tabular views.
    - **Model Evaluation Dashboard**: Real-time confusion matrix heatmap, SHAP global feature importance ranking, and baseline tournament comparison.
    - **Predict Risk Sandbox**: 1-click test selector with 30 pre-loaded balanced demo students (High, Medium, Low risk) + manual custom parameter input.
-   - **Astra Chat Advisor**: Real-time dialogue interface showing active student academic badges, quick prompt chips, and instant meeting escalation confirmations.
+   - **Baymate Chat Advisor**: Real-time dialogue interface showing active student academic badges, quick prompt chips, and instant meeting escalation confirmations.
 2. **Gateway Backend (Node.js + Express 4.x)** on `http://localhost:5001`:
    - Acts as the unified public API for both the standalone UI and future College ERP requests.
    - Handles `X-API-Key` authentication and CORS.
@@ -71,7 +71,7 @@ This standalone platform is an end-to-end, AI-powered system engineered to ident
 > *"This mirrors enterprise microservice patterns and maintains architectural consistency with our College ERP system (built on the MERN stack). Express manages client-facing concerns like CORS, authentication headers, rate limits, and MongoDB document persistence, while FastAPI is dedicated strictly to compute-heavy ML inferences and LLM dialogue."*
 
 #### Q4: How does the system protect against AI hallucination in the chatbot?
-> *"Astra is strictly conditioned on verified academic records passed in the student context banner (attendance, backlogs, GPA, mentor). It is instructed never to fabricate marks or eligibility rules. Furthermore, if the LLM service is offline, a deterministic, rule-based fallback advisor steps in to deliver exact institutional regulations (75% attendance cutoff, remedial tutorials, and 24x7 Tele-MANAS helpline for crisis queries)."*
+> *"Baymate is strictly conditioned on verified academic records passed in the student context banner (attendance, backlogs, GPA, mentor). It is instructed never to fabricate marks or eligibility rules. Furthermore, if the LLM service is offline, a deterministic, rule-based fallback advisor steps in to deliver exact institutional regulations (75% attendance cutoff, remedial tutorials, and 24x7 Tele-MANAS helpline for crisis queries)."*
 
 ---
 

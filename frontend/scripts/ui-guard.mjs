@@ -42,26 +42,26 @@ function getAllFiles(dir, exts = ['.js', '.jsx']) {
 }
 
 function getBaselineCode(relPath) {
-  // Try git show pre-round3:frontend/<relPath>
   const normalizedRel = relPath.replace(/\\/g, '/');
-  try {
-    return execSync(`git show pre-round3:frontend/${normalizedRel}`, {
-      cwd: frontendDir,
-      encoding: 'utf-8',
-      stdio: ['pipe', 'pipe', 'pipe']
-    });
-  } catch {
-    // Fallback: try without frontend/ prefix if repo root is frontend
+  const tags = ['pre-rename', 'pre-round3'];
+  for (const tag of tags) {
     try {
-      return execSync(`git show pre-round3:${normalizedRel}`, {
+      return execSync(`git show ${tag}:frontend/${normalizedRel}`, {
         cwd: frontendDir,
         encoding: 'utf-8',
         stdio: ['pipe', 'pipe', 'pipe']
       });
-    } catch (e) {
-      throw new Error(`Could not load baseline for ${normalizedRel}: ${e.message}`);
+    } catch {
+      try {
+        return execSync(`git show ${tag}:${normalizedRel}`, {
+          cwd: frontendDir,
+          encoding: 'utf-8',
+          stdio: ['pipe', 'pipe', 'pipe']
+        });
+      } catch {}
     }
   }
+  throw new Error(`Could not load baseline for ${normalizedRel}`);
 }
 
 function parseCode(code) {
@@ -367,23 +367,32 @@ export function runGuard() {
       continue;
     }
 
-    // 2. Check if allowed modified component (GlassCard, CursorGlow)
-    if ((allowlist.allowedModifiedFiles || []).includes(relPath)) {
+    // 2. Check if allowed modified component
+    const allowedMod = (allowlist.allowedModifiedFiles || []).find(item =>
+      typeof item === 'string' ? item === relPath : (item.file === relPath || item.path === relPath)
+    );
+    if (allowedMod) {
       try {
         const code = fs.readFileSync(file, 'utf-8');
         const ast = parseCode(code);
-        // Ensure default export is retained
-        let hasDefaultExport = false;
+        // Ensure export is retained
+        let hasExport = false;
         traverse(ast, {
           ExportDefaultDeclaration() {
-            hasDefaultExport = true;
+            hasExport = true;
+          },
+          ExportNamedDeclaration() {
+            hasExport = true;
           }
         });
-        if (!hasDefaultExport) {
+        if (!hasExport) {
           allPass = false;
-          results.push({ file: relPath, status: 'FAIL', error: 'Missing required default export' });
+          results.push({ file: relPath, status: 'FAIL', error: 'Missing required export' });
         } else {
-          results.push({ file: relPath, status: 'PASS', note: '(allowed visual simplification)' });
+          const reasonNote = typeof allowedMod === 'object' && allowedMod.reason
+            ? `(allowed: ${allowedMod.reason})`
+            : '(allowed modification)';
+          results.push({ file: relPath, status: 'PASS', note: reasonNote });
         }
       } catch (err) {
         allPass = false;

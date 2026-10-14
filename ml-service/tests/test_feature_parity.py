@@ -30,10 +30,8 @@ def test_feature_parity_20_students():
     for rec in records:
         assert 'student_id' in rec
         assert 'department' in rec
-        assert rec['department'] in [
-            'CSE', 'IT', 'ECE', 'EEE', 'MECH', 'CIVIL',
-            'AIDS', 'AIML', 'CSBS', 'BME', 'CHEM', 'AUTO', 'AERO'
-        ]
+        from app.predictor import VALID_DEPARTMENTS
+        assert rec['department'] in VALID_DEPARTMENTS
 
         for col in numeric_cols:
             assert col in rec

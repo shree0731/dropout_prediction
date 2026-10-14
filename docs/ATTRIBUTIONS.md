@@ -18,8 +18,8 @@ This document provides complete provenance, licensing, and attribution records f
 
 | File Name | Generation Method | Author / Pipeline | License | Date Generated | Description |
 |---|---|---|---|---|---|
-| `confusion_matrix.png` | Programmatically generated via `train_pipeline.py` (matplotlib / seaborn) | InSightML Training Engine | MIT (Project Source Code) | 2026-10-05 | Multiclass confusion matrix on held-out test split (N = 1,840). |
-| `shap_summary.png` | Programmatically generated via `train_pipeline.py` (SHAP TreeExplainer) | InSightML Training Engine | MIT (Project Source Code) | 2026-10-05 | Feature importance beeswarm summary plot for early-warning indicators. |
+| `confusion_matrix.png` | Programmatically generated via `train_pipeline.py` (matplotlib / seaborn) | Baymate Training Engine | MIT (Project Source Code) | 2026-10-05 | Multiclass confusion matrix on held-out test split (N = 1,840). |
+| `shap_summary.png` | Programmatically generated via `train_pipeline.py` (SHAP TreeExplainer) | Baymate Training Engine | MIT (Project Source Code) | 2026-10-05 | Feature importance beeswarm summary plot for early-warning indicators. |
 
 ---
 

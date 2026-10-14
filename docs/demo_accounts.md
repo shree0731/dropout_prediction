@@ -1,4 +1,4 @@
-# InSightERP & AI Intervention System — Demo Accounts Reference
+# ERP & Baymate System — Demo Accounts Reference
 
 This document outlines the demo accounts configured for institutional demonstrations, their respective roles, permissions, and linked entities from the verified student and faculty dataset (`students.csv` and `faculty.csv`).
 

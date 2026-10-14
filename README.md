@@ -1,5 +1,7 @@
 # AI-Powered Student Dropout Prediction and Intervention System
 
+Baymate is the AI platform (risk model, explanations and chatbot). The ERP is the college system that connects to it through Baymate's API.
+
 A standalone, end-to-end predictive and intervention platform designed for Indian engineering institutions. Combines a **defensible XGBoost machine learning model** with **SHAP explainability**, an **Express/MongoDB REST gateway**, a **Python FastAPI ML microservice**, and an **interactive React retention dashboard with an empathetic advisor**.
 
 ---
@@ -9,8 +11,8 @@ A standalone, end-to-end predictive and intervention platform designed for India
 ```mermaid
 flowchart TD
     subgraph Client Applications
-        EF["InSightERP Frontend\n(Port 5173)"]
-        AF["Standalone AI Frontend\n(Port 5174)\nSandbox • Metrics • Chatbot"]
+        EF["ERP Frontend\n(Port 5173)"]
+        AF["Baymate Frontend\n(Port 5174)\nSandbox • Metrics • Chatbot"]
     end
 
     subgraph Backend Gateways

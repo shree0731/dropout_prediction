@@ -1,6 +1,6 @@
 # UI Design & Editorial Style System
 
-This document outlines the visual restyle of the **Astra Retain AI** (AI-Powered Student Dropout Prediction and Proactive Intervention System) frontend. The restyle implements an editorial aesthetic characterized by deep forest green over warm sand, large tight headlines, rounded photography, outlined pill buttons, and calm, spacious layouts.
+This document outlines the visual restyle of the **Baymate** (AI-Powered Student Dropout Prediction and Proactive Intervention System) frontend. The restyle implements an editorial aesthetic characterized by deep forest green over warm sand, large tight headlines, rounded photography, outlined pill buttons, and calm, spacious layouts.
 
 ---
 
