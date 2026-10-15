@@ -66,10 +66,10 @@ All demo accounts share the password configured in the `.env` file under `DEMO_P
 
 | Username | Role | Linked ID | Name | Dataset Profile / Context |
 |---|---|---|---|---|
-| `mentor` | Mentor | `FAC_MIST_IT_333` | Dr. Sudha Rajagopalan | IT Dept, 19 assigned mentees (8 High-Risk, 11 Low-Risk) |
-| `student` | Student | `STU_MIST_IT_Y3_5559` | Bhoomika Gowda | **High Risk**: Attendance decayed 80.6% &rarr; 62.8%, 27 backlogs, CGPA 6.1 |
-| `student2` | Student | `STU_MIST_IT_Y4_5573` | Vasanth Balasubramanian | **Medium Risk contrast**: Risk score 0.619, 80.8% attendance, 7 backlogs |
-| `student3` | Student | `STU_MIST_IT_Y3_5514` | Sahana Hegde | **Low Risk contrast**: Risk score 0.184, 88.9% attendance, 0 backlogs |
+| `mentor` | Mentor | `FAC_MIST_IT_333` | Dr. Sudha Rajagopalan | IT Dept, 19 assigned mentees (8 High-Risk, 0 Medium-Risk, 11 Low-Risk) |
+| `student` | Student | `STU_MIST_IT_Y3_5559` | Bhoomika Gowda | **High Risk**: Attendance 70.8% (decayed 80.6% &rarr; 62.8%), 27 backlogs (`students.csv`), 33 Arrear results (`marks.csv`), GPA 1.39. Note: backlogs_count (students.csv) and the count of result == 'Arrear' rows (marks.csv) are generated independently and can differ. The model uses both as separate features. |
+| `student2` | Student | `STU_MIST_IT_Y4_5573` | Vasanth Balasubramanian | **Low Risk / Elevated Score Contrast**: Risk score 0.619, 80.8% attendance, 7 backlogs (`students.csv`), 8 Arrear results (`marks.csv`), GPA 5.60 |
+| `student3` | Student | `STU_MIST_IT_Y3_5514` | Sahana Hegde | **Low Risk contrast**: Risk score 0.184, 88.9% attendance, 0 backlogs (`students.csv`), 0 Arrear results (`marks.csv`), GPA 7.90 |
 | `admin` | Admin | `ADMIN_CHIEF_01` | Academic Dean Office | Institution-wide analytics across 4 campuses & 13 departments |
 
 ---
