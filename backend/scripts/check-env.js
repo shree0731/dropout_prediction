@@ -69,10 +69,12 @@ function checkEnv(env = process.env, options = { exitOnError: true, silent: fals
     errors.push('SESSION_SECRET cannot equal API_KEY. Browser session tokens must use a distinct signing secret from the service API_KEY.');
   }
 
-  // 4. ALLOWED_ORIGINS
-  if (!env.ALLOWED_ORIGINS || !env.ALLOWED_ORIGINS.trim()) {
-    errors.push('ALLOWED_ORIGINS is missing (e.g. http://localhost:5173,http://localhost:5174,http://localhost:3000).');
+  // 4. CORS_ORIGINS / ALLOWED_ORIGINS
+  const corsOrigins = env.CORS_ORIGINS || env.ALLOWED_ORIGINS;
+  if (!corsOrigins || !corsOrigins.trim()) {
+    errors.push('CORS_ORIGINS (or ALLOWED_ORIGINS) is missing (e.g. http://localhost:5173,http://localhost:5174,http://localhost:3000).');
   }
+
 
   // 5. ML_SERVICE_URL
   if (!env.ML_SERVICE_URL || !env.ML_SERVICE_URL.trim()) {

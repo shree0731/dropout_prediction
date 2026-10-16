@@ -13,6 +13,8 @@ from pydantic import BaseModel, Field, ValidationError, field_validator
 from typing import Optional, List, Dict, Any, Literal
 from app.predictor import predict_student, EVALUATION_METRICS, ModelStudentFeatures, VALID_DEPARTMENTS, normalize_department
 from app.chatbot import get_chatbot_response
+import sklearn
+import xgboost
 
 app = FastAPI(
     title="AI Dropout Prediction ML Microservice",
@@ -20,7 +22,17 @@ app = FastAPI(
     version="1.0.0"
 )
 
+@app.on_event("startup")
+def startup_check():
+    print(f"[ML Service Startup] Loaded scikit-learn version: {sklearn.__version__}")
+    print(f"[ML Service Startup] Loaded xgboost version: {xgboost.__version__}")
+    from app.predictor import model, preprocessor
+    if model is None or preprocessor is None:
+        raise RuntimeError("FATAL ERROR: Failed to load trained XGBoost model or preprocessor pipeline.")
+    print("[ML Service Startup] ✓ Model and preprocessor loaded and verified successfully.")
+
 # --- Pydantic Request Schemas ---
+
 
 class PredictRequest(BaseModel):
     student_id: Optional[str] = "STU_DEMO_001"

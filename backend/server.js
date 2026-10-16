@@ -29,19 +29,28 @@ assertConfig();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+// C3. Proxy awareness: set Express trust proxy from env var (default 1 in production)
+const trustProxyVal = process.env.TRUST_PROXY !== undefined
+  ? (process.env.TRUST_PROXY === 'true' || process.env.TRUST_PROXY === '1' ? 1 : (isNaN(Number(process.env.TRUST_PROXY)) ? process.env.TRUST_PROXY : Number(process.env.TRUST_PROXY)))
+  : (process.env.NODE_ENV === 'production' ? 1 : false);
+app.set('trust proxy', trustProxyVal);
+
 // 1. Security Headers via Helmet
 app.use(helmet());
 
-// 2. CORS Allowlist Configuration
-const defaultAllowedOrigins = ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5000'];
-const configuredOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim()).filter(Boolean)
-  : defaultAllowedOrigins;
+// 2. CORS Allowlist Configuration (C2)
+const rawCors = process.env.CORS_ORIGINS || process.env.ALLOWED_ORIGINS || 'http://localhost:5173,http://localhost:5174,http://localhost:5000';
+const configuredOrigins = rawCors.split(',').map(o => o.trim()).filter(Boolean);
 
 app.use(cors({
   origin: (origin, callback) => {
     // Allow non-browser server-to-server requests or same-origin
     if (!origin) return callback(null, true);
+    if (process.env.NODE_ENV === 'production' && configuredOrigins.includes('*')) {
+      const corsErr = new Error('CORS violation: Wildcard origin is forbidden in production.');
+      corsErr.status = 403;
+      return callback(corsErr);
+    }
     if (configuredOrigins.includes(origin)) {
       return callback(null, true);
     }
@@ -52,6 +61,16 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-API-Key', 'X-Session-Token']
 }));
+
+// C6. Direct root health check (no auth)
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    service: 'ai-dropout-prediction-gateway',
+    timestamp: new Date().toISOString()
+  });
+});
+
 
 // 3. Body Parsing with strict size limit (100kb)
 app.use(express.json({ limit: '100kb' }));
