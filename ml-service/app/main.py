@@ -65,6 +65,16 @@ class ChatRequest(BaseModel):
 
 # --- API Endpoints ---
 
+@app.get("/")
+def root():
+    return {
+        "status": "online",
+        "service": "AI Dropout Prediction ML Microservice",
+        "model": "XGBoostClassifier",
+        "docs": "/docs",
+        "health": "/health"
+    }
+
 @app.get("/health")
 def health_check():
     return {
