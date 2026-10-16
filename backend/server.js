@@ -51,7 +51,15 @@ app.use(cors({
       corsErr.status = 403;
       return callback(corsErr);
     }
-    if (configuredOrigins.includes(origin)) {
+    const isAllowed = configuredOrigins.some(pattern => {
+      if (pattern === origin) return true;
+      if (pattern.includes('*') && pattern !== '*') {
+        const regex = new RegExp('^' + pattern.replace(/\./g, '\\.').replace(/\*/g, '[a-zA-Z0-9-]+') + '$');
+        return regex.test(origin);
+      }
+      return false;
+    });
+    if (isAllowed) {
       return callback(null, true);
     }
     const corsErr = new Error(`CORS policy violation: Origin '${origin}' is not in allowed origins list.`);
