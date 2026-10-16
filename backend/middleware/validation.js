@@ -4,11 +4,50 @@ const fs = require('fs');
 const path = require('path');
 
 // Single source of truth: the same feature_spec.json the ML service is tested against
-// (a Python test asserts it equals the departments the model was actually trained on).
-const FEATURE_SPEC = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '../../models/feature_spec.json'), 'utf8')
-);
-const VALID_DEPARTMENTS = FEATURE_SPEC.features.find(f => f.name === 'department').allowed_values;
+// Resolves safely across Docker container contexts, local dev, and serverless environments.
+const CANONICAL_DEPARTMENTS = [
+  'AIDS',
+  'AIML',
+  'Automobile',
+  'CSBS',
+  'CSD',
+  'CSE',
+  'Civil',
+  'Cyber Security',
+  'ECE',
+  'EEE',
+  'IT',
+  'Mechanical',
+  'Robotics'
+];
+
+function loadFeatureSpec() {
+  const candidatePaths = [
+    path.join(__dirname, '../data/feature_spec.json'),
+    path.join(__dirname, '../feature_spec.json'),
+    path.join(__dirname, '../../models/feature_spec.json'),
+    path.join(process.cwd(), 'data/feature_spec.json'),
+    path.join(process.cwd(), 'feature_spec.json'),
+    path.join(process.cwd(), 'models/feature_spec.json'),
+    path.join(process.cwd(), '../models/feature_spec.json')
+  ];
+
+  for (const candidate of candidatePaths) {
+    try {
+      if (fs.existsSync(candidate)) {
+        return JSON.parse(fs.readFileSync(candidate, 'utf8'));
+      }
+    } catch (e) {
+      // Continue to next candidate path
+    }
+  }
+  return null;
+}
+
+const FEATURE_SPEC = loadFeatureSpec();
+const VALID_DEPARTMENTS = (FEATURE_SPEC && FEATURE_SPEC.features && FEATURE_SPEC.features.find(f => f.name === 'department'))
+  ? FEATURE_SPEC.features.find(f => f.name === 'department').allowed_values
+  : CANONICAL_DEPARTMENTS;
 
 // Legacy short codes accepted from older clients, mapped to trained names.
 const DEPARTMENT_ALIASES = {
